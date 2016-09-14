@@ -22,7 +22,8 @@ Contact
 </h4>
 Laboratory for Machine Tools and Production Engineering (WZL)<br \>
 RWTH Aachen University<br \>
-<a href='http://www.wzl.rwth-aachen.de' >Website of WZL Aachen</a><br\>
+<a href='http://www.wzl.rwth-aachen.de' >Website of WZL Aachen</a>
+<br \>
 E-Mail: denis.oezdemir@rwth-aachen.de
 <h4>
 Acknowledgement
