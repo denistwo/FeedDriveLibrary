@@ -1,4 +1,4 @@
-# Modelica
+# Feed Drive Library
 <p>
 The objective of the Feed Drive Library to model linear axes in machine tools and production machines. Therefore the library contains key elements such as converter, motor, gear, clutch etc. 
 The models are designed in a way so that they can easily be parameterized
