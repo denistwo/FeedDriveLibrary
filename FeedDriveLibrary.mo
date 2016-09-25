@@ -3,9 +3,9 @@ package FeedDriveLibrary
   import SI = Modelica.SIunits;
   import Modelica.Constants;
 
-  package Information
+  class Information
     extends Modelica.Icons.Information;
-     annotation (Documentation(info="<html>
+     annotation (preferredView="info", Documentation(info="<html>
 <p>
 The objective of the Feed Drive Library to model linear axes in machine tools and production machines. Therefore the library contains key elements such as converter, motor, gear, clutch etc. 
 The models are designed in a way so that they can easily be parameterized
@@ -24,7 +24,7 @@ No liability can be accepted for any errors or omissions.
 Reference
 </h4>
 When using the library please cite 
-÷zdemir, D.; Motschke, T.; Herfs, W.; Brecher, C.: Modelica Library for Feed Drive Systems. In: 11th International Modelica Conference, Paris, 2015, pp. 117-125
+√ñzdemir, D.; Motschke, T.; Herfs, W.; Brecher, C.: Modelica Library for Feed Drive Systems. In: 11th International Modelica Conference, Paris, 2015, pp. 117-125
 <h4>
 License
 </h4>
@@ -1160,7 +1160,7 @@ supply")}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-20
       end MotorGround;
 
       model Friction
-        "Model of angular velocity dependent friction losses according to Gross, Hamann and Wieg‰rtner (2006)"
+        "Model of angular velocity dependent friction losses according to Gross, Hamann and Wieg√§rtner (2006)"
         extends Modelica.Electrical.Machines.Interfaces.FlangeSupport;
         constant Real eps = 0.1;
         parameter SI.AngularVelocity w_ref = 10
@@ -1641,7 +1641,7 @@ is passed as output.
         "Enumeration defining spindle support bearing configuration"                                                                                                     annotation(Evaluate = true);
 
       model BallScrewDrive
-        "Model of a ball screw drive according to Gross, Hamann and Wieg‰rtner (2006). Can be parameterized by typical supplier data such as from A. Mannesmann"
+        "Model of a ball screw drive according to Gross, Hamann and Wieg√§rtner (2006). Can be parameterized by typical supplier data such as from A. Mannesmann"
         parameter SI.Diameter d(displayUnit = "mm")
           "Nominal diameter of spindle"                                           annotation(Dialog(group = "Geometric data"));
         parameter SI.Length P(displayUnit = "mm") "Pitch of spindle" annotation(Dialog(group = "Geometric data"));
