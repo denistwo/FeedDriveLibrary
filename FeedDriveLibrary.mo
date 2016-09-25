@@ -1160,7 +1160,7 @@ supply")}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-20
       end MotorGround;
 
       model Friction
-        "Model of angular velocity dependent friction losses according to Gross, Hamann and Wiegärtner (2006)"
+        "Model of angular velocity dependent friction losses according to Gross, Hamann and Wieg&auml;rtner (2006)"
         extends Modelica.Electrical.Machines.Interfaces.FlangeSupport;
         constant Real eps = 0.1;
         parameter SI.AngularVelocity w_ref = 10
@@ -1641,7 +1641,7 @@ is passed as output.
         "Enumeration defining spindle support bearing configuration"                                                                                                     annotation(Evaluate = true);
 
       model BallScrewDrive
-        "Model of a ball screw drive according to Gross, Hamann and Wiegärtner (2006). Can be parameterized by typical supplier data such as from A. Mannesmann"
+        "Model of a ball screw drive according to Gross, Hamann and Wieg&auml;rtner (2006). Can be parameterized by typical supplier data such as from A. Mannesmann"
         parameter SI.Diameter d(displayUnit = "mm")
           "Nominal diameter of spindle"                                           annotation(Dialog(group = "Geometric data"));
         parameter SI.Length P(displayUnit = "mm") "Pitch of spindle" annotation(Dialog(group = "Geometric data"));
