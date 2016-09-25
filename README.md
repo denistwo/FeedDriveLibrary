@@ -16,7 +16,7 @@ When using the library please cite
 <h4>
 License
 </h4>
-The library is based on the Modelica Standard Library. For our own work BSD/MIT shall apply. 
+The library is based on the Modelica Standard Library. For our own work MIT License shall apply. 
 <h4>
 Contact
 </h4>
