@@ -12,7 +12,7 @@ No liability can be accepted for any errors or omissions.
 Reference
 </h4>
 When using the library please cite 
-Özdemir, D.; Motschke, T.; Herfs, W.; Brecher, C.: Modelica Library for Feed Drive Systems. In: 11th International Modelica Conference, Paris, 2015, pp. 117-125
+&Oumlzdemir, D.; Motschke, T.; Herfs, W.; Brecher, C.: Modelica Library for Feed Drive Systems. In: 11th International Modelica Conference, Paris, 2015, pp. 117-125
 <h4>
 License
 </h4>
