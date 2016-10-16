@@ -262,7 +262,7 @@ We gratefully acknowledge funding from the German Research Foundation (DFG) in t
         parameter SI.Torque M_max "Maximum torque" annotation(Dialog(group = "Limiting data"));
         parameter SI.Current I_max "Maximum current" annotation(Dialog(group = "Limiting data"));
         parameter SI.Temperature T_max(displayUnit = "degC") = 413.15
-          "Permissable temperature"                                                             annotation(Dialog(group = "Limiting data"));
+          "Permissible temperature"                                                             annotation(Dialog(group = "Limiting data"));
         parameter SI.Voltage U_eff_max = 380 "Voltage limit of motor module" annotation(Dialog(group = "Limiting data"));
         parameter SI.ElectricalTorqueConstant k_T_0_100 = M_0_100 / I_0_100
           "Rated torque constant"                                                                   annotation(Dialog(group = "Physical constants"));
@@ -472,7 +472,7 @@ Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textS
         parameter SI.Length tau_p "Pole width" annotation(Dialog(group = "Physical constants"));
         parameter SI.Temperature T_start = 393.15 "Start temperature"  annotation(Dialog(group = "Start conditions"));
         parameter SI.Temperature T_max(displayUnit = "degC") = 393.15
-          "Permissable temperature"                                                             annotation(Dialog(group = "Limiting data"));
+          "Permissible temperature"                                                             annotation(Dialog(group = "Limiting data"));
         parameter Cooling.Units.FlowResistanceL R_flow = Delta_p_N / Q_N ^ 1.75
           "Resistance to flow of pipe"                                                                       annotation(Dialog(group = "Cooling system"));
         parameter SI.VolumeFlowRate Q_N(displayUnit = "l/min")
@@ -585,7 +585,7 @@ Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textS
         parameter SI.Torque M_max "Maximum torque" annotation(Dialog(group = "Limiting data"));
         parameter SI.Current I_max "Maximum current" annotation(Dialog(group = "Limiting data"));
         parameter SI.Temperature T_max(displayUnit = "degC") = 413.15
-          "Permissable temperature"                                                             annotation(Dialog(group = "Limiting data"));
+          "Permissible temperature"                                                             annotation(Dialog(group = "Limiting data"));
         parameter SI.Voltage U_eff_max = 380 "Voltage limit of motor module" annotation(Dialog(group = "Limiting data"));
         parameter SI.ElectricalTorqueConstant k_T_0_100 = M_0_100 / I_0_100
           "Rated torque constant"                                                                   annotation(Dialog(group = "Physical constants"));
@@ -2765,12 +2765,12 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         parameter SI.Inertia J = 1.44e-4 "Moment of inertia of pulley" annotation(Dialog(group = "Physical constants"));
         parameter Real eta = 0.98 "Efficiency factor" annotation(Dialog(group = "Physical constants"));
         parameter Real exponent = 0.80919
-          "Exponent for permissable power table (P_perm[W] = factor*n[U/min]^exponent)"
+          "Exponent for permissible power table (P_perm[W] = factor*n[U/min]^exponent)"
                                                                                                               annotation(Dialog(group = "Limiting data"));
         parameter Real factor = 13.17
           "Factor for perissable power table (P_perm[W] = factor*n[U/min]^exponent)"
                                                                                                               annotation(Dialog(group = "Limiting data"));
-        parameter SI.Force F_perm = 2012 "Permissable force" annotation(Dialog(group = "Limiting data"));
+        parameter SI.Force F_perm = 2012 "Permissible force" annotation(Dialog(group = "Limiting data"));
         parameter Real S_Operation = 1.3 "See belt catalogue";
         Modelica.Mechanics.Rotational.Interfaces.Flange_a flangeR
           "Flange of rotational shaft"                                                         annotation(Placement(transformation(extent={{-110,
@@ -2861,14 +2861,14 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         parameter SI.Inertia J_l "Moment of inertia of pulley" annotation(Dialog(group = "Large pulley"));
         parameter SI.Length width(displayUnit = "mm") "Width of belt" annotation(Dialog(group = "Belt"));
         parameter SI.Length standard_width(displayUnit = "mm")
-          "Width at which permissable power is given"                                  annotation(Dialog(group = "Belt"));
+          "Width at which permissible power is given"                                  annotation(Dialog(group = "Belt"));
         parameter Real exponent
-          "Exponent for permissable power table (P_perm[W] = factor*n[U/min]^exponent)"
+          "Exponent for permissible power table (P_perm[W] = factor*n[U/min]^exponent)"
                                                                                                               annotation(Dialog(group = "Limiting data"));
         parameter Real factor
           "Factor for perissable power table (P_perm[W] = factor*n[U/min]^exponent)"
                                                                                                          annotation(Dialog(group = "Limiting data"));
-        parameter SI.Force F_perm "Permissable force" annotation(Dialog(group = "Limiting data"));
+        parameter SI.Force F_perm "Permissible force" annotation(Dialog(group = "Limiting data"));
         parameter SI.TranslationalSpringConstant c(final min = 0) = 1e6
           "Spring constant ";
         parameter Real S_Operation = 1.3 "See belt catalogue";
@@ -3884,7 +3884,7 @@ The table interpolation has the following proporties:
     <b>extrapolation</b> through the last or first two points of the
     table.</li>
 <li>If the table has only <b>one row</b>, no interpolation is performed and
-    the function value is just returned independantly of the
+    the function value is just returned independently of the
     actual time instant.</li>
 <li>Via parameters <b>startTime</b> and <b>offset</b> the curve defined
     by the table can be shifted both in time and in the ordinate value.
