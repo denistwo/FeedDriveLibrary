@@ -4069,7 +4069,7 @@ Example:
       y = 1000 * 60 * u;
       annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}), graphics={  Text(extent=  {{0, 82}, {-96, 42}}, lineColor=  {0, 0, 0}, textString=  "m/s"), Text(extent=  {{92, -40}, {-14, -84}}, lineColor=  {0, 0, 0}, textString=  "mm/min")}), Documentation(info = "<html>
 <p>
-This block converts the input signal from metre per second to kilometre per hour and returns
+This block converts the input signal from metre per second to millimetre per minute and returns
 the result as output signal.
 </p>
 </html>"));
@@ -4102,25 +4102,25 @@ input <i>u</i>:
 
     block from_radPerSec_to_mPerMin
       extends Modelica.Blocks.Interfaces.PartialConversionBlock(u(unit = "rad/s"), y(unit = "m/min"));
-      parameter Real ratio_R2T(start = 1, unit = "m") "mm per revolution";
+      parameter Real ratio_R2T(start = 1, unit = "m") "m per revolution";
     equation
       y = 60 / (2 * Constants.pi) * ratio_R2T * u;
       annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}), graphics={  Text(extent=  {{0, 82}, {-96, 42}}, lineColor=  {0, 0, 0}, textString=  "rad/s"), Text(extent=  {{92, -40}, {-14, -84}}, lineColor=  {0, 0, 0}, textString=  "m/min")}), Documentation(info = "<html>
 <p>
-This block converts the input signal from metre per second to kilometre per hour and returns
+This block converts the input signal from radiant per second to metre per minute and returns
 the result as output signal.
 </p>
 </html>"));
     end from_radPerSec_to_mPerMin;
 
     block from_radPerSec_to_mmPerMin
-      extends Modelica.Blocks.Interfaces.PartialConversionBlock(u(unit = "rad/s"), y(unit = "m/min"));
+      extends Modelica.Blocks.Interfaces.PartialConversionBlock(u(unit = "rad/s"), y(unit = "mm/min"));
       parameter Real ratio_R2T(start = 1, unit = "mm") "mm per revolution";
     equation
       y = 60 / (2 * Constants.pi) * ratio_R2T * u;
       annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}), graphics={  Text(extent=  {{0, 82}, {-96, 42}}, lineColor=  {0, 0, 0}, textString=  "rad/s"), Text(extent=  {{92, -40}, {-14, -84}}, lineColor=  {0, 0, 0}, textString=  "mm/min")}), Documentation(info = "<html>
 <p>
-This block converts the input signal from metre per second to kilometre per hour and returns
+This block converts the input signal from radiant per second to millimetre per minute and returns
 the result as output signal.
 </p>
 </html>"));
@@ -4132,7 +4132,7 @@ the result as output signal.
       y = 1000 * u;
       annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}), graphics={  Text(extent=  {{0, 82}, {-96, 42}}, lineColor=  {0, 0, 0}, textString=  "m"), Text(extent=  {{92, -40}, {-14, -84}}, lineColor=  {0, 0, 0}, textString=  "mm")}), Documentation(info = "<html>
 <p>
-This block converts the input signal from metre per second to kilometre per hour and returns
+This block converts the input signal from metre to millimetre and returns
 the result as output signal.
 </p>
 </html>"));
