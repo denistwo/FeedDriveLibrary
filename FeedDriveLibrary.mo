@@ -4139,7 +4139,5 @@ the result as output signal.
     end to_mm;
   end HelpBlocks;
 
-  annotation(uses(
-      Modelica(version="3.2.1"),
-      Modelica_LinearSystems2(version="2.3.2")));
+  annotation(uses(Modelica(version="3.2.1")));
 end FeedDriveLibrary;
