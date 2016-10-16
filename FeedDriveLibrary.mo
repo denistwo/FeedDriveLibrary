@@ -7,11 +7,11 @@ package FeedDriveLibrary
     extends Modelica.Icons.Information;
      annotation (preferredView="info", Documentation(info="<html>
 <p>
-The objective of the Feed Drive Library to model linear axes in machine tools and production machines. Therefore the library contains key elements such as converter, motor, gear, clutch etc. 
+The objective of the Feed Drive Library to model linear axes in machine tools and production machines. Therefore the library contains key elements such as converter, motor, gear, clutch etc.
 The models are designed in a way so that they can easily be parameterized
 </p>
 
-The objective of the Feed Drive Library is to model linear axes in machine tools and production machines. Therefore, the library contains key elements such as converter, motor, gear, clutch etc. 
+The objective of the Feed Drive Library is to model linear axes in machine tools and production machines. Therefore, the library contains key elements such as converter, motor, gear, clutch etc.
 The models are designed in a way so that they can easily be parameterized with typical vendor datasheets. Thus, we defined a simpler motor model in comparison to the models in electric machine models in the Modelica Standard Library. Further, the models do not only contain the behavior equations, but also comprise the metrics and requirements that are important to choose adequate components for designing feed drive axes. These requirements can also be used for system optimization.
 The library is based on basic elements from the Standard Library and from the Optimization Library from Dymola. Regarding the Standard Library these are icons and different adapted models. Regarding the Optimization Library we had a look at the Criteria models (mean, max, etc) and changed these models for our specific purposes.
 
@@ -23,7 +23,7 @@ No liability can be accepted for any errors or omissions.
 <h4>
 Reference
 </h4>
-When using the library please cite 
+When using the library please cite
 &Ouml;–zdemir, D.; Motschke, T.; Herfs, W.; Brecher, C.: Modelica Library for Feed Drive Systems. In: 11th International Modelica Conference, Paris, 2015, pp. 117-125
 <h4>
 License
@@ -65,22 +65,15 @@ We gratefully acknowledge funding from the German Research Foundation (DFG) in t
     equation
       connect(fixedTemperature.port, Siemens_1FT7086_AC7.heatPort) annotation (Line(
           points={{-40,-40},{-21.5,-40},{-21.5,-10.7}},
-          color={191,0,0},
-          smooth=Smooth.None));
+          color={191,0,0}));
       connect(torque.flange, Siemens_1FT7086_AC7.flange) annotation (Line(
-          points={{60,-40},{80,-40},{80,1},{-9.35,1}},
-          color={0,0,0},
-          smooth=Smooth.None));
+          points={{60,-40},{80,-40},{80,1},{-9.35,1}}));
       connect(torque.tau, const1.y) annotation (Line(
           points={{38,-40},{31,-40}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(const.y, Siemens_1FT7086_AC7.u_q) annotation (Line(
           points={{-71,-20},{-48.5,-20},{-48.5,-12.26}},
-          color={0,0,127},
-          smooth=Smooth.None));
-      annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                -100},{100,100}}),                                                                           graphics));
+          color={0,0,127}));
     end S1_Operation_Siemens;
 
     model SimpleApplicationScenario_LM_dyn
@@ -97,20 +90,20 @@ We gratefully acknowledge funding from the German Research Foundation (DFG) in t
       Modelica.Blocks.Nonlinear.FixedDelay fixedDelay1(delayTime = 62.5e-6) annotation(Placement(transformation(extent = {{-70, 18}, {-90, 38}})));
       FeedDriveMotor.Components.v_p_controller v_p_controller(T_nn = 0.003, delay = 62.5e-6, K_V = 40, K_pn = 1400) annotation(Placement(transformation(extent = {{-146, -22}, {-126, -2}})));
     equation
-      connect(force_PT1_1.flange, mass.flange_b) annotation(Line(points = {{38, 8}, {28, 8}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(S_1FN3450_3WE.coolingPort_a, displacementPump.port_b) annotation(Line(points = {{-25.8, 13.8}, {-30, 13.8}, {-30, 48}, {-28, 48}}, color = {0, 0, 0}, pattern = LinePattern.Solid, thickness = 0.25, smooth = Smooth.None));
-      connect(displacementPump.port_a, tank_Simple.port_a) annotation(Line(points = {{-12, 48}, {0, 48}}, color = {0, 0, 0}, pattern = LinePattern.Solid, thickness = 0.25, smooth = Smooth.None));
-      connect(mass.flange_a, S_1FN3450_3WE.f) annotation(Line(points = {{8, 8}, {-11, 8}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(S_1FN3450_3WE.coolingPort_b, tank_Simple.port_a) annotation(Line(points = {{-14.2, 13.8}, {-10, 13.8}, {-10, 48}, {0, 48}}, color = {0, 0, 0}, pattern = LinePattern.Solid, smooth = Smooth.None));
-      connect(meas.flange, mass.flange_a) annotation(Line(points = {{8, 18}, {8, 8}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(PI_I.y, S_1FN3450_3WE.u_q) annotation(Line(points = {{-71, -12}, {-40, -12}, {-40, -2.2}}, color = {0, 0, 127}, smooth = Smooth.None));
-      connect(I_feedback.y, PI_I.u) annotation(Line(points = {{-101, -12}, {-94, -12}}, color = {0, 0, 127}, smooth = Smooth.None));
-      connect(S_1FN3450_3WE.i_q, fixedDelay1.u) annotation(Line(points = {{-40, 17}, {-40, 28}, {-68, 28}}, color = {0, 0, 127}, smooth = Smooth.None));
-      connect(fixedDelay1.y, I_feedback.u2) annotation(Line(points = {{-91, 28}, {-110, 28}, {-110, -4}}, color = {0, 0, 127}, smooth = Smooth.None));
-      connect(const1.y, v_p_controller.x_s) annotation(Line(points = {{-159, -12}, {-148, -12}}, color = {0, 0, 127}, smooth = Smooth.None));
-      connect(v_p_controller.i_s, I_feedback.u1) annotation(Line(points = {{-125, -12}, {-118, -12}}, color = {0, 0, 127}, smooth = Smooth.None));
-      connect(meas.v, v_p_controller.v_a) annotation(Line(points = {{8, 39}, {8, 58}, {-136, 58}, {-136, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-      connect(step.y, force_PT1_1.f) annotation(Line(points = {{59, 36}, {72, 36}, {72, 8}, {60, 8}}, color = {0, 0, 127}, smooth = Smooth.None));
+      connect(force_PT1_1.flange, mass.flange_b) annotation(Line(points = {{38, 8}, {28, 8}}, color = {0, 127, 0}));
+      connect(S_1FN3450_3WE.coolingPort_a, displacementPump.port_b) annotation(Line(points = {{-25.8, 13.8}, {-30, 13.8}, {-30, 48}, {-28, 48}}, color = {0, 0, 0}, thickness = 0.25));
+      connect(displacementPump.port_a, tank_Simple.port_a) annotation(Line(points = {{-12, 48}, {0, 48}}, color = {0, 0, 0}, thickness = 0.25));
+      connect(mass.flange_a, S_1FN3450_3WE.f) annotation(Line(points = {{8, 8}, {-11, 8}}, color = {0, 127, 0}));
+      connect(S_1FN3450_3WE.coolingPort_b, tank_Simple.port_a) annotation(Line(points = {{-14.2, 13.8}, {-10, 13.8}, {-10, 48}, {0, 48}}, color = {0, 0, 0}));
+      connect(meas.flange, mass.flange_a) annotation(Line(points = {{8, 18}, {8, 8}}, color = {0, 127, 0}));
+      connect(PI_I.y, S_1FN3450_3WE.u_q) annotation(Line(points = {{-71, -12}, {-40, -12}, {-40, -2.2}}, color = {0, 0, 127}));
+      connect(I_feedback.y, PI_I.u) annotation(Line(points = {{-101, -12}, {-94, -12}}, color = {0, 0, 127}));
+      connect(S_1FN3450_3WE.i_q, fixedDelay1.u) annotation(Line(points = {{-40, 17}, {-40, 28}, {-68, 28}}, color = {0, 0, 127}));
+      connect(fixedDelay1.y, I_feedback.u2) annotation(Line(points = {{-91, 28}, {-110, 28}, {-110, -4}}, color = {0, 0, 127}));
+      connect(const1.y, v_p_controller.x_s) annotation(Line(points = {{-159, -12}, {-148, -12}}, color = {0, 0, 127}));
+      connect(v_p_controller.i_s, I_feedback.u1) annotation(Line(points = {{-125, -12}, {-118, -12}}, color = {0, 0, 127}));
+      connect(meas.v, v_p_controller.v_a) annotation(Line(points = {{8, 39}, {8, 58}, {-136, 58}, {-136, 0}}, color = {0, 0, 127}));
+      connect(step.y, force_PT1_1.f) annotation(Line(points = {{59, 36}, {72, 36}, {72, 8}, {60, 8}}, color = {0, 0, 127}));
       annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-200, -100}, {200, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-200, -100}, {200, 100}})));
     end SimpleApplicationScenario_LM_dyn;
 
@@ -128,18 +121,15 @@ We gratefully acknowledge funding from the German Research Foundation (DFG) in t
       RotationalComponents.TimingBelt.BeltPulley TBD_large(d_eff = 0.08149, z = 32, J = 0.000655) annotation(Placement(transformation(extent = {{0, -10}, {-20, 10}})));
     equation
       connect(T_U.port, PSM.heatPort) annotation(Line(points={{-60,-50},{-54,
-              -50},{-54,-9}},                                                                       color = {191, 0, 0}, smooth = Smooth.None));
-      connect(BSD.flangeT, table.flange_a) annotation(Line(points = {{24.2, 0}, {30, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(machineBed.flange, BSD.supportT1) annotation(Line(points = {{-10, -30}, {3.8, -30}, {3.8, -7}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(TBD_small.flangeR, PSM.flange) annotation(Line(points = {{-40, 0}, {-45, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-      connect(TBD_small.flangeT, TBD_large.flangeT) annotation(Line(points = {{-20, 0}, {-20, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(TBD_large.flangeR, BSD.flangeR) annotation(Line(points = {{0, 0}, {5, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
+              -50},{-54,-9}},                                                                       color = {191, 0, 0}));
+      connect(BSD.flangeT, table.flange_a) annotation(Line(points = {{24.2, 0}, {30, 0}}, color = {0, 127, 0}));
+      connect(machineBed.flange, BSD.supportT1) annotation(Line(points = {{-10, -30}, {3.8, -30}, {3.8, -7}}, color = {0, 127, 0}));
+      connect(TBD_small.flangeR, PSM.flange) annotation(Line(points = {{-40, 0}, {-45, 0}}, color = {0, 0, 0}));
+      connect(TBD_small.flangeT, TBD_large.flangeT) annotation(Line(points = {{-20, 0}, {-20, 0}}, color = {0, 127, 0}));
+      connect(TBD_large.flangeR, BSD.flangeR) annotation(Line(points = {{0, 0}, {5, 0}}, color = {0, 0, 0}));
       connect(ramp.y, PSM.u_q) annotation (Line(
           points={{-95,-20},{-74,-20},{-74,-10.2}},
-          color={0,0,127},
-          smooth=Smooth.None));
-      annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                -100},{100,100}}),                                                                           graphics));
+          color={0,0,127}));
     end h_i_opt;
 
     model FrequencyAnalysis
@@ -203,69 +193,51 @@ We gratefully acknowledge funding from the German Research Foundation (DFG) in t
             origin={-54,60})));
     equation
       connect(speedSensor.flange, encoder.flange_a) annotation(Line(points={{6,12},{
-              14,12}},                                                                               color = {0, 0, 0}, smooth = Smooth.None));
+              14,12}},                                                                               color = {0, 0, 0}));
       connect(encoder.flange_b, encoderMounting.flange_a) annotation(Line(points={{34,12},
-              {44,12}},                                                                                    color = {0, 0, 0}, smooth = Smooth.None));
+              {44,12}},                                                                                    color = {0, 0, 0}));
       connect(screwShaft.flange_b, ballscrew.flangeR) annotation (Line(
-          points={{112,-20},{123,-20}},
-          color={0,0,0},
-          smooth=Smooth.None));
+          points={{112,-20},{123,-20}}));
       connect(machineBed.flange, ballscrew.supportT1) annotation (Line(
           points={{112,-58},{121.8,-58},{121.8,-27}},
-          color={0,127,0},
-          smooth=Smooth.None));
+          color={0,127,0}));
       connect(to_mm.u,positionSensor. s) annotation (Line(
           points={{20,60},{103,60}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(ballscrew.flangeT, screwShaft1.flange_a) annotation (Line(
           points={{142.2,-20},{154,-20}},
-          color={0,127,0},
-          smooth=Smooth.None));
+          color={0,127,0}));
       connect(screwShaft1.flange_b, machineBase.flange_a) annotation (Line(
           points={{174,-20},{198,-20}},
-          color={0,127,0},
-          smooth=Smooth.None));
+          color={0,127,0}));
       connect(positionSensor.flange, screwShaft1.flange_a) annotation (Line(
           points={{124,60},{148,60},{148,-20},{154,-20}},
-          color={0,127,0},
-          smooth=Smooth.None));
+          color={0,127,0}));
       connect(force.flange, machineBase.flange_b) annotation (Line(
           points={{220,20},{238,20},{238,-20},{218,-20}},
-          color={0,127,0},
-          smooth=Smooth.None));
+          color={0,127,0}));
       connect(force.f, step1.y) annotation (Line(
           points={{198,20},{187,20}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(PI_w.y, pMSM.i_set) annotation (Line(
           points={{25,-58},{44,-58},{44,-30}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(pMSM.heatPort, T_U.port) annotation (Line(
           points={{64,-29},{66,-29},{66,-58},{72,-58}},
-          color={191,0,0},
-          smooth=Smooth.None));
+          color={191,0,0}));
       connect(pMSM.flange, screwShaft.flange_a) annotation (Line(
-          points={{73,-20},{92,-20}},
-          color={0,0,0},
-          smooth=Smooth.None));
+          points={{73,-20},{92,-20}}));
       connect(encoderMounting.flange_b, screwShaft.flange_a) annotation (Line(
-          points={{64,12},{82,12},{82,-20},{92,-20}},
-          color={0,0,0},
-          smooth=Smooth.None));
+          points={{64,12},{82,12},{82,-20},{92,-20}}));
       connect(PI_w.u, u1) annotation (Line(
           points={{2,-58},{-76,-58}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(speedSensor.w, w1) annotation (Line(
           points={{-15,12},{-60,12}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(to_mm.y, y1) annotation (Line(
           points={{-3,60},{-54,60}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-250,
                 -100},{250,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-250, -100}, {250, 100}})));
     end FrequencyAnalysis;
@@ -365,28 +337,28 @@ We gratefully acknowledge funding from the German Research Foundation (DFG) in t
         obj_rms_current = currentSensor.i_rms;
         obj_absMax_current = currentSensor.i_max;
         obj_power_average = converter.power_average;
-        connect(airgap.flange, torqueSensor.flange_a) annotation(Line(points = {{-50, -20}, {-4, -20}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(torqueSensor.flange_b, motorInertia.flange_a) annotation(Line(points = {{16, -20}, {26, -20}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(motorInertia.flange_b, flange) annotation(Line(points = {{46, -20}, {148, -20}, {148, 0}, {190, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(currentSensor.n, resistance.p) annotation(Line(points = {{-110, 40}, {-100, 40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(friction.support, fixed.flange) annotation(Line(points = {{-34, 20}, {-34, 36}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(friction.flange, torqueSensor.flange_a) annotation(Line(points = {{-34, 0}, {-34, -20}, {-4, -20}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(voltageSensor.n, currentSensor.n) annotation(Line(points = {{-110, -10}, {-110, 40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(resistance.heatPort, thermConductor.port_b) annotation(Line(points = {{-90, 44}, {-90, 58}, {26, 58}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(heatCapacitor.port, thermConductor.port_b) annotation(Line(points = {{-20, 70}, {-20, 58}, {26, 58}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(heatCapacitor.port, tempSensor.port) annotation(Line(points = {{-20, 70}, {-5.4, 70}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(friction.heatPort, thermConductor.port_b) annotation(Line(points = {{-24, 10}, {-20, 10}, {-20, 58}, {26, 58}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(wSensor_rpm.flange, torqueSensor.flange_a) annotation(Line(points = {{-4, 10}, {-12, 10}, {-12, -20}, {-4, -20}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(inductance.p, airgap.n) annotation(Line(points = {{-80, -40}, {-60, -40}, {-60, -30}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(airgap.p, resistance.n) annotation(Line(points = {{-60, -10}, {-60, 40}, {-80, 40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(airgap.heatport, thermConductor.port_b) annotation(Line(points = {{-54, -18}, {-54, 58}, {26, 58}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(converter.u_q, u_q) annotation(Line(points = {{-170, -31}, {-170, -40}, {-190, -40}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(heatPort, thermConductor.port_a) annotation(Line(points = {{60, 58}, {46, 58}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(voltageSensor.p, inductance.n) annotation(Line(points = {{-110, -30}, {-110, -40}, {-100, -40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(currentSensor.i_q, i_q) annotation(Line(points = {{-122, 30.1}, {-124, 30.1}, {-124, 16}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(motorGround.p, converter.n) annotation(Line(points = {{-146, -40}, {-146, -24.1}, {-156, -24.1}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(motorGround.p, inductance.n) annotation(Line(points = {{-146, -40}, {-100, -40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(converter.p, currentSensor.p) annotation(Line(points = {{-156, -16.1}, {-152, -16.1}, {-152, -16}, {-146, -16}, {-146, 39.9}, {-130, 39.9}}, color = {0, 0, 255}, smooth = Smooth.None));
+        connect(airgap.flange, torqueSensor.flange_a) annotation(Line(points = {{-50, -20}, {-4, -20}}, color = {0, 0, 0}));
+        connect(torqueSensor.flange_b, motorInertia.flange_a) annotation(Line(points = {{16, -20}, {26, -20}}, color = {0, 0, 0}));
+        connect(motorInertia.flange_b, flange) annotation(Line(points = {{46, -20}, {148, -20}, {148, 0}, {190, 0}}, color = {0, 0, 0}));
+        connect(currentSensor.n, resistance.p) annotation(Line(points = {{-110, 40}, {-100, 40}}, color = {0, 0, 255}));
+        connect(friction.support, fixed.flange) annotation(Line(points = {{-34, 20}, {-34, 36}}, color = {0, 0, 0}));
+        connect(friction.flange, torqueSensor.flange_a) annotation(Line(points = {{-34, 0}, {-34, -20}, {-4, -20}}, color = {0, 0, 0}));
+        connect(voltageSensor.n, currentSensor.n) annotation(Line(points = {{-110, -10}, {-110, 40}}, color = {0, 0, 255}));
+        connect(resistance.heatPort, thermConductor.port_b) annotation(Line(points = {{-90, 44}, {-90, 58}, {26, 58}}, color = {191, 0, 0}));
+        connect(heatCapacitor.port, thermConductor.port_b) annotation(Line(points = {{-20, 70}, {-20, 58}, {26, 58}}, color = {191, 0, 0}));
+        connect(heatCapacitor.port, tempSensor.port) annotation(Line(points = {{-20, 70}, {-5.4, 70}}, color = {191, 0, 0}));
+        connect(friction.heatPort, thermConductor.port_b) annotation(Line(points = {{-24, 10}, {-20, 10}, {-20, 58}, {26, 58}}, color = {191, 0, 0}));
+        connect(wSensor_rpm.flange, torqueSensor.flange_a) annotation(Line(points = {{-4, 10}, {-12, 10}, {-12, -20}, {-4, -20}}, color = {0, 0, 0}));
+        connect(inductance.p, airgap.n) annotation(Line(points = {{-80, -40}, {-60, -40}, {-60, -30}}, color = {0, 0, 255}));
+        connect(airgap.p, resistance.n) annotation(Line(points = {{-60, -10}, {-60, 40}, {-80, 40}}, color = {0, 0, 255}));
+        connect(airgap.heatport, thermConductor.port_b) annotation(Line(points = {{-54, -18}, {-54, 58}, {26, 58}}, color = {191, 0, 0}));
+        connect(converter.u_q, u_q) annotation(Line(points = {{-170, -31}, {-170, -40}, {-190, -40}}, color = {0, 0, 127}));
+        connect(heatPort, thermConductor.port_a) annotation(Line(points = {{60, 58}, {46, 58}}, color = {191, 0, 0}));
+        connect(voltageSensor.p, inductance.n) annotation(Line(points = {{-110, -30}, {-110, -40}, {-100, -40}}, color = {0, 0, 255}));
+        connect(currentSensor.i_q, i_q) annotation(Line(points = {{-122, 30.1}, {-124, 30.1}, {-124, 16}}, color = {0, 0, 127}));
+        connect(motorGround.p, converter.n) annotation(Line(points = {{-146, -40}, {-146, -24.1}, {-156, -24.1}}, color = {0, 0, 255}));
+        connect(motorGround.p, inductance.n) annotation(Line(points = {{-146, -40}, {-100, -40}}, color = {0, 0, 255}));
+        connect(converter.p, currentSensor.p) annotation(Line(points = {{-156, -16.1}, {-152, -16.1}, {-152, -16}, {-146, -16}, {-146, 39.9}, {-130, 39.9}}, color = {0, 0, 255}));
         when terminal() then
           util_n_max = S_n * wSensor_rpm.max / n_max;
           util_M_max = S_M * torqueSensor.max / M_max;
@@ -401,7 +373,7 @@ We gratefully acknowledge funding from the German Research Foundation (DFG) in t
                   fillPattern=                                                                                                    FillPattern.Solid), Rectangle(extent=  {{80, 28}, {100, 8}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Text(extent=  {{60, 0}, {140, -40}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid, textString=  "M"), Text(extent=  {{60, -40}, {140, -80}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid, textString=  "3~"), Rectangle(extent=  {{-180, 80}, {-20, -80}}, lineColor=  {0, 0, 0}), Text(extent=  {{-166, 40}, {-34, -40}}, lineColor=  {0, 0, 0}, textString=  "Converter"), Line(points=  {{-20, 40}, {30, 40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-20, 0}, {20, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-20, -40}, {30, -40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, 0}, {-180, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, 40}, {-180, 40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, -40}, {-180, -40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-340, 44}, {-224, -44}}, lineColor=  {0, 0, 0}, textString=  "Power
+                  fillPattern=                                                                                                    FillPattern.Solid, textString=  "3~"), Rectangle(extent=  {{-180, 80}, {-20, -80}}, lineColor=  {0, 0, 0}), Text(extent=  {{-166, 40}, {-34, -40}}, lineColor=  {0, 0, 0}, textString=  "Converter"), Line(points=  {{-20, 40}, {30, 40}}, color=  {0, 0, 0}), Line(points=  {{-20, 0}, {20, 0}}, color=  {0, 0, 0}), Line(points=  {{-20, -40}, {30, -40}}, color=  {0, 0, 0}), Line(points=  {{-218, 0}, {-180, 0}}, color=  {0, 0, 0}), Line(points=  {{-218, 40}, {-180, 40}}, color=  {0, 0, 0}), Line(points=  {{-218, -40}, {-180, -40}}, color=  {0, 0, 0}), Text(extent=  {{-340, 44}, {-224, -44}}, lineColor=  {0, 0, 0}, textString=  "Power
 Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textString=  "Uq"), Text(extent=  {{-242, 124}, {-42, 86}}, lineColor=  {0, 0, 0}, textString=  "Iq")}));
       end PMSM;
 
@@ -461,28 +433,28 @@ Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textS
         con_U_max = S_U * voltageSensor.u_link_max - U_eff_max;
         obj_rms_current = currentSensor.i_rms;
         obj_absMax_current = currentSensor.i_max;
-        connect(currentSensor.n, resistance.p) annotation(Line(points = {{-110, 40}, {-100, 40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(voltageSensor.n, currentSensor.n) annotation(Line(points = {{-110, -10}, {-110, 40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(resistance.heatPort, thermConductor.port_b) annotation(Line(points = {{-90, 44}, {-90, 58}, {26, 58}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(heatCapacitor.port, thermConductor.port_b) annotation(Line(points = {{-20, 70}, {-20, 58}, {26, 58}}, color = {191, 0, 0}, smooth = Smooth.None));
+        connect(currentSensor.n, resistance.p) annotation(Line(points = {{-110, 40}, {-100, 40}}, color = {0, 0, 255}));
+        connect(voltageSensor.n, currentSensor.n) annotation(Line(points = {{-110, -10}, {-110, 40}}, color = {0, 0, 255}));
+        connect(resistance.heatPort, thermConductor.port_b) annotation(Line(points = {{-90, 44}, {-90, 58}, {26, 58}}, color = {191, 0, 0}));
+        connect(heatCapacitor.port, thermConductor.port_b) annotation(Line(points = {{-20, 70}, {-20, 58}, {26, 58}}, color = {191, 0, 0}));
         connect(heatCapacitor.port, tempSensor.port) annotation(Line(points={{-20,70},
-                {-5.4,70}},                                                                                                    color = {191, 0, 0}, smooth = Smooth.None));
-        connect(converter.u_q, u_q) annotation(Line(points = {{-170, -31}, {-170, -40}, {-190, -40}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(heatPort, thermConductor.port_a) annotation(Line(points = {{60, 58}, {46, 58}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(voltageSensor.p, inductance.n) annotation(Line(points = {{-110, -30}, {-110, -40}, {-100, -40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(currentSensor.i_q, i_q) annotation(Line(points = {{-122, 30.1}, {-124, 30.1}, {-124, 16}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(motorGround.p, converter.n) annotation(Line(points = {{-146, -40}, {-146, -24.1}, {-156, -24.1}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(motorGround.p, inductance.n) annotation(Line(points = {{-146, -40}, {-100, -40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(converter.p, currentSensor.p) annotation(Line(points = {{-156, -16.1}, {-152, -16.1}, {-152, -16}, {-146, -16}, {-146, 39.9}, {-130, 39.9}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(inductance.p, emf.n) annotation(Line(points = {{-80, -40}, {-60, -40}, {-60, -30}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(emf.p, resistance.n) annotation(Line(points = {{-60, -10}, {-60, 40}, {-80, 40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(emf.flange, transSensor.flange_a) annotation(Line(points = {{-54, -20}, {-28.2, -20}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(transSensor.flange_b, mass.flange_a) annotation(Line(points = {{-8, -20}, {10, -20}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(mass.flange_b, flange_b1) annotation(Line(points = {{30, -20}, {106, -20}, {106, 0}, {180, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(emf.heatport, thermConductor.port_b) annotation(Line(points = {{-65, -20}, {-65, 58}, {26, 58}}, color = {191, 0, 0}, smooth = Smooth.None));
+                {-5.4,70}},                                                                                                    color = {191, 0, 0}));
+        connect(converter.u_q, u_q) annotation(Line(points = {{-170, -31}, {-170, -40}, {-190, -40}}, color = {0, 0, 127}));
+        connect(heatPort, thermConductor.port_a) annotation(Line(points = {{60, 58}, {46, 58}}, color = {191, 0, 0}));
+        connect(voltageSensor.p, inductance.n) annotation(Line(points = {{-110, -30}, {-110, -40}, {-100, -40}}, color = {0, 0, 255}));
+        connect(currentSensor.i_q, i_q) annotation(Line(points = {{-122, 30.1}, {-124, 30.1}, {-124, 16}}, color = {0, 0, 127}));
+        connect(motorGround.p, converter.n) annotation(Line(points = {{-146, -40}, {-146, -24.1}, {-156, -24.1}}, color = {0, 0, 255}));
+        connect(motorGround.p, inductance.n) annotation(Line(points = {{-146, -40}, {-100, -40}}, color = {0, 0, 255}));
+        connect(converter.p, currentSensor.p) annotation(Line(points = {{-156, -16.1}, {-152, -16.1}, {-152, -16}, {-146, -16}, {-146, 39.9}, {-130, 39.9}}, color = {0, 0, 255}));
+        connect(inductance.p, emf.n) annotation(Line(points = {{-80, -40}, {-60, -40}, {-60, -30}}, color = {0, 0, 255}));
+        connect(emf.p, resistance.n) annotation(Line(points = {{-60, -10}, {-60, 40}, {-80, 40}}, color = {0, 0, 255}));
+        connect(emf.flange, transSensor.flange_a) annotation(Line(points = {{-54, -20}, {-28.2, -20}}, color = {0, 127, 0}));
+        connect(transSensor.flange_b, mass.flange_a) annotation(Line(points = {{-8, -20}, {10, -20}}, color = {0, 127, 0}));
+        connect(mass.flange_b, flange_b1) annotation(Line(points = {{30, -20}, {106, -20}, {106, 0}, {180, 0}}, color = {0, 127, 0}));
+        connect(emf.heatport, thermConductor.port_b) annotation(Line(points = {{-65, -20}, {-65, 58}, {26, 58}}, color = {191, 0, 0}));
         annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-200, -100}, {200, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-200, -100}, {200, 100}}), graphics={  Ellipse(extent=  {{20, 80}, {180, -80}}, lineColor=  {0, 0, 0}), Text(extent=  {{-40, 140}, {240, 100}}, lineColor=  {0, 0, 255}, textString=  "%name"), Text(extent=  {{40, 30}, {160, -30}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid, textString=  "M"), Rectangle(extent=  {{-180, 80}, {-20, -80}}, lineColor=  {0, 0, 0}), Text(extent=  {{-166, 40}, {-34, -40}}, lineColor=  {0, 0, 0}, textString=  "Converter"), Line(points=  {{-20, 40}, {30, 40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-20, 0}, {20, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-20, -40}, {30, -40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, 0}, {-180, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, 40}, {-180, 40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, -40}, {-180, -40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-340, 44}, {-224, -44}}, lineColor=  {0, 0, 0}, textString=  "Power
-Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textString=  "Uq"), Text(extent=  {{-242, 124}, {-42, 86}}, lineColor=  {0, 0, 0}, textString=  "Iq"), Line(points=  {{20, -60}, {182, -60}}, color=  {0, 0, 0}, smooth=  Smooth.None, thickness=  0.5)}));
+                  fillPattern=                                                                                                    FillPattern.Solid, textString=  "M"), Rectangle(extent=  {{-180, 80}, {-20, -80}}, lineColor=  {0, 0, 0}), Text(extent=  {{-166, 40}, {-34, -40}}, lineColor=  {0, 0, 0}, textString=  "Converter"), Line(points=  {{-20, 40}, {30, 40}}, color=  {0, 0, 0}), Line(points=  {{-20, 0}, {20, 0}}, color=  {0, 0, 0}), Line(points=  {{-20, -40}, {30, -40}}, color=  {0, 0, 0}), Line(points=  {{-218, 0}, {-180, 0}}, color=  {0, 0, 0}), Line(points=  {{-218, 40}, {-180, 40}}, color=  {0, 0, 0}), Line(points=  {{-218, -40}, {-180, -40}}, color=  {0, 0, 0}), Text(extent=  {{-340, 44}, {-224, -44}}, lineColor=  {0, 0, 0}, textString=  "Power
+Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textString=  "Uq"), Text(extent=  {{-242, 124}, {-42, 86}}, lineColor=  {0, 0, 0}, textString=  "Iq"), Line(points=  {{20, -60}, {182, -60}}, color=  {0, 0, 0}, thickness=  0.5)}));
       end LM;
 
       model LM_cooling "Model of a linear motor with cooling"
@@ -569,29 +541,29 @@ Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textS
           //this not physically rigerous. Rigerous values require many cylces. This assumes that if temperature decreases in one cycle by 1 K, we have 0 % utilization. But of course this way also negative values are possible
           util_U_max = S_U * voltageSensor.u_link_max / U_eff_max;
         end when;
-        connect(currentSensor.n, resistance.p) annotation(Line(points = {{-110, 40}, {-100, 40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(voltageSensor.n, currentSensor.n) annotation(Line(points = {{-110, -10}, {-110, 40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(converter.u_q, u_q) annotation(Line(points = {{-170, -31}, {-170, -40}, {-190, -40}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(voltageSensor.p, inductance.n) annotation(Line(points = {{-110, -30}, {-110, -40}, {-100, -40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(currentSensor.i_q, i_q) annotation(Line(points = {{-122, 30.1}, {-124, 30.1}, {-124, 16}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(motorGround.p, converter.n) annotation(Line(points = {{-146, -40}, {-146, -24.1}, {-156, -24.1}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(motorGround.p, inductance.n) annotation(Line(points = {{-146, -40}, {-100, -40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(converter.p, currentSensor.p) annotation(Line(points = {{-156, -16.1}, {-152, -16.1}, {-152, -16}, {-146, -16}, {-146, 39.9}, {-130, 39.9}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(inductance.p, emf_linear.n) annotation(Line(points = {{-80, -40}, {-60, -40}, {-60, -30}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(emf_linear.p, resistance.n) annotation(Line(points = {{-60, -10}, {-60, 40}, {-80, 40}}, color = {0, 0, 255}, smooth = Smooth.None));
-        connect(emf_linear.flange, transSensor.flange_a) annotation(Line(points = {{-54, -20}, {-40.2, -20}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(emf_linear.heatport, resistance.heatPort) annotation(Line(points = {{-65, -20}, {-90, -20}, {-90, 36}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(heatCapacitor.port, resistance.heatPort) annotation(Line(points = {{-56, 42}, {-56, 26}, {-90, 26}, {-90, 36}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(tempSensor.port, resistance.heatPort) annotation(Line(points = {{-15.4, 26}, {-90, 26}, {-90, 36}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(coolingChannels.heatport_a, resistance.heatPort) annotation(Line(points = {{-22, 39}, {-22, 26}, {-90, 26}, {-90, 36}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(coolingChannels.port_a, coolingPort_a) annotation(Line(points = {{-32.4, 50}, {45, 50}, {45, 61}}, color = {0, 0, 0}, pattern = LinePattern.Solid, thickness = 0.25, smooth = Smooth.None));
-        connect(coolingChannels.port_b, coolingPort_b) annotation(Line(points = {{-11.6, 50}, {161, 50}, {161, 61}}, color = {0, 0, 0}, pattern = LinePattern.Solid, smooth = Smooth.None));
-        connect(mass.flange_a, transSensor.flange_b) annotation(Line(points = {{-10, -20}, {-20, -20}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(mass.flange_b, f) annotation(Line(points = {{10, -20}, {18, -20}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(tempSensor.actual, actual1) annotation(Line(points = {{4.6, 27}, {26.3, 27}, {26.3, 90}, {106, 90}}, color = {0, 0, 127}, smooth = Smooth.None));
+        connect(currentSensor.n, resistance.p) annotation(Line(points = {{-110, 40}, {-100, 40}}, color = {0, 0, 255}));
+        connect(voltageSensor.n, currentSensor.n) annotation(Line(points = {{-110, -10}, {-110, 40}}, color = {0, 0, 255}));
+        connect(converter.u_q, u_q) annotation(Line(points = {{-170, -31}, {-170, -40}, {-190, -40}}, color = {0, 0, 127}));
+        connect(voltageSensor.p, inductance.n) annotation(Line(points = {{-110, -30}, {-110, -40}, {-100, -40}}, color = {0, 0, 255}));
+        connect(currentSensor.i_q, i_q) annotation(Line(points = {{-122, 30.1}, {-124, 30.1}, {-124, 16}}, color = {0, 0, 127}));
+        connect(motorGround.p, converter.n) annotation(Line(points = {{-146, -40}, {-146, -24.1}, {-156, -24.1}}, color = {0, 0, 255}));
+        connect(motorGround.p, inductance.n) annotation(Line(points = {{-146, -40}, {-100, -40}}, color = {0, 0, 255}));
+        connect(converter.p, currentSensor.p) annotation(Line(points = {{-156, -16.1}, {-152, -16.1}, {-152, -16}, {-146, -16}, {-146, 39.9}, {-130, 39.9}}, color = {0, 0, 255}));
+        connect(inductance.p, emf_linear.n) annotation(Line(points = {{-80, -40}, {-60, -40}, {-60, -30}}, color = {0, 0, 255}));
+        connect(emf_linear.p, resistance.n) annotation(Line(points = {{-60, -10}, {-60, 40}, {-80, 40}}, color = {0, 0, 255}));
+        connect(emf_linear.flange, transSensor.flange_a) annotation(Line(points = {{-54, -20}, {-40.2, -20}}, color = {0, 127, 0}));
+        connect(emf_linear.heatport, resistance.heatPort) annotation(Line(points = {{-65, -20}, {-90, -20}, {-90, 36}}, color = {191, 0, 0}));
+        connect(heatCapacitor.port, resistance.heatPort) annotation(Line(points = {{-56, 42}, {-56, 26}, {-90, 26}, {-90, 36}}, color = {191, 0, 0}));
+        connect(tempSensor.port, resistance.heatPort) annotation(Line(points = {{-15.4, 26}, {-90, 26}, {-90, 36}}, color = {191, 0, 0}));
+        connect(coolingChannels.heatport_a, resistance.heatPort) annotation(Line(points = {{-22, 39}, {-22, 26}, {-90, 26}, {-90, 36}}, color = {191, 0, 0}));
+        connect(coolingChannels.port_a, coolingPort_a) annotation(Line(points = {{-32.4, 50}, {45, 50}, {45, 61}}, color = {0, 0, 0}, thickness = 0.25));
+        connect(coolingChannels.port_b, coolingPort_b) annotation(Line(points = {{-11.6, 50}, {161, 50}, {161, 61}}, color = {0, 0, 0}));
+        connect(mass.flange_a, transSensor.flange_b) annotation(Line(points = {{-10, -20}, {-20, -20}}, color = {0, 127, 0}));
+        connect(mass.flange_b, f) annotation(Line(points = {{10, -20}, {18, -20}}, color = {0, 127, 0}));
+        connect(tempSensor.actual, actual1) annotation(Line(points = {{4.6, 27}, {26.3, 27}, {26.3, 90}, {106, 90}}, color = {0, 0, 127}));
         annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-200, -100}, {200, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-200, -100}, {200, 100}}), graphics={  Ellipse(extent=  {{20, 80}, {180, -80}}, lineColor=  {0, 0, 0}), Text(extent=  {{-120, -100}, {340, -140}}, lineColor=  {0, 0, 255}, textString=  "%name"), Text(extent=  {{40, 30}, {160, -30}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid, textString=  "M"), Rectangle(extent=  {{-180, 80}, {-20, -80}}, lineColor=  {0, 0, 0}), Text(extent=  {{-166, 40}, {-34, -40}}, lineColor=  {0, 0, 0}, textString=  "Converter"), Line(points=  {{-20, 40}, {30, 40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-20, 0}, {20, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-20, -40}, {30, -40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, 0}, {-180, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, 40}, {-180, 40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, -40}, {-180, -40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-340, 44}, {-224, -44}}, lineColor=  {0, 0, 0}, textString=  "Power
-Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textString=  "Uq"), Text(extent=  {{-242, 124}, {-42, 86}}, lineColor=  {0, 0, 0}, textString=  "Iq"), Line(points=  {{20, -60}, {182, -60}}, color=  {0, 0, 0}, smooth=  Smooth.None, thickness=  0.5), Text(extent=  {{40, 82}, {160, 40}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+                  fillPattern=                                                                                                    FillPattern.Solid, textString=  "M"), Rectangle(extent=  {{-180, 80}, {-20, -80}}, lineColor=  {0, 0, 0}), Text(extent=  {{-166, 40}, {-34, -40}}, lineColor=  {0, 0, 0}, textString=  "Converter"), Line(points=  {{-20, 40}, {30, 40}}, color=  {0, 0, 0}), Line(points=  {{-20, 0}, {20, 0}}, color=  {0, 0, 0}), Line(points=  {{-20, -40}, {30, -40}}, color=  {0, 0, 0}), Line(points=  {{-218, 0}, {-180, 0}}, color=  {0, 0, 0}), Line(points=  {{-218, 40}, {-180, 40}}, color=  {0, 0, 0}), Line(points=  {{-218, -40}, {-180, -40}}, color=  {0, 0, 0}), Text(extent=  {{-340, 44}, {-224, -44}}, lineColor=  {0, 0, 0}, textString=  "Power
+Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textString=  "Uq"), Text(extent=  {{-242, 124}, {-42, 86}}, lineColor=  {0, 0, 0}, textString=  "Iq"), Line(points=  {{20, -60}, {182, -60}}, color=  {0, 0, 0}, thickness=  0.5), Text(extent=  {{40, 82}, {160, 40}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid, textString=  "T")}));
       end LM_cooling;
     end Motors;
@@ -726,42 +698,42 @@ Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textS
         obj_absMax_current = currentSensor.i_max;
         obj_power_average = converter.power_average;
         connect(airgap.flange, torqueSensor.flange_a) annotation(Line(points={{26,-10},
-                {72,-10}},                                                                              color = {0, 0, 0}, smooth = Smooth.None));
+                {72,-10}},                                                                              color = {0, 0, 0}));
         connect(torqueSensor.flange_b, motorInertia.flange_a) annotation(Line(points={{92,-10},
-                {102,-10}},                                                                                    color = {0, 0, 0}, smooth = Smooth.None));
+                {102,-10}},                                                                                    color = {0, 0, 0}));
         connect(motorInertia.flange_b, flange) annotation(Line(points={{122,-10},{178,
-                -10},{178,0},{190,0}},                                                                               color = {0, 0, 0}, smooth = Smooth.None));
-        connect(currentSensor.n, resistance.p) annotation(Line(points={{-34,50},{-24,50}},        color = {0, 0, 255}, smooth = Smooth.None));
-        connect(friction.support, fixed.flange) annotation(Line(points={{42,30},{42,46}},        color = {0, 0, 0}, smooth = Smooth.None));
+                -10},{178,0},{190,0}},                                                                               color = {0, 0, 0}));
+        connect(currentSensor.n, resistance.p) annotation(Line(points={{-34,50},{-24,50}},        color = {0, 0, 255}));
+        connect(friction.support, fixed.flange) annotation(Line(points={{42,30},{42,46}},        color = {0, 0, 0}));
         connect(friction.flange, torqueSensor.flange_a) annotation(Line(points={{42,10},
-                {42,-10},{72,-10}},                                                                                 color = {0, 0, 0}, smooth = Smooth.None));
+                {42,-10},{72,-10}},                                                                                 color = {0, 0, 0}));
         connect(voltageSensor.n, currentSensor.n) annotation(Line(points={{-34,0},{-34,
-                50}},                                                                                 color = {0, 0, 255}, smooth = Smooth.None));
+                50}},                                                                                 color = {0, 0, 255}));
         connect(resistance.heatPort, thermConductor.port_b) annotation(Line(points={{-14,54},
-                {-14,68},{102,68}},                                                                                    color = {191, 0, 0}, smooth = Smooth.None));
+                {-14,68},{102,68}},                                                                                    color = {191, 0, 0}));
         connect(heatCapacitor.port, thermConductor.port_b) annotation(Line(points={{56,80},
-                {56,68},{102,68}},                                                                                    color = {191, 0, 0}, smooth = Smooth.None));
+                {56,68},{102,68}},                                                                                    color = {191, 0, 0}));
         connect(heatCapacitor.port, tempSensor.port) annotation(Line(points={{56,80},{
-                70.6,80}},                                                                             color = {191, 0, 0}, smooth = Smooth.None));
+                70.6,80}},                                                                             color = {191, 0, 0}));
         connect(friction.heatPort, thermConductor.port_b) annotation(Line(points={{52,20},
-                {56,20},{56,68},{102,68}},                                                                                      color = {191, 0, 0}, smooth = Smooth.None));
+                {56,20},{56,68},{102,68}},                                                                                      color = {191, 0, 0}));
         connect(wSensor_rpm.flange, torqueSensor.flange_a) annotation(Line(points={{72,20},
-                {64,20},{64,-10},{72,-10}},                                                                                       color = {0, 0, 0}, smooth = Smooth.None));
+                {64,20},{64,-10},{72,-10}},                                                                                       color = {0, 0, 0}));
         connect(inductance.p, airgap.n) annotation(Line(points={{-4,-30},{16,-30},{16,
-                -20}},                                                                                 color = {0, 0, 255}, smooth = Smooth.None));
-        connect(airgap.p, resistance.n) annotation(Line(points={{16,0},{16,50},{-4,50}},             color = {0, 0, 255}, smooth = Smooth.None));
+                -20}},                                                                                 color = {0, 0, 255}));
+        connect(airgap.p, resistance.n) annotation(Line(points={{16,0},{16,50},{-4,50}},             color = {0, 0, 255}));
         connect(airgap.heatport, thermConductor.port_b) annotation(Line(points={{22,-8},
-                {22,68},{102,68}},                                                                                  color = {191, 0, 0}, smooth = Smooth.None));
+                {22,68},{102,68}},                                                                                  color = {191, 0, 0}));
         connect(heatPort, thermConductor.port_a) annotation(Line(points={{136,68},{122,
-                68}},                                                                           color = {191, 0, 0}, smooth = Smooth.None));
+                68}},                                                                           color = {191, 0, 0}));
         connect(voltageSensor.p, inductance.n) annotation(Line(points={{-34,-20},{-34,
-                -30},{-24,-30}},                                                                                 color = {0, 0, 255}, smooth = Smooth.None));
+                -30},{-24,-30}},                                                                                 color = {0, 0, 255}));
         connect(motorGround.p, converter.n) annotation(Line(points={{-66,-30},{
-                -66,-14.1},{-80,-14.1}},                                                                          color = {0, 0, 255}, smooth = Smooth.None));
+                -66,-14.1},{-80,-14.1}},                                                                          color = {0, 0, 255}));
         connect(motorGround.p, inductance.n) annotation(Line(points={{-66,-30},
-                {-24,-30}},                                                                       color = {0, 0, 255}, smooth = Smooth.None));
+                {-24,-30}},                                                                       color = {0, 0, 255}));
         connect(converter.p, currentSensor.p) annotation(Line(points={{-80,-6.1},
-                {-76,-6.1},{-76,-6},{-70,-6},{-70,49.9},{-54,49.9}},                                                                                         color = {0, 0, 255}, smooth = Smooth.None));
+                {-76,-6.1},{-76,-6},{-70,-6},{-70,49.9},{-54,49.9}},                                                                                         color = {0, 0, 255}));
         when terminal() then
           util_n_max = S_n * wSensor_rpm.max / n_max;
           util_M_max = S_M * torqueSensor.max / M_max;
@@ -771,40 +743,31 @@ Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textS
         end when;
         connect(PI_I.u, I_feedback.y) annotation (Line(
             points={{-122,-70},{-128,-70},{-128,-38},{-133,-38}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(I_feedback.u2, currentSensor.i_q) annotation (Line(
             points={{-142,-30},{-142,30},{-46,30},{-46,40.1}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(voltageLimit.y, converter.u_q) annotation (Line(
             points={{-94,-33},{-94,-21}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(voltageLimit.u_d, voltageSensor.u_d_out) annotation (Line(
             points={{-86,-56},{-86,-74},{-16,-74},{-16,-13},{-24,-13}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(PI_I.y, voltageLimit.u) annotation (Line(
             points={{-99,-70},{-94,-70},{-94,-56}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(T_GI.y, I_feedback.u1) annotation (Line(
             points={{-160,-25},{-160,-38},{-150,-38}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(T_GI.u, limiter.y) annotation (Line(
             points={{-160,-2},{-160,20},{-163,20}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(gain.y, limiter.u) annotation (Line(
             points={{-194,-49},{-194,20},{-186,20}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(gain.u, i_set) annotation (Line(
             points={{-194,-72},{-194,-94},{-104,-94}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-200,
                   -100},{200,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio=false,   extent={{-200,
                   -100},{200,100}}),                                                                                                    graphics={  Text(extent=  {{-40, 140}, {240, 100}}, lineColor=  {0, 0, 255}, textString=  "%name"), Ellipse(extent=  {{20, 80}, {180, -80}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
@@ -813,7 +776,7 @@ Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor=  {0, 0, 0}, textS
                   fillPattern=                                                                                                    FillPattern.Solid), Rectangle(extent=  {{80, 28}, {100, 8}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Text(extent=  {{60, 0}, {140, -40}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid, textString=  "M"), Text(extent=  {{60, -40}, {140, -80}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid, textString=  "3~"), Rectangle(extent=  {{-180, 80}, {-20, -80}}, lineColor=  {0, 0, 0}), Text(extent=  {{-166, 40}, {-34, -40}}, lineColor=  {0, 0, 0}, textString=  "Converter"), Line(points=  {{-20, 40}, {30, 40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-20, 0}, {20, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-20, -40}, {30, -40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, 0}, {-180, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, 40}, {-180, 40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-218, -40}, {-180, -40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-340, 44}, {-224, -44}}, lineColor=  {0, 0, 0}, textString=  "Power
+                  fillPattern=                                                                                                    FillPattern.Solid, textString=  "3~"), Rectangle(extent=  {{-180, 80}, {-20, -80}}, lineColor=  {0, 0, 0}), Text(extent=  {{-166, 40}, {-34, -40}}, lineColor=  {0, 0, 0}, textString=  "Converter"), Line(points=  {{-20, 40}, {30, 40}}, color=  {0, 0, 0}), Line(points=  {{-20, 0}, {20, 0}}, color=  {0, 0, 0}), Line(points=  {{-20, -40}, {30, -40}}, color=  {0, 0, 0}), Line(points=  {{-218, 0}, {-180, 0}}, color=  {0, 0, 0}), Line(points=  {{-218, 40}, {-180, 40}}, color=  {0, 0, 0}), Line(points=  {{-218, -40}, {-180, -40}}, color=  {0, 0, 0}), Text(extent=  {{-340, 44}, {-224, -44}}, lineColor=  {0, 0, 0}, textString=  "Power
 Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor={0,0,0},
                 textString="Iq")}));
       end PMSM;
@@ -830,10 +793,10 @@ Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor={0,0,0},
         Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor1(T(start = T_start), C = C) annotation(Placement(transformation(extent = {{-12, 18}, {8, 38}})));
         Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor1(G = 1 / R_heat) annotation(Placement(transformation(extent = {{22, -10}, {42, 10}})));
       equation
-        connect(heatCapacitor1.port, thermalConductor1.port_a) annotation(Line(points = {{-2, 18}, {-2, 0}, {22, 0}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(thermalConductor1.port_b, port_b) annotation(Line(points = {{42, 0}, {110, 0}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(heatCapacitor1.port, port_a) annotation(Line(points = {{-2, 18}, {-2, 0}, {-110, 0}}, color = {191, 0, 0}, smooth = Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-88, 70}, {92, -70}}, lineColor=  {0, 0, 0}, pattern=  LinePattern.None, fillColor=  {192, 192, 192},
+        connect(heatCapacitor1.port, thermalConductor1.port_a) annotation(Line(points = {{-2, 18}, {-2, 0}, {22, 0}}, color = {191, 0, 0}));
+        connect(thermalConductor1.port_b, port_b) annotation(Line(points = {{42, 0}, {110, 0}}, color = {191, 0, 0}));
+        connect(heatCapacitor1.port, port_a) annotation(Line(points = {{-2, 18}, {-2, 0}, {-110, 0}}, color = {191, 0, 0}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-88, 70}, {92, -70}}, lineColor=  {0, 0, 0}, pattern=  LinePattern.None, fillColor=  {192, 192, 192},
                   fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-88, 70}, {-88, -70}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{92, 70}, {92, -70}}, color=  {0, 0, 0}, thickness=  0.5), Text(extent=  {{-148, 115}, {152, 75}}, textString=  "%name", lineColor=  {0, 0, 255})}));
       end HeatTransfer;
 
@@ -848,12 +811,12 @@ Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor={0,0,0},
         Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor1(T(start = T_start), C = 0.8 * C) annotation(Placement(transformation(extent = {{-12, 18}, {8, 38}})));
         Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor1(G = 2 * 1 / R_heat) annotation(Placement(transformation(extent = {{22, -10}, {42, 10}})));
       equation
-        connect(heatCapacitor.port, thermalConductor.port_a) annotation(Line(points = {{-50, 16}, {-50, 0}, {-40, 0}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(thermalConductor.port_a, port_a) annotation(Line(points = {{-40, 0}, {-110, 0}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(heatCapacitor1.port, thermalConductor1.port_a) annotation(Line(points = {{-2, 18}, {-2, 0}, {22, 0}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(thermalConductor.port_b, thermalConductor1.port_a) annotation(Line(points = {{-20, 0}, {22, 0}}, color = {191, 0, 0}, smooth = Smooth.None));
-        connect(thermalConductor1.port_b, port_b) annotation(Line(points = {{42, 0}, {110, 0}}, color = {191, 0, 0}, smooth = Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-88, 70}, {92, -70}}, lineColor=  {0, 0, 0}, pattern=  LinePattern.None, fillColor=  {192, 192, 192},
+        connect(heatCapacitor.port, thermalConductor.port_a) annotation(Line(points = {{-50, 16}, {-50, 0}, {-40, 0}}, color = {191, 0, 0}));
+        connect(thermalConductor.port_a, port_a) annotation(Line(points = {{-40, 0}, {-110, 0}}, color = {191, 0, 0}));
+        connect(heatCapacitor1.port, thermalConductor1.port_a) annotation(Line(points = {{-2, 18}, {-2, 0}, {22, 0}}, color = {191, 0, 0}));
+        connect(thermalConductor.port_b, thermalConductor1.port_a) annotation(Line(points = {{-20, 0}, {22, 0}}, color = {191, 0, 0}));
+        connect(thermalConductor1.port_b, port_b) annotation(Line(points = {{42, 0}, {110, 0}}, color = {191, 0, 0}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-88, 70}, {92, -70}}, lineColor=  {0, 0, 0}, pattern=  LinePattern.None, fillColor=  {192, 192, 192},
                   fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-88, 70}, {-88, -70}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{92, 70}, {92, -70}}, color=  {0, 0, 0}, thickness=  0.5), Text(extent=  {{-148, 115}, {152, 75}}, textString=  "%name", lineColor=  {0, 0, 255})}));
       end HeatTransfer_2C;
 
@@ -893,8 +856,8 @@ Supply"), Text(extent=  {{-250, -80}, {-50, -118}}, lineColor={0,0,0},
           power_no_recovery_average = energy_no_recovery / (time - startTime);
         end if;
         annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-200, -200}, {200, 200}}), graphics={  Rectangle(extent=  {{-200, 200}, {200, -200}}, lineColor=  {0, 0, 0}),
-                                                                                                    Line(points=  {{200, 200}, {-200, -200}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-160, 100}, {-148.7, 134.2}, {-141.5, 153.1}, {-135.1, 166.4}, {-129.4, 174.6}, {-123.8, 179.1}, {-118.2, 179.8}, {-112.6, 176.6}, {-106.9, 169.7}, {-101.3, 159.4}, {-94.9, 144.1}, {-86.83, 121.2}, {-69.9, 69.2}, {-62.7, 49.8}, {-56.3, 35.8}, {-50.7, 26.9}, {-45, 21.6}, {-39.4, 20}, {-33.8, 22.4}, {-28.1, 28.5}, {-22.5, 38.1}, {-16.1, 52.8}, {-8, 75.2}, {0, 100}}, color=  {0, 0, 0}), Line(points=  {{0, -100}, {11.3, -65.8}, {18.5, -46.9}, {24.9, -33.6}, {30.6, -25.4}, {36.2, -20.9}, {41.8, -20.2}, {47.4, -23.4}, {53.1, -30.3}, {58.7, -40.6}, {65.1, -55.9}, {73.17, -78.8}, {90.1, -130.8}, {97.3, -150.2}, {103.7, -164.2}, {109.3, -173.1}, {115, -178.4}, {120.6, -180}, {126.2, -177.6}, {131.9, -171.5}, {137.5, -161.9}, {143.9, -147.2}, {152, -124.8}, {160, -100}}, color=  {0, 0, 0}), Text(extent=  {{-304, -220}, {-120, -300}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid, textString=  "Uq"), Text(extent=  {{-258, 302}, {260, 200}}, textString=  "%name", lineColor=  {0, 0, 255}), Line(points=  {{-238, 40}, {-200, 40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-238, 0}, {-200, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-238, -40}, {-200, -40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-698, 64}, {-180, -38}}, lineColor=  {0, 0, 0}, textString=  "power 
+                                                                                                    Line(points=  {{200, 200}, {-200, -200}}, color=  {0, 0, 0}), Line(points=  {{-160, 100}, {-148.7, 134.2}, {-141.5, 153.1}, {-135.1, 166.4}, {-129.4, 174.6}, {-123.8, 179.1}, {-118.2, 179.8}, {-112.6, 176.6}, {-106.9, 169.7}, {-101.3, 159.4}, {-94.9, 144.1}, {-86.83, 121.2}, {-69.9, 69.2}, {-62.7, 49.8}, {-56.3, 35.8}, {-50.7, 26.9}, {-45, 21.6}, {-39.4, 20}, {-33.8, 22.4}, {-28.1, 28.5}, {-22.5, 38.1}, {-16.1, 52.8}, {-8, 75.2}, {0, 100}}, color=  {0, 0, 0}), Line(points=  {{0, -100}, {11.3, -65.8}, {18.5, -46.9}, {24.9, -33.6}, {30.6, -25.4}, {36.2, -20.9}, {41.8, -20.2}, {47.4, -23.4}, {53.1, -30.3}, {58.7, -40.6}, {65.1, -55.9}, {73.17, -78.8}, {90.1, -130.8}, {97.3, -150.2}, {103.7, -164.2}, {109.3, -173.1}, {115, -178.4}, {120.6, -180}, {126.2, -177.6}, {131.9, -171.5}, {137.5, -161.9}, {143.9, -147.2}, {152, -124.8}, {160, -100}}, color=  {0, 0, 0}), Text(extent=  {{-304, -220}, {-120, -300}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+                  fillPattern=                                                                                                    FillPattern.Solid, textString=  "Uq"), Text(extent=  {{-258, 302}, {260, 200}}, textString=  "%name", lineColor=  {0, 0, 255}), Line(points=  {{-238, 40}, {-200, 40}}, color=  {0, 0, 0}), Line(points=  {{-238, 0}, {-200, 0}}, color=  {0, 0, 0}), Line(points=  {{-238, -40}, {-200, -40}}, color=  {0, 0, 0}), Text(extent=  {{-698, 64}, {-180, -38}}, lineColor=  {0, 0, 0}, textString=  "power
 supply")}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-200, -200}, {200, 200}}), graphics));
       end Converter;
 
@@ -961,8 +924,8 @@ supply")}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-20
         //100 K and 0 K overtemperature
         k_T_0_100 * c_Temp = if T > 393.15 then k_T_0_100 elseif T < 293.15 then k_T_0_100 + Delta_k_T_Temp * 100 else k_T_0_100 + Delta_k_T_Temp * (393.15 - T);
         k_T = k_T_0_100 * c_Temp * c_Torque;
-        connect(internalSupport.flange, support) annotation(Line(points = {{-80, 0}, {-100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(internalSupport.flange, fixed.flange) annotation(Line(points = {{-80, 0}, {-80, -10}}, color = {0, 0, 0}, smooth = Smooth.None));
+        connect(internalSupport.flange, support) annotation(Line(points = {{-80, 0}, {-100, 0}}, color = {0, 0, 0}));
+        connect(internalSupport.flange, fixed.flange) annotation(Line(points = {{-80, 0}, {-80, -10}}, color = {0, 0, 0}));
         annotation(defaultComponentName = "emf", Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}, grid = {1, 1}), graphics={  Rectangle(extent=  {{-85, 10}, {-36, -10}}, lineColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.HorizontalCylinder, fillColor=  {192, 192, 192}), Line(points=  {{0, 90}, {0, 40}}, color=  {0, 0, 255}), Rectangle(extent=  {{35, 10}, {100, -10}}, lineColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.HorizontalCylinder, fillColor=  {192, 192, 192}), Ellipse(extent=  {{-40, 40}, {40, -40}}, fillColor=  {255, 255, 255},
@@ -1039,10 +1002,10 @@ supply")}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-20
         F_N / I_N * c_Force = if force_abs > F_max then F_max / I_max elseif force_abs < F_N then F_N / I_N else F_N / I_N - Delta_k_F_Force * (force_abs - F_N);
         k_F_0_20 * c_Temp = if T > 393.15 then F_N / I_N elseif T < 293.15 then k_F_0_20 else F_N / I_N + Delta_k_F_Temp * (393.15 - T);
         k_F = k_F_0_20 * c_Temp * c_Force;
-        connect(internalSupport.flange, support) annotation(Line(points = {{-80, 0}, {-100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(internalSupport.flange, fixed.flange) annotation(Line(points = {{-80, 0}, {-80, -10}}, color = {0, 0, 0}, smooth = Smooth.None));
+        connect(internalSupport.flange, support) annotation(Line(points = {{-80, 0}, {-100, 0}}, color = {0, 0, 0}));
+        connect(internalSupport.flange, fixed.flange) annotation(Line(points = {{-80, 0}, {-80, -10}}, color = {0, 0, 0}));
         annotation(defaultComponentName = "emf", Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}, grid = {1, 1}), graphics={  Line(points=  {{0, 90}, {0, 40}}, color=  {0, 0, 255}), Ellipse(extent=  {{-40, 40}, {40, -40}}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid, lineColor=  {0, 0, 255}), Line(points=  {{0, -90}, {0, -40}}, color=  {0, 0, 255}), Text(extent=  {{0, -50}, {199, -90}}, textString=  "%name", lineColor=  {0, 0, 255}), Line(visible=  not useSupport, points=  {{-90, -40}, {-30, -40}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-90, -60}, {-70, -40}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-70, -60}, {-50, -40}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-50, -60}, {-30, -40}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-60, -40}, {-60, -20}}, color=  {0, 0, 0}), Line(points=  {{-70, -20}, {70, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None, thickness=  0.5), Line(visible=  not useSupport, points=  {{50, 0}, {40, 0}}, color=  {0, 0, 0})}), Diagram(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {1, 1}), graphics={  Polygon(points=  {{-17, 95}, {-20, 85}, {-23, 95}, {-17, 95}}, lineColor=  {160, 160, 164}, fillColor=  {160, 160, 164},
+                  fillPattern=                                                                                                    FillPattern.Solid, lineColor=  {0, 0, 255}), Line(points=  {{0, -90}, {0, -40}}, color=  {0, 0, 255}), Text(extent=  {{0, -50}, {199, -90}}, textString=  "%name", lineColor=  {0, 0, 255}), Line(visible=  not useSupport, points=  {{-90, -40}, {-30, -40}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-90, -60}, {-70, -40}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-70, -60}, {-50, -40}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-50, -60}, {-30, -40}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-60, -40}, {-60, -20}}, color=  {0, 0, 0}), Line(points=  {{-70, -20}, {70, -20}}, color=  {0, 0, 0}, thickness=  0.5), Line(visible=  not useSupport, points=  {{50, 0}, {40, 0}}, color=  {0, 0, 0})}), Diagram(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {1, 1}), graphics={  Polygon(points=  {{-17, 95}, {-20, 85}, {-23, 95}, {-17, 95}}, lineColor=  {160, 160, 164}, fillColor=  {160, 160, 164},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-20, 110}, {-20, 85}}, color=  {160, 160, 164}), Text(extent=  {{-40, 110}, {-30, 90}}, lineColor=  {160, 160, 164}, textString=  "i"), Line(points=  {{9, 75}, {19, 75}}, color=  {192, 192, 192}), Line(points=  {{-20, -110}, {-20, -85}}, color=  {160, 160, 164}), Polygon(points=  {{-17, -100}, {-20, -110}, {-23, -100}, {-17, -100}}, lineColor=  {160, 160, 164}, fillColor=  {160, 160, 164},
                   fillPattern=                                                                                                    FillPattern.Solid), Text(extent=  {{-40, -110}, {-30, -90}}, lineColor=  {160, 160, 164}, textString=  "i"), Line(points=  {{8, -79}, {18, -79}}, color=  {192, 192, 192}), Line(points=  {{14, 80}, {14, 70}}, color=  {192, 192, 192})}), Documentation(info = "<html>
 <p>EMF transforms electrical energy into rotational mechanical energy. It is used as basic building block of an electrical motor. The mechanical connector flange can be connected to elements of the Modelica.Mechanics.Rotational library. flange.tau is the cut-torque, flange.phi is the angle at the rotational connection.</p>
@@ -1173,7 +1136,7 @@ supply")}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-20
         tau = -smooth(1, if abs(w) <= eps then 0 else C_F * abs(w) ^ 0.5);
         //tau = -2 / Constants.pi * C_F * abs(w)^0.5 * atan(w / w_ref);
         heatPort.Q_flow = tau * w;
-        annotation(Diagram(graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Ellipse(extent=  {{-60, 60}, {60, -60}}, lineColor=  {0, 0, 0}, fillColor=  {175, 175, 175},
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Ellipse(extent=  {{-60, 60}, {60, -60}}, lineColor=  {0, 0, 0}, fillColor=  {175, 175, 175},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-50, 50}, {50, -50}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-12, 50}, {8, 30}}, lineColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Sphere, fillColor=  {135, 135, 135}), Ellipse(extent=  {{-10, -30}, {10, -50}}, lineColor=  {0, 0, 0},
@@ -1264,18 +1227,16 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         i_actual = sqrt(p.i_q ^ 2 + p.i_d ^ 2);
         i_q = p.i_q;
         i_d = p.i_d;
-        connect(i_rms, i_rms) annotation(Line(points = {{98, -70}, {98, -94.5}, {98, -94.5}, {98, -70}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(i_actual, u1) annotation(Line(points = {{0, -100}, {10, -100}, {10, -70}, {14, -70}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(u1, rootMeanSquareValue.u) annotation(Line(points = {{14, -70}, {40, -70}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(rootMeanSquareValue.y, i_rms) annotation(Line(points = {{63, -70}, {98, -70}}, color = {0, 0, 127}, smooth = Smooth.None));
+        connect(i_rms, i_rms) annotation(Line(points = {{98, -70}, {98, -94.5}, {98, -94.5}, {98, -70}}, color = {0, 0, 127}));
+        connect(i_actual, u1) annotation(Line(points = {{0, -100}, {10, -100}, {10, -70}, {14, -70}}, color = {0, 0, 127}));
+        connect(u1, rootMeanSquareValue.u) annotation(Line(points = {{14, -70}, {40, -70}}, color = {0, 0, 127}));
+        connect(rootMeanSquareValue.y, i_rms) annotation(Line(points = {{63, -70}, {98, -70}}, color = {0, 0, 127}));
         connect(max.y, i_max) annotation (Line(
             points={{62,-40},{97,-40}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(max.u, rootMeanSquareValue.u) annotation (Line(
             points={{39,-40},{28,-40},{28,-70},{40,-70}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}, grid = {1, 1}), graphics={  Text(extent=  {{-29, -11}, {30, -70}}, lineColor=  {0, 0, 0}, textString=  "A"), Line(points=  {{-70, 0}, {-90, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 80}, {150, 120}}, textString=  "%name", lineColor=  {0, 0, 255}), Line(points=  {{70, 0}, {90, 0}}, color=  {0, 0, 0}), Line(points=  {{0, -90}, {0, -70}}, color=  {0, 0, 255})}), Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
                   -100},{100,100}},                                                                                                    grid = {1, 1}), graphics={  Text(extent=  {{-153, 79}, {147, 119}}, textString=  "%name", lineColor=  {0, 0, 255}), Line(points=  {{-70, 0}, {-96, 0}}, color=  {0, 0, 0}), Line(points=  {{70, 0}, {96, 0}}, color=  {0, 0, 0}), Line(points=  {{0, -90}, {0, -70}}, color=  {0, 0, 255})}), Documentation(revisions = "<html>
 <ul>
@@ -1330,15 +1291,13 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         u_d_out = u_d;
         u_q_out = u_q;
         connect(u_link_actual, u1) annotation(Line(points={{10,-100},{8,-100},{8,-59},
-                {10.5,-59}},                                                                               color = {0, 0, 127}, smooth = Smooth.None));
+                {10.5,-59}},                                                                               color = {0, 0, 127}));
         connect(u1, max.u) annotation (Line(
             points={{10.5,-59},{27,-59}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(max.y, u_link_max) annotation (Line(
             points={{50,-59},{72,-59}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         annotation(Icon(coordinateSystem(preserveAspectRatio=false,   extent={{-100,-100},
                   {100,100}},                                                                              grid = {1, 1}), graphics={  Text(extent=  {{-29, -11}, {30, -70}}, lineColor=  {0, 0, 0}, textString=  "V"), Line(points=  {{-70, 0}, {-90, 0}}, color=  {0, 0, 0}), Line(points=  {{70, 0}, {90, 0}}, color=  {0, 0, 0}), Line(points=  {{0, -90}, {0, -70}}, color=  {0, 0, 255}), Text(extent=  {{-150, 80}, {150, 120}}, textString=  "%name", lineColor=  {0, 0, 255})}), Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
                   -100},{100,100}},                                                                                                    grid = {1, 1}), graphics={  Line(points=  {{-70, 0}, {-96, 0}}, color=  {0, 0, 0}), Line(points=  {{70, 0}, {96, 0}}, color=  {0, 0, 0}), Line(points=  {{0, -90}, {0, -70}}, color=  {0, 0, 255})}), Documentation(revisions = "<html>
@@ -1385,7 +1344,7 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics={  Ellipse(extent=  {{-70, 70}, {70, -70}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{0, 100}, {0, 70}}, color=  {0, 0, 255}), Line(points=  {{0, -70}, {0, -100}}, color=  {0, 0, 255}), Line(points=  {{-80, -100}, {-80, 0}}, color=  {0, 0, 255}), Line(points=  {{-100, 0}, {100, 0}}, color=  {0, 0, 255}), Text(extent=  {{150, 120}, {-150, 160}}, textString=  "%name", lineColor=  {0, 0, 255}), Line(points=  {{0, 70}, {0, 40}}, color=  {0, 0, 0}), Line(points=  {{22.9, 32.8}, {40.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{-22.9, 32.8}, {-40.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{37.6, 13.7}, {65.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{-37.6, 13.7}, {-65.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{0, 0}, {9.02, 28.6}}, color=  {0, 0, 0}), Polygon(points=  {{-0.48, 31.6}, {18, 26}, {18, 57.2}, {-0.48, 31.6}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-5, 5}, {5, -5}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                  fillPattern=                                                                                                    FillPattern.Solid), Text(extent=  {{-29, -11}, {30, -70}}, lineColor=  {0, 0, 0}, textString=  "P")}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics), Documentation(info = "<html>
+                  fillPattern=                                                                                                    FillPattern.Solid), Text(extent=  {{-29, -11}, {30, -70}}, lineColor=  {0, 0, 0}, textString=  "P")}), Documentation(info = "<html>
 <p>This power sensor measures instantaneous electrical power of a singlephase system and has a separated voltage and current path. The pins of the voltage path are pv and nv, the pins of the current path are pc and nc. The internal resistance of the current path is zero, the internal resistance of the voltage path is infinite.</p>
 </html>", revisions = "<html>
 <ul>
@@ -1412,16 +1371,16 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         Modelica.Blocks.Interfaces.RealOutput i_s
           "Connector of Real output signal"                                         annotation(Placement(transformation(extent = {{100, -10}, {120, 10}}), iconTransformation(extent = {{100, -10}, {120, 10}})));
       equation
-        connect(PI_v.u, v_feedback.y) annotation(Line(points = {{-8, 0}, {-19, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(gain.y, v_feedback.u1) annotation(Line(points = {{-47, 0}, {-36, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(s_feedback.y, gain.u) annotation(Line(points = {{-79, 0}, {-70, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(integrator.y, s_feedback.u2) annotation(Line(points = {{-81, 80}, {-88, 80}, {-88, 8}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(fixedDelay.y, integrator.u) annotation(Line(points = {{-25, 80}, {-58, 80}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(fixedDelay.y, v_feedback.u2) annotation(Line(points = {{-25, 80}, {-28, 80}, {-28, 8}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(s_feedback.u1, x_s) annotation(Line(points = {{-96, 0}, {-120, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(fixedDelay.u, v_a) annotation(Line(points = {{-2, 80}, {54, 80}, {54, 94}, {20, 94}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(PI_v.y, i_s) annotation(Line(points = {{15, 0}, {110, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-100, 100}, {100, -100}}, lineColor=  {0, 0, 255}), Text(extent=  {{-80, 20}, {80, -20}}, lineColor=  {0, 0, 0}, textString=  "vel & pos 
+        connect(PI_v.u, v_feedback.y) annotation(Line(points = {{-8, 0}, {-19, 0}}, color = {0, 0, 127}));
+        connect(gain.y, v_feedback.u1) annotation(Line(points = {{-47, 0}, {-36, 0}}, color = {0, 0, 127}));
+        connect(s_feedback.y, gain.u) annotation(Line(points = {{-79, 0}, {-70, 0}}, color = {0, 0, 127}));
+        connect(integrator.y, s_feedback.u2) annotation(Line(points = {{-81, 80}, {-88, 80}, {-88, 8}}, color = {0, 0, 127}));
+        connect(fixedDelay.y, integrator.u) annotation(Line(points = {{-25, 80}, {-58, 80}}, color = {0, 0, 127}));
+        connect(fixedDelay.y, v_feedback.u2) annotation(Line(points = {{-25, 80}, {-28, 80}, {-28, 8}}, color = {0, 0, 127}));
+        connect(s_feedback.u1, x_s) annotation(Line(points = {{-96, 0}, {-120, 0}}, color = {0, 0, 127}));
+        connect(fixedDelay.u, v_a) annotation(Line(points = {{-2, 80}, {54, 80}, {54, 94}, {20, 94}}, color = {0, 0, 127}));
+        connect(PI_v.y, i_s) annotation(Line(points = {{15, 0}, {110, 0}}, color = {0, 0, 127}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-100, 100}, {100, -100}}, lineColor=  {0, 0, 255}), Text(extent=  {{-80, 20}, {80, -20}}, lineColor=  {0, 0, 0}, textString=  "vel & pos
 control"), Text(extent=  {{-260, -118}, {260, -160}}, lineColor=  {0, 0, 0}, textString=  "K_V = %K_V m/min/mm"), Text(extent=  {{-260, -162}, {260, -204}}, lineColor=  {0, 0, 0}, textString=  "K_Pn = %K_pn A/(m/s)"), Text(extent=  {{-260, -210}, {260, -252}}, lineColor=  {0, 0, 0}, textString=  "T_nn = %T_nn s")}));
       end v_p_controller;
 
@@ -1485,7 +1444,7 @@ is passed as output.
                 lineColor={192,192,192},
                 fillColor={192,192,192},
                 fillPattern=FillPattern.Solid),
-              Line(points={{-80,-70},{-50,-70},{50,70},{80,70}}, color={0,0,0}),
+              Line(points={{-80,-70},{-50,-70},{50,70},{80,70}}),
               Text(
                 extent={{-150,150},{150,110}},
                 textString="%name",
@@ -1503,13 +1462,11 @@ is passed as output.
               Line(
                 visible=strict,
                 points={{50,70},{80,70}},
-                color={255,0,0},
-                smooth=Smooth.None),
+                color={255,0,0}),
               Line(
                 visible=strict,
                 points={{-80,-70},{-50,-70}},
-                color={255,0,0},
-                smooth=Smooth.None)}),
+                color={255,0,0})}),
           Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
                   100}}),     graphics={
               Line(points={{0,-60},{0,50}}, color={192,192,192}),
@@ -1524,7 +1481,7 @@ is passed as output.
                 lineColor={192,192,192},
                 fillColor={192,192,192},
                 fillPattern=FillPattern.Solid),
-              Line(points={{-50,-40},{-30,-40},{30,40},{50,40}}, color={0,0,0}),
+              Line(points={{-50,-40},{-30,-40},{30,40},{50,40}}),
               Text(
                 extent={{46,-6},{68,-18}},
                 lineColor={128,128,128},
@@ -1745,14 +1702,14 @@ is passed as output.
         con_DN = ballScrewNut.speed_absMax.y * (d * 1000) - DN_perm;
         con_F_b = S_F_b * ballScrewNut.force_absMax.y - F_b;
         con_C_0am = S_C_0am * ballScrewNut.force_absMax.y - C_0am;
-        connect(ballScrewNut.flangeT, flangeT) annotation(Line(points = {{60, 0}, {102, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(spindle.flange_b, ballScrewNut.flangeR) annotation(Line(points = {{0, 0}, {39.6, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(spindle.flange_a, flangeR) annotation(Line(points = {{-20, 0}, {-90, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(bearing.flange, flangeR) annotation(Line(points = {{-40, -20}, {-40, 0}, {-90, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(bearing.support, fixed.flange) annotation(Line(points = {{-40, -40}, {-40, -56}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(bearing.flange_b, ballScrewNut.supportT1) annotation(Line(points = {{-30, -30}, {39.8, -30}, {39.8, -5}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(flangeT, flangeT) annotation(Line(points = {{102, 0}, {102, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(bearing.flange_a, supportT1) annotation(Line(points = {{-50, -30}, {-100, -30}}, color = {0, 127, 0}, smooth = Smooth.None));
+        connect(ballScrewNut.flangeT, flangeT) annotation(Line(points = {{60, 0}, {102, 0}}, color = {0, 127, 0}));
+        connect(spindle.flange_b, ballScrewNut.flangeR) annotation(Line(points = {{0, 0}, {39.6, 0}}, color = {0, 0, 0}));
+        connect(spindle.flange_a, flangeR) annotation(Line(points = {{-20, 0}, {-90, 0}}, color = {0, 0, 0}));
+        connect(bearing.flange, flangeR) annotation(Line(points = {{-40, -20}, {-40, 0}, {-90, 0}}, color = {0, 0, 0}));
+        connect(bearing.support, fixed.flange) annotation(Line(points = {{-40, -40}, {-40, -56}}, color = {0, 0, 0}));
+        connect(bearing.flange_b, ballScrewNut.supportT1) annotation(Line(points = {{-30, -30}, {39.8, -30}, {39.8, -5}}, color = {0, 127, 0}));
+        connect(flangeT, flangeT) annotation(Line(points = {{102, 0}, {102, 0}}, color = {0, 127, 0}));
+        connect(bearing.flange_a, supportT1) annotation(Line(points = {{-50, -30}, {-100, -30}}, color = {0, 127, 0}));
         when terminal() then
           util_f = f_min / f_bs;
           util_L_h = L_h_min / ballScrewNut.nominalLifeRating.y;
@@ -1763,13 +1720,13 @@ is passed as output.
           util_C_0am = S_C_0am * ballScrewNut.force_absMax.y / C_0am;
         end when;
         annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Text(extent=  {{-150, 100}, {150, 60}}, textString=  "%name", lineColor=  {0, 0, 255}), Rectangle(extent=  {{-90, 20}, {90, -20}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-50, 20}, {-30, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-30, 20}, {-10, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-10, 20}, {10, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{10, 20}, {30, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{30, 20}, {50, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{50, 20}, {70, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Rectangle(extent=  {{-32, 28}, {22, -28}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-50, 20}, {-30, -20}}, color=  {0, 0, 0}), Line(points=  {{-30, 20}, {-10, -20}}, color=  {0, 0, 0}), Line(points=  {{-10, 20}, {10, -20}}, color=  {0, 0, 0}), Line(points=  {{10, 20}, {30, -20}}, color=  {0, 0, 0}), Line(points=  {{30, 20}, {50, -20}}, color=  {0, 0, 0}), Line(points=  {{50, 20}, {70, -20}}, color=  {0, 0, 0}), Rectangle(extent=  {{-32, 28}, {22, -28}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Rectangle(extent=  {{-12, 40}, {8, -40}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-70, 20}, {-50, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{70, 20}, {90, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{62, 36}, {8, 36}, {102, 36}, {102, 10}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-90, 20}, {-70, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Rectangle(extent=  {{-86, 30}, {-66, 20}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-70, 20}, {-50, -20}}, color=  {0, 0, 0}), Line(points=  {{70, 20}, {90, -20}}, color=  {0, 0, 0}), Line(points=  {{62, 36}, {8, 36}, {102, 36}, {102, 10}}, color=  {0, 0, 0}), Line(points=  {{-90, 20}, {-70, -20}}, color=  {0, 0, 0}), Rectangle(extent=  {{-86, 30}, {-66, 20}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Backward), Rectangle(extent=  {{-86, -20}, {-66, -30}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Backward), Rectangle(extent=  {{64, 30}, {84, 20}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Backward), Rectangle(extent=  {{64, -20}, {84, -30}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-76, -30}, {-76, -70}, {-96, -70}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-160, -50}, {160, -86}}, lineColor=  {0, 0, 0}, textString=  "P = %P")}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics));
+                  fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-76, -30}, {-76, -70}, {-96, -70}}, color=  {0, 0, 0}), Text(extent=  {{-160, -50}, {160, -86}}, lineColor=  {0, 0, 0}, textString=  "P = %P")}));
       end BallScrewDrive;
 
       model NominalLifeRating
@@ -1875,7 +1832,7 @@ Example:
                       textString="%k1"),Line(points={{-100,60},{-40,60},{-30,40}},
                 color={0,0,255}),Ellipse(extent={{-50,50},{50,-50}}, lineColor=
                 {0,0,255}),Line(points={{-100,-60},{-40,-60},{-30,-40}}, color=
-                {0,0,255}),Line(points={{-15,-25.99},{15,25.99}}, color={0,0,0}),
+                {0,0,255}),Line(points={{-15,-25.99},{15,25.99}}),
                 Rectangle(
                       extent={{-100,-100},{100,100}},
                       lineColor={0,0,127},
@@ -1919,29 +1876,26 @@ Example:
         HelpBlocks.AbsMax force_absMax
           annotation (Placement(transformation(extent={{80,-32},{100,-12}})));
       equation
-        connect(idealGearR2T.flangeT, forceSensor.flange_a) annotation(Line(points = {{40, 0}, {60, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(speedSensor.flange, idealGearR2T.flangeR) annotation(Line(points = {{1.77636e-015, -20}, {1.77636e-015, 0}, {20, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(forceSensor.f, nominalLifeRating.u1) annotation(Line(points = {{62, -11}, {62, -44}, {78, -44}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(speedSensor.w, nominalLifeRating.u2) annotation(Line(points = {{-1.9984e-015, -41}, {-1.9984e-015, -56}, {78, -56}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(speedSensor.w, speedSensor_rpm.u) annotation(Line(points = {{-1.9984e-015, -41}, {-1.9984e-015, -80}, {18, -80}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(efficiencyFactor.flange_b, idealGearR2T.flangeR) annotation(Line(points = {{-50, 0}, {20, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(forceSensor.flange_b, flangeT) annotation(Line(points = {{80, 0}, {100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(efficiencyFactor.flange_a, flangeR) annotation(Line(points = {{-70, 0}, {-104, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(idealGearR2T.supportT, supportT1) annotation(Line(points = {{40, -10}, {40, -50}, {-102, -50}}, color = {0, 0, 0}, pattern = LinePattern.None, smooth = Smooth.None));
+        connect(idealGearR2T.flangeT, forceSensor.flange_a) annotation(Line(points = {{40, 0}, {60, 0}}, color = {0, 127, 0}));
+        connect(speedSensor.flange, idealGearR2T.flangeR) annotation(Line(points = {{1.77636e-015, -20}, {1.77636e-015, 0}, {20, 0}}, color = {0, 0, 0}));
+        connect(forceSensor.f, nominalLifeRating.u1) annotation(Line(points = {{62, -11}, {62, -44}, {78, -44}}, color = {0, 0, 127}));
+        connect(speedSensor.w, nominalLifeRating.u2) annotation(Line(points = {{-1.9984e-015, -41}, {-1.9984e-015, -56}, {78, -56}}, color = {0, 0, 127}));
+        connect(speedSensor.w, speedSensor_rpm.u) annotation(Line(points = {{-1.9984e-015, -41}, {-1.9984e-015, -80}, {18, -80}}, color = {0, 0, 127}));
+        connect(efficiencyFactor.flange_b, idealGearR2T.flangeR) annotation(Line(points = {{-50, 0}, {20, 0}}, color = {0, 0, 0}));
+        connect(forceSensor.flange_b, flangeT) annotation(Line(points = {{80, 0}, {100, 0}}, color = {0, 127, 0}));
+        connect(efficiencyFactor.flange_a, flangeR) annotation(Line(points = {{-70, 0}, {-104, 0}}, color = {0, 0, 0}));
+        connect(idealGearR2T.supportT, supportT1) annotation(Line(points = {{40, -10}, {40, -50}, {-102, -50}}, color = {0, 0, 0}, pattern = LinePattern.None));
         connect(speedSensor_rpm.y, speed_absMax.u) annotation (Line(
             points={{41,-80},{54,-80}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(force_absMax.u, nominalLifeRating.u1) annotation (Line(
             points={{78,-22},{62,-22},{62,-44},{78,-44}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                  -100},{100,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-60, 26}, {60, 20}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+            color={0,0,127}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-60, 26}, {60, 20}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Rectangle(extent=  {{-100, 20}, {80, -20}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-60, 0}, {60, 0}, {60, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-60, 20}, {-40, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-40, 20}, {-20, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-20, 20}, {0, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{0, 20}, {20, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{20, 20}, {40, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{40, 20}, {60, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Rectangle(extent=  {{-60, 0}, {60, -26}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-60, 0}, {60, 0}, {60, 0}}, color=  {0, 0, 0}), Line(points=  {{-60, 20}, {-40, -20}}, color=  {0, 0, 0}), Line(points=  {{-40, 20}, {-20, -20}}, color=  {0, 0, 0}), Line(points=  {{-20, 20}, {0, -20}}, color=  {0, 0, 0}), Line(points=  {{0, 20}, {20, -20}}, color=  {0, 0, 0}), Line(points=  {{20, 20}, {40, -20}}, color=  {0, 0, 0}), Line(points=  {{40, 20}, {60, -20}}, color=  {0, 0, 0}), Rectangle(extent=  {{-60, 0}, {60, -26}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Rectangle(extent=  {{-40, 40}, {-20, -40}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-60, 0}, {-100, 0}, {-102, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-60, 20}, {-60, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{60, 20}, {60, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-80, 20}, {-60, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-100, 20}, {-80, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{60, 20}, {80, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{60, 26}, {60, 26}, {100, 26}, {100, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-100, -50}, {-74, -50}, {-74, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-150, 100}, {150, 60}}, lineColor=  {0, 0, 255}, textString=  "%name")}));
+                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-60, 0}, {-100, 0}, {-102, 0}}, color=  {0, 0, 0}), Line(points=  {{-60, 20}, {-60, 0}}, color=  {0, 0, 0}), Line(points=  {{60, 20}, {60, 0}}, color=  {0, 0, 0}), Line(points=  {{-80, 20}, {-60, -20}}, color=  {0, 0, 0}), Line(points=  {{-100, 20}, {-80, -20}}, color=  {0, 0, 0}), Line(points=  {{60, 20}, {80, -20}}, color=  {0, 0, 0}), Line(points=  {{60, 26}, {60, 26}, {100, 26}, {100, 0}}, color=  {0, 0, 0}), Line(points=  {{-100, -50}, {-74, -50}, {-74, -20}}, color=  {0, 0, 0}), Text(extent=  {{-150, 100}, {150, 60}}, lineColor=  {0, 0, 255}, textString=  "%name")}));
       end BallScrewNut;
     end BallScrew;
 
@@ -1976,18 +1930,16 @@ Example:
           annotation (Placement(transformation(extent={{2,-46},{22,-26}})));
       equation
         con_F_ax = absMax.y - F_perm;
-        connect(inertia.flange_b, idealGearR2T.flangeR) annotation(Line(points = {{-50, 0}, {-40, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(idealGearR2T.flangeT, forceSensor.flange_a) annotation(Line(points = {{-20, 0}, {-8, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(forceSensor.flange_b, eff.flange_ax_a) annotation(Line(points = {{12, 0}, {21, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(inertia.flange_a, flange_r) annotation(Line(points = {{-70, 0}, {-80, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(eff.flange_ax_b, flange_ax) annotation(Line(points = {{41, 0}, {60, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
+        connect(inertia.flange_b, idealGearR2T.flangeR) annotation(Line(points = {{-50, 0}, {-40, 0}}, color = {0, 0, 0}));
+        connect(idealGearR2T.flangeT, forceSensor.flange_a) annotation(Line(points = {{-20, 0}, {-8, 0}}, color = {0, 127, 0}));
+        connect(forceSensor.flange_b, eff.flange_ax_a) annotation(Line(points = {{12, 0}, {21, 0}}, color = {0, 127, 0}));
+        connect(inertia.flange_a, flange_r) annotation(Line(points = {{-70, 0}, {-80, 0}}, color = {0, 0, 0}));
+        connect(eff.flange_ax_b, flange_ax) annotation(Line(points = {{41, 0}, {60, 0}}, color = {0, 127, 0}));
         connect(forceSensor.f, absMax.u) annotation (Line(
             points={{-6,-11},{-6,-36},{0,-36}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                  -100},{100,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-100, 100}, {100, -100}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-44, 6}, {-2, -36}}, lineColor=  {0, 0, 0}, pattern=  LinePattern.Dash), Ellipse(extent=  {{-50, 12}, {4, -42}}, lineColor=  {0, 0, 0}), Rectangle(extent=  {{-80, 20}, {80, 6}}, lineColor=  {0, 0, 0}), Line(points=  {{-80, 12}, {60, 12}, {80, 12}}, color=  {0, 0, 0}, smooth=  Smooth.None, pattern=  LinePattern.Dash), Line(points=  {{-80, -14}, {-80, 0}, {-98, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{90, 0}, {84, 0}, {84, 16}, {80, 16}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-24, -14}, {-78, -14}, {-80, -14}}, color=  {0, 0, 0}, smooth=  Smooth.None)}));
+            color={0,0,127}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-100, 100}, {100, -100}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+                  fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-44, 6}, {-2, -36}}, lineColor=  {0, 0, 0}, pattern=  LinePattern.Dash), Ellipse(extent=  {{-50, 12}, {4, -42}}, lineColor=  {0, 0, 0}), Rectangle(extent=  {{-80, 20}, {80, 6}}, lineColor=  {0, 0, 0}), Line(points=  {{-80, 12}, {60, 12}, {80, 12}}, color=  {0, 0, 0}, pattern=  LinePattern.Dash), Line(points=  {{-80, -14}, {-80, 0}, {-98, 0}}, color=  {0, 0, 0}), Line(points=  {{90, 0}, {84, 0}, {84, 16}, {80, 16}}, color=  {0, 0, 0}), Line(points=  {{-24, -14}, {-78, -14}, {-80, -14}}, color=  {0, 0, 0})}));
       end RackPinion;
     end RackPinion;
 
@@ -2038,14 +1990,14 @@ Example:
         con_a = s.a_max - a_perm;
         con_v = s.v_max - v_perm;
         con_f = f_min - f_bs;
-        connect(inertia.flange_b, idealGearR2T.flangeR) annotation(Line(points = {{-58, 0}, {-48, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(inertia.flange_a, flange_r) annotation(Line(points = {{-78, 0}, {-100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(idealGearR2T.flangeT, s.flange_a) annotation(Line(points = {{-28, 0}, {-6.2, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(s.flange_b, Friction.flange_ax_a) annotation(Line(points = {{14, 0}, {38, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(Friction.flange_ax_b, flange_ax) annotation(Line(points = {{58, 0}, {100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics), Icon(graphics={  Rectangle(extent=  {{-100, 100}, {100, -100}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                  fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-74, 24}, {-26, -24}}, lineColor=  {0, 0, 0}), Ellipse(extent=  {{28, 24}, {76, -24}}, lineColor=  {0, 0, 0}), Line(points=  {{-50, 24}, {52, 24}}, color=  {0, 0, 0}, smooth=  Smooth.None, pattern=  LinePattern.Dot), Line(points=  {{-50, -24}, {52, -24}}, color=  {0, 0, 0}, smooth=  Smooth.None, pattern=  LinePattern.Dot), Line(points=  {{-50, 2}, {-50, -2}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-48, 0}, {-52, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{52, 2}, {52, -2}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{54, 0}, {50, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Rectangle(extent=  {{-16, 30}, {12, 24}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{0, 28}, {100, 28}, {100, 6}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-50, 0}, {-98, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None)}));
+        connect(inertia.flange_b, idealGearR2T.flangeR) annotation(Line(points = {{-58, 0}, {-48, 0}}, color = {0, 0, 0}));
+        connect(inertia.flange_a, flange_r) annotation(Line(points = {{-78, 0}, {-100, 0}}, color = {0, 0, 0}));
+        connect(idealGearR2T.flangeT, s.flange_a) annotation(Line(points = {{-28, 0}, {-6.2, 0}}, color = {0, 127, 0}));
+        connect(s.flange_b, Friction.flange_ax_a) annotation(Line(points = {{14, 0}, {38, 0}}, color = {0, 127, 0}));
+        connect(Friction.flange_ax_b, flange_ax) annotation(Line(points = {{58, 0}, {100, 0}}, color = {0, 127, 0}));
+        annotation( Icon(graphics={  Rectangle(extent=  {{-100, 100}, {100, -100}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+                  fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-74, 24}, {-26, -24}}, lineColor=  {0, 0, 0}), Ellipse(extent=  {{28, 24}, {76, -24}}, lineColor=  {0, 0, 0}), Line(points=  {{-50, 24}, {52, 24}}, color=  {0, 0, 0}, pattern=  LinePattern.Dot), Line(points=  {{-50, -24}, {52, -24}}, color=  {0, 0, 0}, pattern=  LinePattern.Dot), Line(points=  {{-50, 2}, {-50, -2}}, color=  {0, 0, 0}), Line(points=  {{-48, 0}, {-52, 0}}, color=  {0, 0, 0}), Line(points=  {{52, 2}, {52, -2}}, color=  {0, 0, 0}), Line(points=  {{54, 0}, {50, 0}}, color=  {0, 0, 0}), Rectangle(extent=  {{-16, 30}, {12, 24}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
+                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{0, 28}, {100, 28}, {100, 6}}, color=  {0, 0, 0}), Line(points=  {{-50, 0}, {-98, 0}}, color=  {0, 0, 0})}));
       end ToothedBeltAxis;
     end ToothedBeltAxis;
   end LinearActuators;
@@ -2062,7 +2014,7 @@ Example:
       Modelica.Blocks.Continuous.FirstOrder PT1(k = 1, T = T) annotation(Placement(transformation(extent = {{-80, -10}, {-60, 10}})));
     equation
       flange.f = -PT1.y;
-      connect(f, PT1.u) annotation(Line(points = {{-120, 0}, {-82, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
+      connect(f, PT1.u) annotation(Line(points = {{-120, 0}, {-82, 0}}, color = {0, 0, 127}));
       annotation(Documentation(info = "<html>
 <p>
 The input signal \"f\" in [N] characterizes an <i>external
@@ -2077,7 +2029,7 @@ blocks of Modelica.Blocks.Source.
 </HTML>
 "), Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics={  Polygon(points=  {{-100, 10}, {20, 10}, {20, 41}, {90, 0}, {20, -41}, {20, -10}, {-100, -10}, {-100, 10}}, lineColor=  {0, 127, 0}, fillColor=  {215, 215, 215},
                 fillPattern=                                                                                                    FillPattern.Solid), Text(extent=  {{-150, -32}, {-80, -62}}, lineColor=  {0, 0, 0}, textString=  "f"), Text(extent=  {{-150, 90}, {150, 50}}, textString=  "%name", lineColor=  {0, 0, 255}), Line(points=  {{-30, -60}, {30, -60}}, color=  {0, 0, 0}), Line(points=  {{0, -60}, {0, -101}}, color=  {0, 0, 0}), Line(points=  {{-30, -80}, {-10, -60}}, color=  {0, 0, 0}), Line(points=  {{-10, -80}, {10, -60}}, color=  {0, 0, 0}), Line(points=  {{10, -80}, {30, -60}}, color=  {0, 0, 0}), Polygon(points=  {{-61, -50}, {-30, -40}, {-30, -60}, {-61, -50}}, lineColor=  {0, 0, 0}, fillColor=  {128, 128, 128},
-                fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-31, -50}, {50, -50}}, color=  {0, 0, 0}), Line(points=  {{-50, -80}, {-30, -60}}, color=  {0, 0, 0})}), Diagram(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics));
+                fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-31, -50}, {50, -50}}, color=  {0, 0, 0}), Line(points=  {{-50, -80}, {-30, -60}}, color=  {0, 0, 0})}));
     end Force_PT1;
 
     model LinearGuide
@@ -2116,17 +2068,17 @@ blocks of Modelica.Blocks.Source.
       con_a = linGuideReq.a_max - a_lim;
       con_C_0 = S_0 * linGuideReq.P_max - C_0;
       con_L_h = linGuideReq.L_h - L_h_min;
-      connect(flangeChangeRight.flange_N, rollerFriction.flange_N_a) annotation(Line(points = {{21, 20}, {-24, 20}, {-24, 10}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(coverFriction.flange_ax_b, rollerFriction.flange_ax_a) annotation(Line(points = {{-44, 0}, {-34, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(coverFriction.flange_ax_a, flange_a) annotation(Line(points = {{-64, 0}, {-80, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(rollerFriction.flange_N_b, flange_N) annotation(Line(points = {{-24, -10}, {-24, -20}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(linGuideReq.flange_b1, flange_b) annotation(Line(points = {{66, 0}, {80, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(rollerFriction.flange_ax_b, guideMass.flange_a) annotation(Line(points = {{-14, 0}, {-6, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(guideMass.flange_b, flangeChangeRight.flange_ax) annotation(Line(points = {{14, 0}, {21, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(flangeChangeRight.flange_b, linGuideReq.flange_a1) annotation(Line(points = {{31, 10}, {38, 10}, {38, 0}, {46, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
+      connect(flangeChangeRight.flange_N, rollerFriction.flange_N_a) annotation(Line(points = {{21, 20}, {-24, 20}, {-24, 10}}, color = {0, 127, 0}));
+      connect(coverFriction.flange_ax_b, rollerFriction.flange_ax_a) annotation(Line(points = {{-44, 0}, {-34, 0}}, color = {0, 127, 0}));
+      connect(coverFriction.flange_ax_a, flange_a) annotation(Line(points = {{-64, 0}, {-80, 0}}, color = {0, 127, 0}));
+      connect(rollerFriction.flange_N_b, flange_N) annotation(Line(points = {{-24, -10}, {-24, -20}}, color = {0, 127, 0}));
+      connect(linGuideReq.flange_b1, flange_b) annotation(Line(points = {{66, 0}, {80, 0}}, color = {0, 127, 0}));
+      connect(rollerFriction.flange_ax_b, guideMass.flange_a) annotation(Line(points = {{-14, 0}, {-6, 0}}, color = {0, 127, 0}));
+      connect(guideMass.flange_b, flangeChangeRight.flange_ax) annotation(Line(points = {{14, 0}, {21, 0}}, color = {0, 127, 0}));
+      connect(flangeChangeRight.flange_b, linGuideReq.flange_a1) annotation(Line(points = {{31, 10}, {38, 10}, {38, 0}, {46, 0}}, color = {0, 127, 0}));
       annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-80, -6}, {80, -46}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                 fillPattern=                                                                                                    FillPattern.Solid), Rectangle(extent=  {{-60, 14}, {6, -22}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-80, -22}, {80, -22}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{16, 16}, {68, 16}}, color=  {0, 0, 0}, smooth=  Smooth.None, arrow=  {Arrow.None, Arrow.Filled}), Line(points=  {{-46, 54}, {-46, 20}}, color=  {0, 0, 0}, smooth=  Smooth.None, arrow=  {Arrow.None, Arrow.Filled}), Line(points=  {{-90, 0}, {-60, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{6, 0}, {92, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-150, 100}, {150, 60}}, textString=  "%name", lineColor=  {0, 0, 255})}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics));
+                fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-80, -22}, {80, -22}}, color=  {0, 0, 0}), Line(points=  {{16, 16}, {68, 16}}, color=  {0, 0, 0}, arrow=  {Arrow.None, Arrow.Filled}), Line(points=  {{-46, 54}, {-46, 20}}, color=  {0, 0, 0}, arrow=  {Arrow.None, Arrow.Filled}), Line(points=  {{-90, 0}, {-60, 0}}, color=  {0, 0, 0}), Line(points=  {{6, 0}, {92, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 100}, {150, 60}}, textString=  "%name", lineColor=  {0, 0, 255})}));
     end LinearGuide;
 
     model Slide "Calculates normal and tangential force"
@@ -2142,16 +2094,16 @@ blocks of Modelica.Blocks.Source.
       Interfaces.Flange_b flange_b annotation(Placement(transformation(extent = {{90, -10}, {110, 10}})));
       Interfaces.FlangeChangeRight flangeChangeRight annotation(Placement(transformation(extent = {{62, -10}, {82, 10}})));
     equation
-      connect(flangeChange.flange_a, flange_a) annotation(Line(points = {{-61, 0}, {-100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(flangeChange.flange_ax, mass.flange_a) annotation(Line(points = {{-51, 10}, {-2, 10}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(mass.flange_b, flangeChangeRight.flange_ax) annotation(Line(points = {{18, 10}, {67, 10}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(force_T.flange, mass.flange_a) annotation(Line(points = {{-60, 24}, {-2, 24}, {-2, 10}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(flangeChange.flange_N, flangeChangeRight.flange_N) annotation(Line(points = {{-51, -10}, {7.5, -10}, {7.5, -10}, {67, -10}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(flangeChangeRight.flange_b, flange_b) annotation(Line(points = {{77, 0}, {100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(constantForce.flange, flangeChangeRight.flange_N) annotation(Line(points = {{0, -40}, {18, -40}, {18, -10}, {67, -10}}, color = {0, 127, 0}, smooth = Smooth.None));
-      annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-60, 40}, {60, -40}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+      connect(flangeChange.flange_a, flange_a) annotation(Line(points = {{-61, 0}, {-100, 0}}, color = {0, 127, 0}));
+      connect(flangeChange.flange_ax, mass.flange_a) annotation(Line(points = {{-51, 10}, {-2, 10}}, color = {0, 127, 0}));
+      connect(mass.flange_b, flangeChangeRight.flange_ax) annotation(Line(points = {{18, 10}, {67, 10}}, color = {0, 127, 0}));
+      connect(force_T.flange, mass.flange_a) annotation(Line(points = {{-60, 24}, {-2, 24}, {-2, 10}}, color = {0, 127, 0}));
+      connect(flangeChange.flange_N, flangeChangeRight.flange_N) annotation(Line(points = {{-51, -10}, {7.5, -10}, {7.5, -10}, {67, -10}}, color = {0, 127, 0}));
+      connect(flangeChangeRight.flange_b, flange_b) annotation(Line(points = {{77, 0}, {100, 0}}, color = {0, 127, 0}));
+      connect(constantForce.flange, flangeChangeRight.flange_N) annotation(Line(points = {{0, -40}, {18, -40}, {18, -10}, {67, -10}}, color = {0, 127, 0}));
+      annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-60, 40}, {60, -40}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                 fillPattern=                                                                                                    FillPattern.Solid), Text(extent=  {{-60, 40}, {60, -40}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
-                fillPattern=                                                                                                    FillPattern.Solid, textString=  "m"), Line(points=  {{-60, 0}, {-98, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{90, 0}, {60, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-150, 100}, {150, 60}}, textString=  "%name", lineColor=  {0, 0, 255}), Text(extent=  {{-160, -50}, {160, -86}}, lineColor=  {0, 0, 0}, textString=  "m=%m")}));
+                fillPattern=                                                                                                    FillPattern.Solid, textString=  "m"), Line(points=  {{-60, 0}, {-98, 0}}, color=  {0, 0, 0}), Line(points=  {{90, 0}, {60, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 100}, {150, 60}}, textString=  "%name", lineColor=  {0, 0, 255}), Text(extent=  {{-160, -50}, {160, -86}}, lineColor=  {0, 0, 0}, textString=  "m=%m")}));
     end Slide;
 
     model SimpleFriction
@@ -2176,9 +2128,9 @@ blocks of Modelica.Blocks.Source.
       flange_ax_a.f + flange_ax_b.f + F_Fr = 0;
       annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-80, -22}, {80, -46}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                 fillPattern=                                                                                                    FillPattern.Backward), Rectangle(extent=  {{-32, 14}, {34, -22}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-80, -22}, {80, -22}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{34, 4}, {86, 4}}, color=  {0, 0, 0}, smooth=  Smooth.None, arrow=  {Arrow.None, Arrow.Filled}), Text(extent=  {{40, 38}, {80, -2}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                fillPattern=                                                                                                    FillPattern.Backward, textString=  "v"), Line(points=  {{-22, 54}, {-22, 20}}, color=  {0, 0, 0}, smooth=  Smooth.None, arrow=  {Arrow.None, Arrow.Filled}), Text(extent=  {{-94, 56}, {-24, 26}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                fillPattern=                                                                                                    FillPattern.Backward, textString=  "F_N"), Line(points=  {{-90, 0}, {-32, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{6, 0}, {92, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-148, -44}, {152, -84}}, lineColor=  {0, 0, 255}, textString=  "%name"), Line(points=  {{0, 90}, {0, 12}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{0, -90}, {0, -22}}, color=  {0, 0, 0}, smooth=  Smooth.None)}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics));
+                fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-80, -22}, {80, -22}}, color=  {0, 0, 0}), Line(points=  {{34, 4}, {86, 4}}, color=  {0, 0, 0}, arrow=  {Arrow.None, Arrow.Filled}), Text(extent=  {{40, 38}, {80, -2}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
+                fillPattern=                                                                                                    FillPattern.Backward, textString=  "v"), Line(points=  {{-22, 54}, {-22, 20}}, color=  {0, 0, 0}, arrow=  {Arrow.None, Arrow.Filled}), Text(extent=  {{-94, 56}, {-24, 26}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
+                fillPattern=                                                                                                    FillPattern.Backward, textString=  "F_N"), Line(points=  {{-90, 0}, {-32, 0}}, color=  {0, 0, 0}), Line(points=  {{6, 0}, {92, 0}}, color=  {0, 0, 0}), Text(extent=  {{-148, -44}, {152, -84}}, lineColor=  {0, 0, 255}, textString=  "%name"), Line(points=  {{0, 90}, {0, 12}}, color=  {0, 0, 0}), Line(points=  {{0, -90}, {0, -22}}, color=  {0, 0, 0})}));
     end SimpleFriction;
 
     model NoLoad_Friction
@@ -2196,9 +2148,9 @@ blocks of Modelica.Blocks.Source.
       flange_ax_a.f + flange_ax_b.f + F_Fr = 0;
       annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-80, -22}, {80, -46}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                 fillPattern=                                                                                                    FillPattern.Backward), Rectangle(extent=  {{-32, 14}, {34, -22}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-80, -22}, {80, -22}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{34, 4}, {86, 4}}, color=  {0, 0, 0}, smooth=  Smooth.None, arrow=  {Arrow.None, Arrow.Filled}), Text(extent=  {{40, 38}, {80, -2}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                fillPattern=                                                                                                    FillPattern.Backward, textString=  "v"), Line(points=  {{16, 20}, {-22, 20}}, color=  {0, 0, 0}, smooth=  Smooth.None, arrow=  {Arrow.None, Arrow.Filled}), Text(extent=  {{-36, 60}, {34, 30}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                fillPattern=                                                                                                    FillPattern.Backward, textString=  "F_F"), Line(points=  {{-90, 0}, {-32, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{6, 0}, {92, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-148, -44}, {152, -84}}, textString=  "%name", lineColor=  {0, 0, 255})}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics));
+                fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-80, -22}, {80, -22}}, color=  {0, 0, 0}), Line(points=  {{34, 4}, {86, 4}}, color=  {0, 0, 0}, arrow=  {Arrow.None, Arrow.Filled}), Text(extent=  {{40, 38}, {80, -2}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
+                fillPattern=                                                                                                    FillPattern.Backward, textString=  "v"), Line(points=  {{16, 20}, {-22, 20}}, color=  {0, 0, 0}, arrow=  {Arrow.None, Arrow.Filled}), Text(extent=  {{-36, 60}, {34, 30}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
+                fillPattern=                                                                                                    FillPattern.Backward, textString=  "F_F"), Line(points=  {{-90, 0}, {-32, 0}}, color=  {0, 0, 0}), Line(points=  {{6, 0}, {92, 0}}, color=  {0, 0, 0}), Text(extent=  {{-148, -44}, {152, -84}}, textString=  "%name", lineColor=  {0, 0, 255})}));
     end NoLoad_Friction;
 
     model EfficiencyFactor_Translational
@@ -2218,7 +2170,7 @@ blocks of Modelica.Blocks.Source.
       annotation(Icon(graphics={  Text(extent=  {{-150, 100}, {150, 60}}, textString=  "%name", lineColor=  {0, 0, 255}), Text(extent=  {{-144, -50}, {156, -90}}, lineColor=  {0, 0, 0}, textString=  "eta=%eta"), Polygon(points=  {{-99, 50}, {-70, 50}, {-70, 90}, {-80, 90}, {-60, 110}, {-40, 90}, {-50, 90}, {-50, 30}, {-99, 30}, {-99, 50}}, lineColor=  {0, 0, 0}, fillColor=  {255, 0, 0},
                 fillPattern=                                                                                                    FillPattern.Solid), Rectangle(extent=  {{-70, -22}, {90, -46}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                 fillPattern=                                                                                                    FillPattern.Backward), Rectangle(extent=  {{-22, 14}, {44, -22}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-70, -22}, {90, -22}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-80, 0}, {-22, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{16, 0}, {102, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None)}));
+                fillPattern=                                                                                                    FillPattern.Backward), Line(points=  {{-70, -22}, {90, -22}}, color=  {0, 0, 0}), Line(points=  {{-80, 0}, {-22, 0}}, color=  {0, 0, 0}), Line(points=  {{16, 0}, {102, 0}}, color=  {0, 0, 0})}));
     end EfficiencyFactor_Translational;
 
     model SpringDamper "Spring damper behavior for horizontal force"
@@ -2233,11 +2185,11 @@ blocks of Modelica.Blocks.Source.
       Interfaces.FlangeChangeLeft flangeChangeLeft annotation(Placement(transformation(extent = {{-66, -10}, {-46, 10}})));
       Interfaces.FlangeChangeRight flangeChangeRight annotation(Placement(transformation(extent = {{54, -10}, {74, 10}})));
     equation
-      connect(flangeChangeLeft.flange_a, flange_a) annotation(Line(points = {{-61, 0}, {-100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(flangeChangeLeft.flange_ax, springDamper.flange_a) annotation(Line(points = {{-51, 10}, {-10, 10}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(springDamper.flange_b, flangeChangeRight.flange_ax) annotation(Line(points = {{10, 10}, {59, 10}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(flangeChangeLeft.flange_N, flangeChangeRight.flange_N) annotation(Line(points = {{-51, -10}, {59, -10}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(flangeChangeRight.flange_b, flange_b) annotation(Line(points = {{69, 0}, {100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
+      connect(flangeChangeLeft.flange_a, flange_a) annotation(Line(points = {{-61, 0}, {-100, 0}}, color = {0, 127, 0}));
+      connect(flangeChangeLeft.flange_ax, springDamper.flange_a) annotation(Line(points = {{-51, 10}, {-10, 10}}, color = {0, 127, 0}));
+      connect(springDamper.flange_b, flangeChangeRight.flange_ax) annotation(Line(points = {{10, 10}, {59, 10}}, color = {0, 127, 0}));
+      connect(flangeChangeLeft.flange_N, flangeChangeRight.flange_N) annotation(Line(points = {{-51, -10}, {59, -10}}, color = {0, 127, 0}));
+      connect(flangeChangeRight.flange_b, flange_b) annotation(Line(points = {{69, 0}, {100, 0}}, color = {0, 127, 0}));
       annotation(Documentation(info = "<html>
 <p>
 A <i>spring and damper element connected in parallel</i>.
@@ -2248,7 +2200,7 @@ to describe a coupling of the sliding mass with the housing via a spring/damper.
 </p>
 </html>"), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(points=  {{-80, 40}, {-60, 40}, {-45, 10}, {-15, 70}, {15, 10}, {45, 70}, {60, 40}, {80, 40}}, color=  {0, 0, 0}), Line(points=  {{-80, 40}, {-80, -70}}, color=  {0, 0, 0}), Line(points=  {{-80, -70}, {-52, -70}}, color=  {0, 0, 0}), Rectangle(extent=  {{-52, -49}, {38, -91}}, lineColor=  {0, 0, 0}, fillColor=  {192, 192, 192},
                 fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-52, -49}, {68, -49}}, color=  {0, 0, 0}), Line(points=  {{-51, -91}, {69, -91}}, color=  {0, 0, 0}), Line(points=  {{38, -70}, {80, -70}}, color=  {0, 0, 0}), Line(points=  {{80, 40}, {80, -70}}, color=  {0, 0, 0}), Line(points=  {{-90, 0}, {-80, 0}}, color=  {0, 0, 0}), Line(points=  {{80, 0}, {90, 0}}, color=  {0, 0, 0}), Polygon(points=  {{53, -18}, {23, -8}, {23, -28}, {53, -18}}, lineColor=  {128, 128, 128}, fillColor=  {128, 128, 128},
-                fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-57, -18}, {23, -18}}, color=  {0, 0, 0}), Text(extent=  {{-150, 120}, {150, 80}}, textString=  "%name", lineColor=  {0, 0, 255}), Text(extent=  {{-150, -135}, {150, -165}}, lineColor=  {0, 0, 0}, textString=  "d=%d"), Text(extent=  {{-150, -100}, {150, -130}}, lineColor=  {0, 0, 0}, textString=  "c=%c"), Line(visible=  useHeatPort, points=  {{-100, -100}, {-100, -80}, {-5, -80}}, color=  {191, 0, 0}, pattern=  LinePattern.Dot, smooth=  Smooth.None)}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics));
+                fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-57, -18}, {23, -18}}, color=  {0, 0, 0}), Text(extent=  {{-150, 120}, {150, 80}}, textString=  "%name", lineColor=  {0, 0, 255}), Text(extent=  {{-150, -135}, {150, -165}}, lineColor=  {0, 0, 0}, textString=  "d=%d"), Text(extent=  {{-150, -100}, {150, -130}}, lineColor=  {0, 0, 0}, textString=  "c=%c"), Line(visible=  useHeatPort, points=  {{-100, -100}, {-100, -80}, {-5, -80}}, color=  {191, 0, 0}, pattern=  LinePattern.Dot)}));
     end SpringDamper;
 
     package Interfaces
@@ -2401,39 +2353,32 @@ The following variables are transported through this connector:
         HelpBlocks.AbsMax absMax1
           annotation (Placement(transformation(extent={{10,-40},{30,-20}})));
       equation
-        connect(forceSensor.flange_a, flange_a) annotation(Line(points = {{-10, 0}, {-102, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(forceSensor.flange_b, flange_b) annotation(Line(points = {{10, 0}, {54, 0}, {54, 0}, {100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(speedSensor.flange, flange_a) annotation(Line(points = {{-60, 40}, {-60, 0}, {-102, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(accSensor.flange, flange_a) annotation(Line(points = {{-60, 80}, {-60, 0}, {-102, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(accSensor.a, a_actual) annotation(Line(points = {{-39, 80}, {-36, 80}, {-36, 60}, {110, 60}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(speedSensor.v, v_actual) annotation(Line(points = {{-39, 40}, {-36, 40}, {-36, 20}, {110, 20}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(forceSensor.f, f_actual) annotation(Line(points = {{-8, -11}, {-8, -60}, {110, -60}}, color = {0, 0, 127}, smooth = Smooth.None));
+        connect(forceSensor.flange_a, flange_a) annotation(Line(points = {{-10, 0}, {-102, 0}}, color = {0, 127, 0}));
+        connect(forceSensor.flange_b, flange_b) annotation(Line(points = {{10, 0}, {54, 0}, {54, 0}, {100, 0}}, color = {0, 127, 0}));
+        connect(speedSensor.flange, flange_a) annotation(Line(points = {{-60, 40}, {-60, 0}, {-102, 0}}, color = {0, 127, 0}));
+        connect(accSensor.flange, flange_a) annotation(Line(points = {{-60, 80}, {-60, 0}, {-102, 0}}, color = {0, 127, 0}));
+        connect(accSensor.a, a_actual) annotation(Line(points = {{-39, 80}, {-36, 80}, {-36, 60}, {110, 60}}, color = {0, 0, 127}));
+        connect(speedSensor.v, v_actual) annotation(Line(points = {{-39, 40}, {-36, 40}, {-36, 20}, {110, 20}}, color = {0, 0, 127}));
+        connect(forceSensor.f, f_actual) annotation(Line(points = {{-8, -11}, {-8, -60}, {110, -60}}, color = {0, 0, 127}));
         connect(absMax3.y, a_max) annotation (Line(
             points={{21,80},{110,80}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMax3.u, a_actual) annotation (Line(
             points={{-2,80},{-36,80},{-36,60},{110,60}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMax.u, speedSensor.v) annotation (Line(
             points={{-2,40},{-39,40}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMax.y, v_max) annotation (Line(
             points={{21,40},{36,40},{36,-104},{56,-104}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMax1.y, f_max) annotation (Line(
             points={{31,-30},{110,-30}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMax1.u, f_actual) annotation (Line(
             points={{8,-30},{-8,-30},{-8,-60},{110,-60}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                  -100},{100,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-74, -60}, {66, 20}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+            color={0,0,127}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-74, -60}, {66, 20}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Polygon(points=  {{-4, -40}, {-14, -16}, {6, -16}, {-4, -40}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-4, 0}, {-4, -16}}, color=  {0, 0, 0}), Line(points=  {{-74, 0}, {-4, 0}}, color=  {0, 0, 0}), Line(points=  {{-54, -40}, {-54, -60}}, color=  {0, 0, 0}), Line(points=  {{-34, -40}, {-34, -60}}, color=  {0, 0, 0}), Line(points=  {{-14, -40}, {-14, -60}}, color=  {0, 0, 0}), Line(points=  {{6, -40}, {6, -60}}, color=  {0, 0, 0}), Line(points=  {{26, -40}, {26, -60}}, color=  {0, 0, 0}), Line(points=  {{46, -40}, {46, -60}}, color=  {0, 0, 0}), Line(points=  {{-90, -80}, {-10, -80}}, color=  {0, 0, 0}), Polygon(points=  {{16, -82}, {-14, -72}, {-14, -92}, {16, -82}}, lineColor=  {128, 128, 128}, fillColor=  {128, 128, 128},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-74, 0}, {-94, 0}}, color=  {0, 0, 0}), Line(points=  {{66, 0}, {96, 0}}, color=  {0, 0, 127}), Text(extent=  {{-154, 100}, {146, 60}}, textString=  "%name", lineColor=  {0, 0, 255}), Line(points=  {{-74, 0}, {-94, 0}}, color=  {0, 0, 0})}));
@@ -2466,42 +2411,35 @@ The following variables are transported through this connector:
         HelpBlocks.AbsMax absMax2
           annotation (Placement(transformation(extent={{20,-90},{40,-70}})));
       equation
-        connect(flangeChangeLeft.flange_a, flange_a1) annotation(Line(points = {{-81, 0}, {-100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(flangeChangeRight.flange_b, flange_b1) annotation(Line(points = {{81, 0}, {100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(flangeChangeLeft.flange_ax, flangeChangeRight.flange_ax) annotation(Line(points = {{-71, 10}, {71, 10}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(accSensor.flange, speedSensor.flange) annotation(Line(points = {{-60, 80}, {-60, 40}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(speedSensor.flange, flangeChangeRight.flange_ax) annotation(Line(points = {{-60, 40}, {-60, 10}, {71, 10}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(flangeChangeLeft.flange_N, forceSensor.flange_a) annotation(Line(points = {{-71, -10}, {-8, -10}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(forceSensor.flange_b, flangeChangeRight.flange_N) annotation(Line(points = {{12, -10}, {71, -10}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(forceSensor.f, nominalLifeRating.u1) annotation(Line(points = {{-6, -21}, {-6, -44}, {18, -44}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(speedSensor.v, nominalLifeRating.u2) annotation(Line(points = {{-39, 40}, {-39, -56}, {18, -56}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(nominalLifeRating.y, L_h) annotation(Line(points = {{41, -50}, {110, -50}}, color = {0, 0, 127}, smooth = Smooth.None));
+        connect(flangeChangeLeft.flange_a, flange_a1) annotation(Line(points = {{-81, 0}, {-100, 0}}, color = {0, 127, 0}));
+        connect(flangeChangeRight.flange_b, flange_b1) annotation(Line(points = {{81, 0}, {100, 0}}, color = {0, 127, 0}));
+        connect(flangeChangeLeft.flange_ax, flangeChangeRight.flange_ax) annotation(Line(points = {{-71, 10}, {71, 10}}, color = {0, 127, 0}));
+        connect(accSensor.flange, speedSensor.flange) annotation(Line(points = {{-60, 80}, {-60, 40}}, color = {0, 127, 0}));
+        connect(speedSensor.flange, flangeChangeRight.flange_ax) annotation(Line(points = {{-60, 40}, {-60, 10}, {71, 10}}, color = {0, 127, 0}));
+        connect(flangeChangeLeft.flange_N, forceSensor.flange_a) annotation(Line(points = {{-71, -10}, {-8, -10}}, color = {0, 127, 0}));
+        connect(forceSensor.flange_b, flangeChangeRight.flange_N) annotation(Line(points = {{12, -10}, {71, -10}}, color = {0, 127, 0}));
+        connect(forceSensor.f, nominalLifeRating.u1) annotation(Line(points = {{-6, -21}, {-6, -44}, {18, -44}}, color = {0, 0, 127}));
+        connect(speedSensor.v, nominalLifeRating.u2) annotation(Line(points = {{-39, 40}, {-39, -56}, {18, -56}}, color = {0, 0, 127}));
+        connect(nominalLifeRating.y, L_h) annotation(Line(points = {{41, -50}, {110, -50}}, color = {0, 0, 127}));
         connect(accSensor.a, absMax.u) annotation (Line(
             points={{-39,80},{-26,80}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMax.y, a_max) annotation (Line(
             points={{-3,80},{110,80}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(speedSensor.v, absMax1.u) annotation (Line(
             points={{-39,40},{-26,40}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMax1.y, v_max) annotation (Line(
             points={{-3,40},{110,40}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMax2.y, P_max) annotation (Line(
             points={{41,-80},{110,-80}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMax2.u, nominalLifeRating.u1) annotation (Line(
             points={{18,-80},{2,-80},{2,-44},{18,-44}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                  -100},{100,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-74, -60}, {66, 20}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+            color={0,0,127}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-74, -60}, {66, 20}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Polygon(points=  {{-4, -40}, {-14, -16}, {6, -16}, {-4, -40}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-4, 0}, {-4, -16}}, color=  {0, 0, 0}), Line(points=  {{-74, 0}, {-4, 0}}, color=  {0, 0, 0}), Line(points=  {{-54, -40}, {-54, -60}}, color=  {0, 0, 0}), Line(points=  {{-34, -40}, {-34, -60}}, color=  {0, 0, 0}), Line(points=  {{-14, -40}, {-14, -60}}, color=  {0, 0, 0}), Line(points=  {{6, -40}, {6, -60}}, color=  {0, 0, 0}), Line(points=  {{26, -40}, {26, -60}}, color=  {0, 0, 0}), Line(points=  {{46, -40}, {46, -60}}, color=  {0, 0, 0}), Line(points=  {{-90, -80}, {-10, -80}}, color=  {0, 0, 0}), Polygon(points=  {{16, -82}, {-14, -72}, {-14, -92}, {16, -82}}, lineColor=  {128, 128, 128}, fillColor=  {128, 128, 128},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-74, 0}, {-94, 0}}, color=  {0, 0, 0}), Line(points=  {{66, 0}, {96, 0}}, color=  {0, 0, 127}), Text(extent=  {{-154, 100}, {146, 60}}, textString=  "%name", lineColor=  {0, 0, 255}), Line(points=  {{-74, 0}, {-94, 0}}, color=  {0, 0, 0})}));
@@ -2608,7 +2546,7 @@ Example:
                       textString="%k1"),Line(points={{-100,60},{-40,60},{-30,40}},
                 color={0,0,255}),Ellipse(extent={{-50,50},{50,-50}}, lineColor=
                 {0,0,255}),Line(points={{-100,-60},{-40,-60},{-30,-40}}, color=
-                {0,0,255}),Line(points={{-15,-25.99},{15,25.99}}, color={0,0,0}),
+                {0,0,255}),Line(points={{-15,-25.99},{15,25.99}}),
                 Rectangle(
                       extent={{-100,-100},{100,100}},
                       lineColor={0,0,127},
@@ -2678,7 +2616,7 @@ Example:
         F_ax = flange_a.f + F_pr;
         //forceFlange.f;
         0 = flange_b.f + flange_a.f;
-        annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Ellipse(extent=  {{-60, 60}, {60, -60}}, lineColor=  {0, 0, 0}, fillColor=  {175, 175, 175},
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Ellipse(extent=  {{-60, 60}, {60, -60}}, lineColor=  {0, 0, 0}, fillColor=  {175, 175, 175},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-50, 50}, {50, -50}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-12, 50}, {8, 30}}, lineColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Sphere, fillColor=  {135, 135, 135}), Ellipse(extent=  {{-10, -30}, {10, -50}}, lineColor=  {0, 0, 0},
@@ -2750,10 +2688,10 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         Modelica.Blocks.Interfaces.RealInput tau
           "Accelerating torque acting at flange (= -flange.tau)"                                        annotation(Placement(transformation(extent = {{-140, -20}, {-100, 20}}, rotation = 0), iconTransformation(extent = {{-130, -20}, {-90, 20}})));
       equation
-        connect(firstOrder.y, torque.tau) annotation(Line(points = {{-19, 0}, {18, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(firstOrder.u, tau) annotation(Line(points = {{-42, 0}, {-120, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(flange1, torque.flange) annotation(Line(points = {{100, 0}, {40, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(visible=  not useSupport, points=  {{-40, -120}, {-20, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-20, -120}, {0, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{0, -120}, {20, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{20, -120}, {40, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-20, -100}, {40, -100}}, color=  {0, 0, 0}), Text(extent=  {{-140, 110}, {160, 70}}, textString=  "%name", lineColor=  {0, 0, 255}), Text(extent=  {{-52, -29}, {-131, -70}}, lineColor=  {0, 0, 0}, textString=  "tau"), Line(points=  {{-78, 0}, {-54, 30}, {-26, 52}, {8, 62}, {38, 56}, {58, 44}, {74, 28}, {86, 14}, {96, 0}}, color=  {0, 0, 0}, thickness=  0.5), Polygon(points=  {{96, 0}, {76, 58}, {47, 27}, {96, 0}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
+        connect(firstOrder.y, torque.tau) annotation(Line(points = {{-19, 0}, {18, 0}}, color = {0, 0, 127}));
+        connect(firstOrder.u, tau) annotation(Line(points = {{-42, 0}, {-120, 0}}, color = {0, 0, 127}));
+        connect(flange1, torque.flange) annotation(Line(points = {{100, 0}, {40, 0}}, color = {0, 0, 0}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(visible=  not useSupport, points=  {{-40, -120}, {-20, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-20, -120}, {0, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{0, -120}, {20, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{20, -120}, {40, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupport, points=  {{-20, -100}, {40, -100}}, color=  {0, 0, 0}), Text(extent=  {{-140, 110}, {160, 70}}, textString=  "%name", lineColor=  {0, 0, 255}), Text(extent=  {{-52, -29}, {-131, -70}}, lineColor=  {0, 0, 0}, textString=  "tau"), Line(points=  {{-78, 0}, {-54, 30}, {-26, 52}, {8, 62}, {38, 56}, {58, 44}, {74, 28}, {86, 14}, {96, 0}}, color=  {0, 0, 0}, thickness=  0.5), Polygon(points=  {{96, 0}, {76, 58}, {47, 27}, {96, 0}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-20, -30}, {40, -30}}, color=  {0, 0, 0}), Line(points=  {{10, -30}, {10, -101}}, color=  {0, 0, 0}), Line(points=  {{-20, -50}, {0, -30}}, color=  {0, 0, 0}), Line(points=  {{0, -50}, {20, -30}}, color=  {0, 0, 0}), Line(points=  {{20, -50}, {40, -30}}, color=  {0, 0, 0}), Line(points=  {{-44, -42}, {-28, -28}, {-6, -16}, {14, -14}, {32, -18}, {46, -26}, {58, -36}, {66, -46}, {74, -58}}, color=  {0, 0, 0}), Polygon(points=  {{-51, -66}, {-34, -42}, {-48, -36}, {-51, -66}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid)}));
       end Torque_PT1;
@@ -2777,7 +2715,7 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-100, 10}, {54, -10}}, lineColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.HorizontalCylinder, fillColor=  {192, 192, 192}), Rectangle(extent=  {{50, 10}, {100, -10}}, lineColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.HorizontalCylinder, fillColor=  {192, 192, 192}), Line(points=  {{-80, -25}, {-60, -25}}, color=  {0, 0, 0}), Line(points=  {{60, -25}, {80, -25}}, color=  {0, 0, 0}), Line(points=  {{-70, -25}, {-70, -70}}, color=  {0, 0, 0}), Line(points=  {{70, -25}, {70, -70}}, color=  {0, 0, 0}), Line(points=  {{-80, 25}, {-60, 25}}, color=  {0, 0, 0}), Line(points=  {{60, 25}, {80, 25}}, color=  {0, 0, 0}), Line(points=  {{-70, 45}, {-70, 25}}, color=  {0, 0, 0}), Line(points=  {{70, 45}, {70, 25}}, color=  {0, 0, 0}), Line(points=  {{-70, -70}, {70, -70}}, color=  {0, 0, 0}), Text(extent=  {{-150, -82}, {150, -122}}, lineColor=  {0, 0, 0}, textString=  "M_Fr=%M_Fr"), Polygon(points=  {{-99, 50}, {-70, 50}, {-70, 68}, {-80, 68}, {-60, 84}, {-40, 68}, {-50, 68}, {-50, 30}, {-99, 30}, {-99, 50}}, lineColor=  {0, 0, 0}, fillColor=  {255, 0, 0},
-                  fillPattern=                                                                                                    FillPattern.Solid), Text(extent=  {{-220, 140}, {220, 100}}, lineColor=  {0, 0, 255}, textString=  "%name")}), Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics));
+                  fillPattern=                                                                                                    FillPattern.Solid), Text(extent=  {{-220, 140}, {220, 100}}, lineColor=  {0, 0, 255}, textString=  "%name")}));
       end NoLoad_Friction;
 
     end BasicComponents;
@@ -2816,7 +2754,7 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
                   fillPattern=                                                                                                    FillPattern.Sphere, fillColor=  {192, 192, 192}), Rectangle(extent=  {{16, 10}, {60, -10}}, lineColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.HorizontalCylinder, fillColor=  {192, 192, 192}), Ellipse(extent=  {{56, 10}, {64, -10}}, lineColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Sphere, fillColor=  {192, 192, 192}), Text(extent=  {{-150, 140}, {150, 100}}, textString=  "%name", lineColor=  {0, 0, 255}), Polygon(points=  {{80, 10}, {80, 26}, {60, 26}, {60, 20}, {70, 20}, {70, -20}, {60, -20}, {60, -26}, {80, -26}, {80, -10}, {90, -10}, {90, 10}, {80, 10}}, lineColor=  {0, 127, 0}, fillColor=  {0, 127, 0},
-                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-100, -20}, {-60, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-100, -20}, {-100, -100}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-100, 20}, {-60, 20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{100, -90}, {-40, -90}}, color=  {0, 127, 0}, smooth=  Smooth.None), Line(points=  {{70, -26}, {70, -50}, {100, -50}, {100, -100}}, color=  {0, 127, 0}, smooth=  Smooth.None)}));
+                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-100, -20}, {-60, -20}}, color=  {0, 0, 0}), Line(points=  {{-100, -20}, {-100, -100}}, color=  {0, 0, 0}), Line(points=  {{-100, 20}, {-60, 20}}, color=  {0, 0, 0}), Line(points=  {{100, -90}, {-40, -90}}, color=  {0, 127, 0}), Line(points=  {{70, -26}, {70, -50}, {100, -50}, {100, -100}}, color=  {0, 127, 0})}));
       end BeltPulley;
 
       model PulleyConstraints
@@ -2873,36 +2811,32 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
       equation
         con_F = absMax_Force.y - F_perm;
         con_P = max_con_P.y;
-        connect(powerSensor.power, abs1.u) annotation(Line(points = {{-78, 17}, {-78, -40}, {-52, -40}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(abs1.y, gain.u) annotation(Line(points = {{-29, -40}, {-8, -40}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(gain.y, feedback.u1) annotation(Line(points = {{15, -40}, {44, -40}}, color = {0, 0, 127}, smooth = Smooth.None));
+        connect(powerSensor.power, abs1.u) annotation(Line(points = {{-78, 17}, {-78, -40}, {-52, -40}}, color = {0, 0, 127}));
+        connect(abs1.y, gain.u) annotation(Line(points = {{-29, -40}, {-8, -40}}, color = {0, 0, 127}));
+        connect(gain.y, feedback.u1) annotation(Line(points = {{15, -40}, {44, -40}}, color = {0, 0, 127}));
         connect(flangeR, powerSensor.flange_a) annotation(Line(points={{-100,0},
-                {-90,0},{-90,28},{-80,28}},                                                      color = {0, 0, 0}, smooth = Smooth.None));
+                {-90,0},{-90,28},{-80,28}},                                                      color = {0, 0, 0}));
         connect(flangeR, speedSensor.flange) annotation(Line(points={{-100,0},{
-                -80,0},{-80,-80},{-58,-80}},                                                                           color = {0, 0, 0}, smooth = Smooth.None));
-        connect(speedSensor.w, speed_to_rpm.u) annotation(Line(points = {{-37, -80}, {-32, -80}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(speed_to_rpm.y, perm_power.u) annotation(Line(points = {{-9, -80}, {-2, -80}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(beltPulley.flangeT, forceSensor.flange_a) annotation(Line(points = {{10, 28}, {28, 28}}, color = {0, 127, 0}, smooth = Smooth.None));
+                -80,0},{-80,-80},{-58,-80}},                                                                           color = {0, 0, 0}));
+        connect(speedSensor.w, speed_to_rpm.u) annotation(Line(points = {{-37, -80}, {-32, -80}}, color = {0, 0, 127}));
+        connect(speed_to_rpm.y, perm_power.u) annotation(Line(points = {{-9, -80}, {-2, -80}}, color = {0, 0, 127}));
+        connect(beltPulley.flangeT, forceSensor.flange_a) annotation(Line(points = {{10, 28}, {28, 28}}, color = {0, 127, 0}));
         connect(forceSensor.flange_b, flangeT) annotation(Line(points={{48,28},
-                {74,28},{74,0},{100,0}},                                                       color = {0, 127, 0}, smooth = Smooth.None));
-        connect(powerSensor.flange_b, efficiencyFactor.flange_a) annotation(Line(points = {{-60, 28}, {-46, 28}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(efficiencyFactor.flange_b, beltPulley.flangeR) annotation(Line(points = {{-26, 28}, {-10, 28}}, color = {0, 0, 0}, smooth = Smooth.None));
+                {74,28},{74,0},{100,0}},                                                       color = {0, 127, 0}));
+        connect(powerSensor.flange_b, efficiencyFactor.flange_a) annotation(Line(points = {{-60, 28}, {-46, 28}}, color = {0, 0, 0}));
+        connect(efficiencyFactor.flange_b, beltPulley.flangeR) annotation(Line(points = {{-26, 28}, {-10, 28}}, color = {0, 0, 0}));
         connect(feedback.y, max_con_P.u) annotation (Line(
             points={{61,-40},{76,-40}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(feedback.u2, perm_power.y) annotation (Line(
             points={{52,-48},{52,-80},{21,-80}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(max_perm.u, perm_power.y) annotation (Line(
             points={{76,-80},{21,-80}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(forceSensor.f, absMax_Force.u) annotation (Line(
             points={{30,17},{50,17},{50,80},{70,80}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         annotation(Icon(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
                   -100},{100,100}}),                                                                        graphics={  Line(visible=  not useSupportT, points=  {{85, -110}, {95, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportT, points=  {{95, -110}, {105, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportT, points=  {{105, -110}, {115, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportT, points=  {{85, -100}, {115, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportR, points=  {{-115, -110}, {-105, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportR, points=  {{-105, -110}, {-95, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportR, points=  {{-95, -110}, {-85, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportR, points=  {{-115, -100}, {-85, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportT, points=  {{85, -110}, {95, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportT, points=  {{95, -110}, {105, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportT, points=  {{105, -110}, {115, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportT, points=  {{85, -100}, {115, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportR, points=  {{-115, -110}, {-105, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportR, points=  {{-105, -110}, {-95, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportR, points=  {{-95, -110}, {-85, -100}}, color=  {0, 0, 0}), Line(visible=  not useSupportR, points=  {{-115, -100}, {-85, -100}}, color=  {0, 0, 0}), Rectangle(extent=  {{-98, 10}, {-44, -10}}, lineColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.HorizontalCylinder, fillColor=  {192, 192, 192}), Ellipse(extent=  {{-48, 80}, {12, -80}}, lineColor=  {0, 0, 0},
@@ -2913,8 +2847,7 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
                   fillPattern=                                                                                                    FillPattern.Sphere, fillColor=  {192, 192, 192}), Rectangle(extent=  {{16, 10}, {60, -10}}, lineColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.HorizontalCylinder, fillColor=  {192, 192, 192}), Ellipse(extent=  {{56, 10}, {64, -10}}, lineColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Sphere, fillColor=  {192, 192, 192}), Text(extent=  {{-150, 140}, {150, 100}}, textString=  "%name", lineColor=  {0, 0, 255}), Polygon(points=  {{80, 10}, {80, 26}, {60, 26}, {60, 20}, {70, 20}, {70, -20}, {60, -20}, {60, -26}, {80, -26}, {80, -10}, {90, -10}, {90, 10}, {80, 10}}, lineColor=  {0, 127, 0}, fillColor=  {0, 127, 0},
-                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-100, -20}, {-60, -20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-100, -20}, {-100, -100}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-100, 20}, {-60, 20}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{70, -26}, {70, -50}, {100, -50}, {100, -100}}, color=  {0, 127, 0}, smooth=  Smooth.None)}), Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                  -100},{100,100}}),                                                                                                    graphics));
+                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-100, -20}, {-60, -20}}, color=  {0, 0, 0}), Line(points=  {{-100, -20}, {-100, -100}}, color=  {0, 0, 0}), Line(points=  {{-100, 20}, {-60, 20}}, color=  {0, 0, 0}), Line(points=  {{70, -26}, {70, -50}, {100, -50}, {100, -100}}, color=  {0, 127, 0})}));
       end PulleyConstraints;
 
       model TimingBeltDrive
@@ -2961,33 +2894,31 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         HelpBlocks.AbsMax absMax_Force
           annotation (Placement(transformation(extent={{60,-42},{80,-22}})));
       equation
-        connect(powerSensor.power, abs1.u) annotation(Line(points = {{-98, -11}, {-98, -40}, {-82, -40}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(abs1.y, g_Operation.u) annotation(Line(points = {{-59, -40}, {-28, -40}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(g_Operation.y, feedback.u1) annotation(Line(points = {{-5, -40}, {10, -40}, {10, -60}, {24, -60}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(g_width.y, feedback.u2) annotation(Line(points = {{31, -80}, {32, -80}, {32, -68}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(speedSensor.w, speed_to_rpm.u) annotation(Line(points = {{-59, -80}, {-52, -80}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(speed_to_rpm.y, perm_power.u) annotation(Line(points = {{-29, -80}, {-22, -80}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(perm_power.y, g_width.u) annotation(Line(points = {{1, -80}, {8, -80}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(powerSensor.flange_b, efficiencyFactor.flange_a) annotation(Line(points = {{-80, 0}, {-66, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(efficiencyFactor.flange_b, smallPulley.flangeR) annotation(Line(points = {{-46, 0}, {-20, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(flangeR1, flangeR1) annotation(Line(points = {{-120, 0}, {-120, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(largePulley.flangeR, flangeR2) annotation(Line(points = {{80, 0}, {120, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(powerSensor.flange_a, flangeR1) annotation(Line(points = {{-100, 0}, {-112, 0}, {-112, 0}, {-120, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(speedSensor.flange, flangeR1) annotation(Line(points = {{-80, -80}, {-108, -80}, {-108, 0}, {-120, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(smallPulley.flangeT, timingBelt_elastic.flange_a1) annotation(Line(points = {{0, 0}, {20, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(largePulley.flangeT, timingBelt_elastic.flange_b1) annotation(Line(points = {{60, 1.22125e-015}, {50, 1.22125e-015}, {50, 0}, {40, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
+        connect(powerSensor.power, abs1.u) annotation(Line(points = {{-98, -11}, {-98, -40}, {-82, -40}}, color = {0, 0, 127}));
+        connect(abs1.y, g_Operation.u) annotation(Line(points = {{-59, -40}, {-28, -40}}, color = {0, 0, 127}));
+        connect(g_Operation.y, feedback.u1) annotation(Line(points = {{-5, -40}, {10, -40}, {10, -60}, {24, -60}}, color = {0, 0, 127}));
+        connect(g_width.y, feedback.u2) annotation(Line(points = {{31, -80}, {32, -80}, {32, -68}}, color = {0, 0, 127}));
+        connect(speedSensor.w, speed_to_rpm.u) annotation(Line(points = {{-59, -80}, {-52, -80}}, color = {0, 0, 127}));
+        connect(speed_to_rpm.y, perm_power.u) annotation(Line(points = {{-29, -80}, {-22, -80}}, color = {0, 0, 127}));
+        connect(perm_power.y, g_width.u) annotation(Line(points = {{1, -80}, {8, -80}}, color = {0, 0, 127}));
+        connect(powerSensor.flange_b, efficiencyFactor.flange_a) annotation(Line(points = {{-80, 0}, {-66, 0}}, color = {0, 0, 0}));
+        connect(efficiencyFactor.flange_b, smallPulley.flangeR) annotation(Line(points = {{-46, 0}, {-20, 0}}, color = {0, 0, 0}));
+        connect(flangeR1, flangeR1) annotation(Line(points = {{-120, 0}, {-120, 0}}, color = {0, 0, 0}));
+        connect(largePulley.flangeR, flangeR2) annotation(Line(points = {{80, 0}, {120, 0}}, color = {0, 0, 0}));
+        connect(powerSensor.flange_a, flangeR1) annotation(Line(points = {{-100, 0}, {-112, 0}, {-112, 0}, {-120, 0}}, color = {0, 0, 0}));
+        connect(speedSensor.flange, flangeR1) annotation(Line(points = {{-80, -80}, {-108, -80}, {-108, 0}, {-120, 0}}, color = {0, 0, 0}));
+        connect(smallPulley.flangeT, timingBelt_elastic.flange_a1) annotation(Line(points = {{0, 0}, {20, 0}}, color = {0, 127, 0}));
+        connect(largePulley.flangeT, timingBelt_elastic.flange_b1) annotation(Line(points = {{60, 1.22125e-015}, {50, 1.22125e-015}, {50, 0}, {40, 0}}, color = {0, 127, 0}));
         connect(feedback.y, max_con_P.u) annotation (Line(
             points={{41,-60},{58,-60}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(timingBelt_elastic.f1, absMax_Force.u) annotation (Line(
             points={{31.2,-4.6},{31.2,-31.3},{58,-31.3},{58,-32}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-150,
                   -100},{150,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-150, -100}, {150, 100}}), graphics={  Ellipse(extent=  {{-80, 20}, {-40, -20}}, lineColor=  {0, 0, 0}), Ellipse(extent=  {{0, 40}, {80, -40}}, lineColor=  {0, 0, 0}), Ellipse(extent=  {{-62, 2}, {-58, -2}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{38, 2}, {42, -2}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-60, 20}, {34, 40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-60, -20}, {34, -40}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{-80, 0}, {-118, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{110, 0}, {80, 0}}, color=  {0, 0, 0}, smooth=  Smooth.None), Text(extent=  {{-150, 100}, {150, 60}}, lineColor=  {0, 0, 255}, textString=  "%name"), Text(extent=  {{-150, -40}, {150, -80}}, lineColor=  {0, 0, 255}, textString=  "z1 = %z_s"), Text(extent=  {{-150, -74}, {150, -114}}, lineColor=  {0, 0, 255}, textString=  "z2 = %z_l")}));
+                  fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-60, 20}, {34, 40}}, color=  {0, 0, 0}), Line(points=  {{-60, -20}, {34, -40}}, color=  {0, 0, 0}), Line(points=  {{-80, 0}, {-118, 0}}, color=  {0, 0, 0}), Line(points=  {{110, 0}, {80, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 100}, {150, 60}}, lineColor=  {0, 0, 255}, textString=  "%name"), Text(extent=  {{-150, -40}, {150, -80}}, lineColor=  {0, 0, 255}, textString=  "z1 = %z_s"), Text(extent=  {{-150, -74}, {150, -114}}, lineColor=  {0, 0, 255}, textString=  "z2 = %z_l")}));
       end TimingBeltDrive;
 
       model TimingBelt_elastic
@@ -3004,14 +2935,14 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
           "Force in flange_a and flange_b (f = flange_a.f = -flange_b.f)"                                        annotation(Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 270, origin = {12, -46})));
       equation
         if elastic then
-          connect(spring.flange_a, flange_a1) annotation(Line(points = {{-30, 0}, {-100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-          connect(spring.flange_b, forceSensor.flange_a) annotation(Line(points = {{-10, 0}, {10, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
+          connect(spring.flange_a, flange_a1) annotation(Line(points = {{-30, 0}, {-100, 0}}, color = {0, 127, 0}));
+          connect(spring.flange_b, forceSensor.flange_a) annotation(Line(points = {{-10, 0}, {10, 0}}, color = {0, 127, 0}));
         else
-          connect(forceSensor.flange_a, flange_a1) annotation(Line(points = {{10, 0}, {10, 16}, {-100, 16}, {-100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
+          connect(forceSensor.flange_a, flange_a1) annotation(Line(points = {{10, 0}, {10, 16}, {-100, 16}, {-100, 0}}, color = {0, 127, 0}));
         end if;
-        connect(forceSensor.flange_b, flange_b1) annotation(Line(points = {{30, 0}, {100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-        connect(forceSensor.f, f1) annotation(Line(points = {{12, -11}, {12, -46}}, color = {0, 0, 127}, smooth = Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-70, 10}, {70, -10}}, fillColor=  {0, 0, 0},
+        connect(forceSensor.flange_b, flange_b1) annotation(Line(points = {{30, 0}, {100, 0}}, color = {0, 127, 0}));
+        connect(forceSensor.f, f1) annotation(Line(points = {{12, -11}, {12, -46}}, color = {0, 0, 127}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-70, 10}, {70, -10}}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid, pattern=  LinePattern.None), Ellipse(extent=  {{-70, -22}, {-50, -2}}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid, pattern=  LinePattern.None), Ellipse(extent=  {{-50, -20}, {-30, 0}}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid, pattern=  LinePattern.None), Ellipse(extent=  {{-30, -20}, {-10, 0}}, fillColor=  {0, 0, 0},
@@ -3019,7 +2950,7 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
                   fillPattern=                                                                                                    FillPattern.Solid, pattern=  LinePattern.None), Ellipse(extent=  {{10, -20}, {30, 0}}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid, pattern=  LinePattern.None), Ellipse(extent=  {{30, -20}, {50, 0}}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid, pattern=  LinePattern.None), Ellipse(extent=  {{50, -20}, {70, 0}}, fillColor=  {0, 0, 0},
-                  fillPattern=                                                                                                    FillPattern.Solid, pattern=  LinePattern.None), Line(points=  {{-96, 0}, {-70, 0}, {92, 0}}, pattern=  LinePattern.None, smooth=  Smooth.None), Text(extent=  {{-150, 100}, {150, 60}}, textString=  "%name", lineColor=  {0, 0, 255})}));
+                  fillPattern=                                                                                                    FillPattern.Solid, pattern=  LinePattern.None), Line(points=  {{-96, 0}, {-70, 0}, {92, 0}}, pattern=  LinePattern.None), Text(extent=  {{-150, 100}, {150, 60}}, textString=  "%name", lineColor=  {0, 0, 255})}));
       end TimingBelt_elastic;
     end TimingBelt;
 
@@ -3045,32 +2976,26 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         HelpBlocks.MeanValue meanSpeed
           annotation (Placement(transformation(extent={{-16,-70},{4,-50}})));
       equation
-        connect(speedSensor.flange, flange) annotation(Line(points = {{-58, 0}, {-82, 0}, {-82, 0}, {-100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(speed.y, actual) annotation(Line(points = {{5, 0}, {42, 0}, {42, 26}, {80, 26}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(absMaxSpeed_to_rpm.y, max) annotation(Line(points = {{41, -30}, {60, -30}, {60, 0}, {80, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(meanSpeed_to_rpm.y, mean) annotation(Line(points = {{41, -60}, {60, -60}, {60, -24}, {80, -24}}, color = {0, 0, 127}, smooth = Smooth.None));
+        connect(speedSensor.flange, flange) annotation(Line(points = {{-58, 0}, {-82, 0}, {-82, 0}, {-100, 0}}, color = {0, 0, 0}));
+        connect(speed.y, actual) annotation(Line(points = {{5, 0}, {42, 0}, {42, 26}, {80, 26}}, color = {0, 0, 127}));
+        connect(absMaxSpeed_to_rpm.y, max) annotation(Line(points = {{41, -30}, {60, -30}, {60, 0}, {80, 0}}, color = {0, 0, 127}));
+        connect(meanSpeed_to_rpm.y, mean) annotation(Line(points = {{41, -60}, {60, -60}, {60, -24}, {80, -24}}, color = {0, 0, 127}));
         connect(absMaxSpeed.y, absMaxSpeed_to_rpm.u) annotation (Line(
             points={{5,-30},{18,-30}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(meanSpeed_to_rpm.u, meanSpeed.y) annotation (Line(
             points={{18,-60},{5,-60}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(speedSensor.w, speed.u) annotation (Line(
             points={{-37,0},{-18,0}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxSpeed.u, speed.u) annotation (Line(
             points={{-18,-30},{-24,-30},{-24,0},{-18,0}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(meanSpeed.u, speed.u) annotation (Line(
             points={{-18,-60},{-22,-60},{-22,-30},{-24,-30},{-24,0},{-18,0}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                  -100},{100,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(points=  {{-74, 0}, {-94, 0}}, color=  {0, 0, 0}), Text(extent=  {{146, 80}, {-154, 120}}, textString=  "%name", lineColor=  {0, 0, 255}), Ellipse(extent=  {{-74, 70}, {66, -70}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+            color={0,0,127}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(points=  {{-74, 0}, {-94, 0}}, color=  {0, 0, 0}), Text(extent=  {{146, 80}, {-154, 120}}, textString=  "%name", lineColor=  {0, 0, 255}), Ellipse(extent=  {{-74, 70}, {66, -70}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-4, 70}, {-4, 40}}, color=  {0, 0, 0}), Line(points=  {{18.9, 32.8}, {36.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{-26.9, 32.8}, {-44.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{33.6, 13.7}, {61.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{-41.6, 13.7}, {-69.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{-4, 0}, {5.02, 28.6}}, color=  {0, 0, 0}), Polygon(points=  {{-4.48, 31.6}, {14, 26}, {14, 57.2}, {-4.48, 31.6}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-9, 5}, {1, -5}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Text(extent=  {{66, -30}, {116, -70}}, lineColor=  {0, 0, 0}, textString=  "rpm")}));
@@ -3090,23 +3015,19 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         HelpBlocks.AbsMax absMaxTorque
           annotation (Placement(transformation(extent={{34,-40},{54,-20}})));
       equation
-        connect(torqueSensor.flange_a, flange_a) annotation(Line(points = {{-10, 0}, {-100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(torqueSensor.flange_b, flange_b) annotation(Line(points = {{10, 0}, {100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(rootMeanSquareValue.y, rms) annotation(Line(points = {{55, -70}, {110, -70}}, color = {0, 0, 127}, smooth = Smooth.None));
+        connect(torqueSensor.flange_a, flange_a) annotation(Line(points = {{-10, 0}, {-100, 0}}, color = {0, 0, 0}));
+        connect(torqueSensor.flange_b, flange_b) annotation(Line(points = {{10, 0}, {100, 0}}, color = {0, 0, 0}));
+        connect(rootMeanSquareValue.y, rms) annotation(Line(points = {{55, -70}, {110, -70}}, color = {0, 0, 127}));
         connect(absMaxTorque.y, max) annotation (Line(
             points={{55,-30},{110,-30}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxTorque.u, torqueSensor.tau) annotation (Line(
             points={{32,-30},{-8,-30},{-8,-11}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(rootMeanSquareValue.u, torqueSensor.tau) annotation (Line(
             points={{32,-70},{-8,-70},{-8,-11}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                  -100},{100,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(points=  {{-70, 0}, {-90, 0}}, color=  {0, 0, 0}), Line(points=  {{70, 0}, {90, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 73}, {150, 113}}, textString=  "%name", lineColor=  {0, 0, 255}), Ellipse(extent=  {{-70, 70}, {70, -70}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+            color={0,0,127}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(points=  {{-70, 0}, {-90, 0}}, color=  {0, 0, 0}), Line(points=  {{70, 0}, {90, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 73}, {150, 113}}, textString=  "%name", lineColor=  {0, 0, 255}), Ellipse(extent=  {{-70, 70}, {70, -70}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{0, 70}, {0, 40}}, color=  {0, 0, 0}), Line(points=  {{22.9, 32.8}, {40.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{-22.9, 32.8}, {-40.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{37.6, 13.7}, {65.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{-37.6, 13.7}, {-65.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{0, 0}, {9.02, 28.6}}, color=  {0, 0, 0}), Polygon(points=  {{-0.48, 31.6}, {18, 26}, {18, 57.2}, {-0.48, 31.6}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-5, 5}, {5, -5}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Text(extent=  {{-50, -80}, {50, -120}}, lineColor=  {0, 0, 0}, textString=  "tau"), Line(points=  {{-80, -100}, {-80, 0}}, color=  {0, 0, 127})}));
@@ -3183,11 +3104,11 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         con_M_a = if dec_n_a_m then temp_con_M_a_eff else temp_con_M_a_kub;
         M_therm = if time <= 0 then a_0 else a_0 + a_1 * s.n_a_mean + a_2 / s.n_a_mean ^ 1.2;
         con_M_therm = s.M_a_1_2 - M_therm;
-        connect(flange_b, efficiencyFactor.flange_b) annotation(Line(points = {{110, 0}, {52, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(flange_a, idealGear.flange_a) annotation(Line(points = {{-110, 0}, {-80, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(s.flange_b, efficiencyFactor.flange_a) annotation(Line(points = {{10, 0}, {32, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(idealGear.flange_b, s.flange_a) annotation(Line(points = {{-60, 0}, {-10, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-100, 100}, {100, -100}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+        connect(flange_b, efficiencyFactor.flange_b) annotation(Line(points = {{110, 0}, {52, 0}}, color = {0, 0, 0}));
+        connect(flange_a, idealGear.flange_a) annotation(Line(points = {{-110, 0}, {-80, 0}}, color = {0, 0, 0}));
+        connect(s.flange_b, efficiencyFactor.flange_a) annotation(Line(points = {{10, 0}, {32, 0}}, color = {0, 0, 0}));
+        connect(idealGear.flange_b, s.flange_a) annotation(Line(points = {{-60, 0}, {-10, 0}}, color = {0, 0, 0}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-100, 100}, {100, -100}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-100, 100}, {100, -100}}, fillColor=  {95, 95, 95},
                   fillPattern=                                                                                                    FillPattern.Solid, pattern=  LinePattern.None, lineColor=  {0, 0, 0}), Ellipse(extent=  {{-80, 80}, {80, -80}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-40, 40}, {40, -40}}, lineColor=  {0, 0, 0}, fillColor=  {135, 135, 135},
@@ -3254,13 +3175,13 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         con_M_2_N = s.M_eff3 - M_2_N_lim;
         con_n_1 = n_1_max - n_1_lim;
         con_n_1_N = n_1_mean - n_1_N_lim;
-        connect(flange_a, noLoadFriction.flange_a) annotation(Line(points = {{-100, 0}, {-90, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(inertia.flange_a, efficiencyFactor.flange_b) annotation(Line(points = {{-30, 0}, {-40, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(noLoadFriction.flange_b, efficiencyFactor.flange_a) annotation(Line(points = {{-70, 0}, {-60, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(inertia.flange_b, idealGear.flange_a) annotation(Line(points = {{-10, 0}, {0, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(flange_b, s.flange_b) annotation(Line(points = {{88, 0}, {78, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(idealGear.flange_b, spring.flange_a) annotation(Line(points = {{20, 0}, {30, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(s.flange_a, spring.flange_b) annotation(Line(points = {{58, 0}, {50, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
+        connect(flange_a, noLoadFriction.flange_a) annotation(Line(points = {{-100, 0}, {-90, 0}}, color = {0, 0, 0}));
+        connect(inertia.flange_a, efficiencyFactor.flange_b) annotation(Line(points = {{-30, 0}, {-40, 0}}, color = {0, 0, 0}));
+        connect(noLoadFriction.flange_b, efficiencyFactor.flange_a) annotation(Line(points = {{-70, 0}, {-60, 0}}, color = {0, 0, 0}));
+        connect(inertia.flange_b, idealGear.flange_a) annotation(Line(points = {{-10, 0}, {0, 0}}, color = {0, 0, 0}));
+        connect(flange_b, s.flange_b) annotation(Line(points = {{88, 0}, {78, 0}}, color = {0, 0, 0}));
+        connect(idealGear.flange_b, spring.flange_a) annotation(Line(points = {{20, 0}, {30, 0}}, color = {0, 0, 0}));
+        connect(s.flange_a, spring.flange_b) annotation(Line(points = {{58, 0}, {50, 0}}, color = {0, 0, 0}));
         annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-120, -100}, {120, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-120, -100}, {120, 100}}), graphics={  Rectangle(extent=  {{-100, 100}, {100, -100}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-100, 100}, {100, -100}}, fillColor=  {95, 95, 95},
                   fillPattern=                                                                                                    FillPattern.Solid, pattern=  LinePattern.None, lineColor=  {0, 0, 0}), Ellipse(extent=  {{-80, 80}, {80, -80}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
@@ -3301,40 +3222,33 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         HelpBlocks.AbsMax absMaxTorque
           annotation (Placement(transformation(extent={{58,50},{78,70}})));
       equation
-        connect(torqueSensor.flange_b, flange_b) annotation(Line(points = {{56, 80}, {88, 80}, {88, 0}, {100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(speedSensor.flange, flange_a) annotation(Line(points = {{-96, 50}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(torqueSensor.tau, rootMeanSquareValue_custom.u) annotation(Line(points = {{38, 69}, {38, -30}, {56, -30}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(speedSensor.w, rootMeanSquareValue_custom.ref) annotation(Line(points = {{-75, 50}, {20, 50}, {20, -38}, {56, -38}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(meanSpeed_to_rpm.y, n_mean) annotation(Line(points = {{1, 0}, {66, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(absMaxSpeed_to_rpm.y, n_max) annotation(Line(points = {{1, 30}, {66, 30}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(rootMeanSquareValue_custom.y, M_eff3) annotation(Line(points = {{79, -30}, {110, -30}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(torqueSensor.flange_a, flange_a) annotation(Line(points = {{36, 80}, {-96, 80}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
+        connect(torqueSensor.flange_b, flange_b) annotation(Line(points = {{56, 80}, {88, 80}, {88, 0}, {100, 0}}, color = {0, 0, 0}));
+        connect(speedSensor.flange, flange_a) annotation(Line(points = {{-96, 50}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}));
+        connect(torqueSensor.tau, rootMeanSquareValue_custom.u) annotation(Line(points = {{38, 69}, {38, -30}, {56, -30}}, color = {0, 0, 127}));
+        connect(speedSensor.w, rootMeanSquareValue_custom.ref) annotation(Line(points = {{-75, 50}, {20, 50}, {20, -38}, {56, -38}}, color = {0, 0, 127}));
+        connect(meanSpeed_to_rpm.y, n_mean) annotation(Line(points = {{1, 0}, {66, 0}}, color = {0, 0, 127}));
+        connect(absMaxSpeed_to_rpm.y, n_max) annotation(Line(points = {{1, 30}, {66, 30}}, color = {0, 0, 127}));
+        connect(rootMeanSquareValue_custom.y, M_eff3) annotation(Line(points = {{79, -30}, {110, -30}}, color = {0, 0, 127}));
+        connect(torqueSensor.flange_a, flange_a) annotation(Line(points = {{36, 80}, {-96, 80}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}));
         connect(meanSpeed.y, meanSpeed_to_rpm.u) annotation (Line(
             points={{-35,0},{-22,0}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxSpeed.y, absMaxSpeed_to_rpm.u) annotation (Line(
             points={{-35,30},{-22,30}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(meanSpeed.u, rootMeanSquareValue_custom.ref) annotation (Line(
             points={{-58,0},{-64,0},{-64,50},{20,50},{20,-38},{56,-38}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxSpeed.u, rootMeanSquareValue_custom.ref) annotation (Line(
             points={{-58,30},{-64,30},{-64,50},{20,50},{20,-38},{56,-38}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxTorque.u, rootMeanSquareValue_custom.u) annotation (Line(
             points={{56,60},{38,60},{38,-30},{56,-30}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxTorque.y, M_max) annotation (Line(
             points={{79,60},{110,60}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                  -100},{100,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(points=  {{-70, 0}, {-90, 0}}, color=  {0, 0, 0}), Line(points=  {{70, 0}, {90, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 73}, {150, 113}}, lineColor=  {0, 0, 255}, textString=  "Req. Wittenstein"), Ellipse(extent=  {{-70, 70}, {70, -70}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+            color={0,0,127}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(points=  {{-70, 0}, {-90, 0}}, color=  {0, 0, 0}), Line(points=  {{70, 0}, {90, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 73}, {150, 113}}, lineColor=  {0, 0, 255}, textString=  "Req. Wittenstein"), Ellipse(extent=  {{-70, 70}, {70, -70}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{0, 70}, {0, 40}}, color=  {0, 0, 0}), Line(points=  {{22.9, 32.8}, {40.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{-22.9, 32.8}, {-40.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{37.6, 13.7}, {65.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{-37.6, 13.7}, {-65.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{0, 0}, {9.02, 28.6}}, color=  {0, 0, 0}), Polygon(points=  {{-0.48, 31.6}, {18, 26}, {18, 57.2}, {-0.48, 31.6}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-5, 5}, {5, -5}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-80, -100}, {-80, 0}}, color=  {0, 0, 127})}));
@@ -3373,46 +3287,39 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         HelpBlocks.MeanValue meanSpeed
           annotation (Placement(transformation(extent={{-58,-10},{-38,10}})));
       equation
-        connect(torqueSensor.flange_b, flange_b) annotation(Line(points = {{56, 80}, {88, 80}, {88, 0}, {100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(speedSensor.flange, flange_a) annotation(Line(points = {{-96, 50}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(torqueSensor.tau, rootMeanSquareValue_custom.u) annotation(Line(points = {{38, 69}, {38, -30}, {56, -30}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(speedSensor.w, rootMeanSquareValue_custom.ref) annotation(Line(points = {{-75, 50}, {20, 50}, {20, -38}, {56, -38}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(rootMeanSquareValue_custom1.u, rootMeanSquareValue_custom.u) annotation(Line(points = {{56, -60}, {38, -60}, {38, -30}, {56, -30}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(rootMeanSquareValue_custom1.ref, rootMeanSquareValue_custom.ref) annotation(Line(points = {{56, -68}, {20, -68}, {20, -38}, {56, -38}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(rootMeanSquareValue_custom2.u, rootMeanSquareValue_custom.u) annotation(Line(points = {{56, -90}, {38, -90}, {38, -30}, {56, -30}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(rootMeanSquareValue_custom2.ref, rootMeanSquareValue_custom.ref) annotation(Line(points = {{56, -98}, {20, -98}, {20, -38}, {56, -38}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(meanSpeed_to_rpm.y, n_a_mean) annotation(Line(points = {{1, 0}, {66, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(absMaxSpeed_to_rpm.y, n_a_max) annotation(Line(points = {{1, 30}, {66, 30}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(rootMeanSquareValue_custom.y, M_a_3) annotation(Line(points = {{79, -30}, {110, -30}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(torqueSensor.flange_a, flange_a) annotation(Line(points = {{36, 80}, {-96, 80}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(rootMeanSquareValue_custom2.y, M_a_1_2) annotation(Line(points = {{79, -90}, {110, -90}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(rootMeanSquareValue_custom1.y, M_a_8) annotation(Line(points = {{79, -60}, {110, -60}}, color = {0, 0, 127}, smooth = Smooth.None));
+        connect(torqueSensor.flange_b, flange_b) annotation(Line(points = {{56, 80}, {88, 80}, {88, 0}, {100, 0}}, color = {0, 0, 0}));
+        connect(speedSensor.flange, flange_a) annotation(Line(points = {{-96, 50}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}));
+        connect(torqueSensor.tau, rootMeanSquareValue_custom.u) annotation(Line(points = {{38, 69}, {38, -30}, {56, -30}}, color = {0, 0, 127}));
+        connect(speedSensor.w, rootMeanSquareValue_custom.ref) annotation(Line(points = {{-75, 50}, {20, 50}, {20, -38}, {56, -38}}, color = {0, 0, 127}));
+        connect(rootMeanSquareValue_custom1.u, rootMeanSquareValue_custom.u) annotation(Line(points = {{56, -60}, {38, -60}, {38, -30}, {56, -30}}, color = {0, 0, 127}));
+        connect(rootMeanSquareValue_custom1.ref, rootMeanSquareValue_custom.ref) annotation(Line(points = {{56, -68}, {20, -68}, {20, -38}, {56, -38}}, color = {0, 0, 127}));
+        connect(rootMeanSquareValue_custom2.u, rootMeanSquareValue_custom.u) annotation(Line(points = {{56, -90}, {38, -90}, {38, -30}, {56, -30}}, color = {0, 0, 127}));
+        connect(rootMeanSquareValue_custom2.ref, rootMeanSquareValue_custom.ref) annotation(Line(points = {{56, -98}, {20, -98}, {20, -38}, {56, -38}}, color = {0, 0, 127}));
+        connect(meanSpeed_to_rpm.y, n_a_mean) annotation(Line(points = {{1, 0}, {66, 0}}, color = {0, 0, 127}));
+        connect(absMaxSpeed_to_rpm.y, n_a_max) annotation(Line(points = {{1, 30}, {66, 30}}, color = {0, 0, 127}));
+        connect(rootMeanSquareValue_custom.y, M_a_3) annotation(Line(points = {{79, -30}, {110, -30}}, color = {0, 0, 127}));
+        connect(torqueSensor.flange_a, flange_a) annotation(Line(points = {{36, 80}, {-96, 80}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}));
+        connect(rootMeanSquareValue_custom2.y, M_a_1_2) annotation(Line(points = {{79, -90}, {110, -90}}, color = {0, 0, 127}));
+        connect(rootMeanSquareValue_custom1.y, M_a_8) annotation(Line(points = {{79, -60}, {110, -60}}, color = {0, 0, 127}));
         connect(absMaxTorque.u, rootMeanSquareValue_custom.u) annotation (Line(
             points={{60,60},{38,60},{38,-30},{56,-30}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxTorque.y, M_a_max) annotation (Line(
             points={{83,60},{110,60}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxSpeed.y, absMaxSpeed_to_rpm.u) annotation (Line(
             points={{-37,30},{-22,30}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxSpeed.u, rootMeanSquareValue_custom.ref) annotation (Line(
             points={{-60,30},{-64,30},{-64,50},{20,50},{20,-38},{56,-38}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(meanSpeed.y, meanSpeed_to_rpm.u) annotation (Line(
             points={{-37,0},{-22,0}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(meanSpeed.u, rootMeanSquareValue_custom.ref) annotation (Line(
             points={{-60,0},{-64,0},{-64,50},{20,50},{20,-38},{56,-38}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                  -100},{100,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(points=  {{-70, 0}, {-90, 0}}, color=  {0, 0, 0}), Line(points=  {{70, 0}, {90, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 73}, {150, 113}}, lineColor=  {0, 0, 255}, textString=  "Req. SEW"), Ellipse(extent=  {{-70, 70}, {70, -70}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+            color={0,0,127}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(points=  {{-70, 0}, {-90, 0}}, color=  {0, 0, 0}), Line(points=  {{70, 0}, {90, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 73}, {150, 113}}, lineColor=  {0, 0, 255}, textString=  "Req. SEW"), Ellipse(extent=  {{-70, 70}, {70, -70}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{0, 70}, {0, 40}}, color=  {0, 0, 0}), Line(points=  {{22.9, 32.8}, {40.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{-22.9, 32.8}, {-40.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{37.6, 13.7}, {65.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{-37.6, 13.7}, {-65.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{0, 0}, {9.02, 28.6}}, color=  {0, 0, 0}), Polygon(points=  {{-0.48, 31.6}, {18, 26}, {18, 57.2}, {-0.48, 31.6}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-5, 5}, {5, -5}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-80, -100}, {-80, 0}}, color=  {0, 0, 127})}));
@@ -3454,12 +3361,12 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
       equation
         con_M = s.M_max * shock_factor * temperature_factor - M_lim;
         con_M_N = s.M_eff3 * shock_factor - M_N_lim;
-        connect(flange_b, s.flange_b) annotation(Line(points = {{100, 0}, {60, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(flange_a, J_1.flange_a) annotation(Line(points = {{-100, 0}, {-50, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(springDamper.flange_a, J_1.flange_b) annotation(Line(points = {{-20, 0}, {-30, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(springDamper.flange_b, J_2.flange_a) annotation(Line(points = {{0, 0}, {10, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(s.flange_a, J_2.flange_b) annotation(Line(points = {{40, 0}, {30, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-100, 40}, {-30, -40}}, lineColor=  {0, 0, 0}), Rectangle(extent=  {{30, 40}, {100, -40}}, lineColor=  {0, 0, 0}), Polygon(points=  {{-30, 40}, {-30, 60}, {-10, 60}, {-10, -20}, {6, -20}, {6, -60}, {-30, -60}, {-30, 40}}, lineColor=  {0, 0, 0}, smooth=  Smooth.None), Polygon(points=  {{-18, 40}, {-18, 60}, {2, 60}, {2, -20}, {18, -20}, {18, -60}, {-18, -60}, {-18, 40}}, lineColor=  {0, 0, 0}, smooth=  Smooth.None, origin=  {12, 0}, rotation=  180), Rectangle(extent=  {{-6, 20}, {6, -20}}, lineColor=  {0, 0, 0}), Text(extent=  {{-150, 59}, {150, 99}}, textString=  "%name", lineColor=  {0, 0, 255})}));
+        connect(flange_b, s.flange_b) annotation(Line(points = {{100, 0}, {60, 0}}, color = {0, 0, 0}));
+        connect(flange_a, J_1.flange_a) annotation(Line(points = {{-100, 0}, {-50, 0}}, color = {0, 0, 0}));
+        connect(springDamper.flange_a, J_1.flange_b) annotation(Line(points = {{-20, 0}, {-30, 0}}, color = {0, 0, 0}));
+        connect(springDamper.flange_b, J_2.flange_a) annotation(Line(points = {{0, 0}, {10, 0}}, color = {0, 0, 0}));
+        connect(s.flange_a, J_2.flange_b) annotation(Line(points = {{40, 0}, {30, 0}}, color = {0, 0, 0}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-100, 40}, {-30, -40}}, lineColor=  {0, 0, 0}), Rectangle(extent=  {{30, 40}, {100, -40}}, lineColor=  {0, 0, 0}), Polygon(points=  {{-30, 40}, {-30, 60}, {-10, 60}, {-10, -20}, {6, -20}, {6, -60}, {-30, -60}, {-30, 40}}, lineColor=  {0, 0, 0}), Polygon(points=  {{-18, 40}, {-18, 60}, {2, 60}, {2, -20}, {18, -20}, {18, -60}, {-18, -60}, {-18, 40}}, lineColor=  {0, 0, 0}, origin=  {12, 0}, rotation=  180), Rectangle(extent=  {{-6, 20}, {6, -20}}, lineColor=  {0, 0, 0}), Text(extent=  {{-150, 59}, {150, 99}}, textString=  "%name", lineColor=  {0, 0, 255})}));
       end Clutch_Wittenstein;
 
       model Req_Wittenstein
@@ -3489,41 +3396,34 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         HelpBlocks.AbsMax absMaxTorque
           annotation (Placement(transformation(extent={{56,50},{76,70}})));
       equation
-        connect(torqueSensor.flange_b, flange_b) annotation(Line(points = {{56, 80}, {88, 80}, {88, 0}, {100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(speedSensor.flange, flange_a) annotation(Line(points = {{-96, 50}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
-        connect(torqueSensor.tau, rootMeanSquareValue_custom.u) annotation(Line(points = {{38, 69}, {38, -30}, {56, -30}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(speedSensor.w, rootMeanSquareValue_custom.ref) annotation(Line(points = {{-75, 50}, {20, 50}, {20, -38}, {56, -38}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(meanSpeed_to_rpm.y, n_mean) annotation(Line(points = {{1, 0}, {66, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(absMaxSpeed_to_rpm.y, n_max) annotation(Line(points = {{1, 30}, {66, 30}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(rootMeanSquareValue_custom.y, M_eff3) annotation(Line(points = {{79, -30}, {110, -30}}, color = {0, 0, 127}, smooth = Smooth.None));
-        connect(torqueSensor.flange_a, flange_a) annotation(Line(points = {{36, 80}, {-96, 80}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}, smooth = Smooth.None));
+        connect(torqueSensor.flange_b, flange_b) annotation(Line(points = {{56, 80}, {88, 80}, {88, 0}, {100, 0}}, color = {0, 0, 0}));
+        connect(speedSensor.flange, flange_a) annotation(Line(points = {{-96, 50}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}));
+        connect(torqueSensor.tau, rootMeanSquareValue_custom.u) annotation(Line(points = {{38, 69}, {38, -30}, {56, -30}}, color = {0, 0, 127}));
+        connect(speedSensor.w, rootMeanSquareValue_custom.ref) annotation(Line(points = {{-75, 50}, {20, 50}, {20, -38}, {56, -38}}, color = {0, 0, 127}));
+        connect(meanSpeed_to_rpm.y, n_mean) annotation(Line(points = {{1, 0}, {66, 0}}, color = {0, 0, 127}));
+        connect(absMaxSpeed_to_rpm.y, n_max) annotation(Line(points = {{1, 30}, {66, 30}}, color = {0, 0, 127}));
+        connect(rootMeanSquareValue_custom.y, M_eff3) annotation(Line(points = {{79, -30}, {110, -30}}, color = {0, 0, 127}));
+        connect(torqueSensor.flange_a, flange_a) annotation(Line(points = {{36, 80}, {-96, 80}, {-96, 0}, {-100, 0}}, color = {0, 0, 0}));
         connect(absMaxSpeed.y, absMaxSpeed_to_rpm.u) annotation (Line(
             points={{-33,30},{-22,30}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxSpeed.u, rootMeanSquareValue_custom.ref) annotation (Line(
             points={{-56,30},{-62,30},{-62,50},{20,50},{20,-38},{56,-38}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(meanSpeed.y, meanSpeed_to_rpm.u) annotation (Line(
             points={{-33,0},{-22,0}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(meanSpeed.u, rootMeanSquareValue_custom.ref) annotation (Line(
             points={{-56,0},{-60,0},{-60,30},{-62,30},{-62,50},{20,50},{20,-38},
                 {56,-38}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxTorque.y, M_max) annotation (Line(
             points={{77,60},{110,60}},
-            color={0,0,127},
-            smooth=Smooth.None));
+            color={0,0,127}));
         connect(absMaxTorque.u, rootMeanSquareValue_custom.u) annotation (Line(
             points={{54,60},{38,60},{38,-30},{56,-30}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        annotation(Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                  -100},{100,100}}),                                                                           graphics), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(points=  {{-70, 0}, {-90, 0}}, color=  {0, 0, 0}), Line(points=  {{70, 0}, {90, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 73}, {150, 113}}, lineColor=  {0, 0, 255}, textString=  "Req. Wittenstein"), Ellipse(extent=  {{-70, 70}, {70, -70}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+            color={0,0,127}));
+        annotation( Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Line(points=  {{-70, 0}, {-90, 0}}, color=  {0, 0, 0}), Line(points=  {{70, 0}, {90, 0}}, color=  {0, 0, 0}), Text(extent=  {{-150, 73}, {150, 113}}, lineColor=  {0, 0, 255}, textString=  "Req. Wittenstein"), Ellipse(extent=  {{-70, 70}, {70, -70}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{0, 70}, {0, 40}}, color=  {0, 0, 0}), Line(points=  {{22.9, 32.8}, {40.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{-22.9, 32.8}, {-40.2, 57.3}}, color=  {0, 0, 0}), Line(points=  {{37.6, 13.7}, {65.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{-37.6, 13.7}, {-65.8, 23.9}}, color=  {0, 0, 0}), Line(points=  {{0, 0}, {9.02, 28.6}}, color=  {0, 0, 0}), Polygon(points=  {{-0.48, 31.6}, {18, 26}, {18, 57.2}, {-0.48, 31.6}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-5, 5}, {5, -5}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                   fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-80, -100}, {-80, 0}}, color=  {0, 0, 127})}));
@@ -3535,21 +3435,13 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
     package Interfaces
       connector HydraulicPort_b
         extends HydraulicPort;
-        annotation(defaultComponentName = "port_b", Diagram(graphics={  Text(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0}, pattern=  LinePattern.Solid,
-                  fillPattern=                                                                                                    FillPattern.None,
-                  lineThickness=                                                                                                    0.25, extent=  {{-150, 110}, {150, 50}}, textString=  "%name"), Ellipse(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255}, pattern=  LinePattern.Solid,
-                  fillPattern=                                                                                                    FillPattern.Solid, extent=  {{-20, 20}, {20, -20}})}), Icon(graphics={  Ellipse(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255}, pattern=  LinePattern.Solid,
-                  fillPattern=                                                                                                    FillPattern.Solid, extent=  {{-40, 40}, {40, -40}})}));
+        annotation(defaultComponentName = "port_b", Diagram(graphics={  Text(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0}, lineThickness=                                                                                                    0.25, extent=  {{-150, 110}, {150, 50}}, textString=  "%name"), Ellipse(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255}, fillPattern=                                                                                                    FillPattern.Solid, extent=  {{-20, 20}, {20, -20}})}), Icon(graphics={  Ellipse(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255}, fillPattern=                                                                                                    FillPattern.Solid, extent=  {{-40, 40}, {40, -40}})}));
       end HydraulicPort_b;
 
       connector HydraulicPort_a
         extends HydraulicPort;
-        annotation(defaultComponentName = "port_a", Diagram(graphics={  Ellipse(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0}, pattern=  LinePattern.Solid,
-                  fillPattern=                                                                                                    FillPattern.Solid,
-                  lineThickness=                                                                                                    0.25, extent=  {{-20, 20}, {20, -20}}), Text(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0}, pattern=  LinePattern.Solid,
-                  fillPattern=                                                                                                    FillPattern.None,
-                  lineThickness=                                                                                                    0.25, extent=  {{-150, 110}, {150, 50}}, textString=  "%name")}), Icon(graphics={  Ellipse(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0}, pattern=  LinePattern.Solid,
-                  fillPattern=                                                                                                    FillPattern.Solid,
+        annotation(defaultComponentName = "port_a", Diagram(graphics={  Ellipse(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0}, fillPattern=                                                                                                    FillPattern.Solid,
+                  lineThickness=                                                                                                    0.25, extent=  {{-20, 20}, {20, -20}}), Text(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0}, lineThickness=                                                                                                    0.25, extent=  {{-150, 110}, {150, 50}}, textString=  "%name")}), Icon(graphics={  Ellipse(rotation=  0, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0}, fillPattern=                                                                                                    FillPattern.Solid,
                   lineThickness=                                                                                                    0.25, extent=  {{-40, 40}, {40, -40}})}));
       end HydraulicPort_a;
 
@@ -3594,7 +3486,7 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
       port_b.q = -Q;
       port_b.q + port_a.q = 0;
       port_b.T = T;
-      annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Ellipse(extent=  {{-60, 60}, {60, -60}}, lineColor=  {0, 0, 0}), Line(points=  {{0, 76}, {0, 60}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{0, -80}, {0, -60}}, color=  {0, 0, 0}, smooth=  Smooth.None), Polygon(points=  {{20, 20}, {0, 60}, {-20, 20}, {20, 20}}, lineColor=  {0, 0, 0}, smooth=  Smooth.None, fillColor=  {0, 0, 0},
+      annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Ellipse(extent=  {{-60, 60}, {60, -60}}, lineColor=  {0, 0, 0}), Line(points=  {{0, 76}, {0, 60}}, color=  {0, 0, 0}), Line(points=  {{0, -80}, {0, -60}}, color=  {0, 0, 0}), Polygon(points=  {{20, 20}, {0, 60}, {-20, 20}, {20, 20}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                 fillPattern=                                                                                                    FillPattern.Solid)}));
     end DisplacementPump;
 
@@ -3609,7 +3501,7 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
       port_b.q = -Q;
       port_b.q + port_a.q = 0;
       port_b.T = T;
-      annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Ellipse(extent=  {{-60, 60}, {60, -60}}, lineColor=  {0, 0, 0}), Line(points=  {{0, 76}, {0, 60}}, color=  {0, 0, 0}, smooth=  Smooth.None), Line(points=  {{0, -80}, {0, -60}}, color=  {0, 0, 0}, smooth=  Smooth.None), Polygon(points=  {{20, 20}, {0, 60}, {-20, 20}, {20, 20}}, lineColor=  {0, 0, 0}, smooth=  Smooth.None, fillColor=  {0, 0, 0},
+      annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Ellipse(extent=  {{-60, 60}, {60, -60}}, lineColor=  {0, 0, 0}), Line(points=  {{0, 76}, {0, 60}}, color=  {0, 0, 0}), Line(points=  {{0, -80}, {0, -60}}, color=  {0, 0, 0}), Polygon(points=  {{20, 20}, {0, 60}, {-20, 20}, {20, 20}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                 fillPattern=                                                                                                    FillPattern.Solid)}));
     end DisplacementPump_Constant;
 
@@ -3619,7 +3511,7 @@ If it is desired to neglect friction losses, set <code>frictionParameters.PRef =
         "eps to avoid numerical problems";
     equation
       port_a.p = eps;
-      annotation(Diagram, Icon(graphics={  Line(points=  {{-40, 20}, {-40, -20}, {40.0351, -20.0351}, {40.0351, 20.3866}}, rotation=  0, color=  {0, 0, 0}, pattern=  LinePattern.Solid, thickness=  0.25), Line(points=  {{0, 60}, {0, -20}}, rotation=  0, color=  {0, 0, 0}, pattern=  LinePattern.Solid, thickness=  0.25)}));
+      annotation(Diagram, Icon(graphics={  Line(points=  {{-40, 20}, {-40, -20}, {40.0351, -20.0351}, {40.0351, 20.3866}}, rotation=  0, color=  {0, 0, 0}, thickness=  0.25), Line(points=  {{0, 60}, {0, -20}}, rotation=  0, color=  {0, 0, 0}, thickness=  0.25)}));
     end Tank;
 
     model CoolingChannels "Model for temperature and pressure drop"
@@ -3651,7 +3543,7 @@ Assumptions:
 </HTML>
 "), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(extent=  {{-100, 60}, {100, 40}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
                 fillPattern=                                                                                                    FillPattern.Forward), Rectangle(extent=  {{-100, -40}, {100, -60}}, lineColor=  {0, 0, 0}, fillColor=  {0, 0, 0},
-                fillPattern=                                                                                                    FillPattern.Forward), Line(points=  {{-100, 0}, {-74, 0}}, color=  {0, 0, 0}, thickness=  0.5, smooth=  Smooth.None), Line(points=  {{-70, 0}, {-68, 0}}, color=  {0, 0, 0}, thickness=  0.5, smooth=  Smooth.None), Line(points=  {{-64, 0}, {-38, 0}}, color=  {0, 0, 0}, thickness=  0.5, smooth=  Smooth.None), Line(points=  {{-34, 0}, {-32, 0}}, color=  {0, 0, 0}, thickness=  0.5, smooth=  Smooth.None), Line(points=  {{-28, 0}, {-2, 0}}, color=  {0, 0, 0}, thickness=  0.5, smooth=  Smooth.None), Line(points=  {{2, 0}, {4, 0}}, color=  {0, 0, 0}, thickness=  0.5, smooth=  Smooth.None), Line(points=  {{8, 0}, {34, 0}}, color=  {0, 0, 0}, thickness=  0.5, smooth=  Smooth.None), Line(points=  {{38, 0}, {40, 0}}, color=  {0, 0, 0}, thickness=  0.5, smooth=  Smooth.None), Line(points=  {{44, 0}, {70, 0}}, color=  {0, 0, 0}, thickness=  0.5, smooth=  Smooth.None), Line(points=  {{74, 0}, {76, 0}}, color=  {0, 0, 0}, thickness=  0.5, smooth=  Smooth.None), Line(points=  {{80, 0}, {100, 0}}, color=  {0, 0, 0}, thickness=  0.5, smooth=  Smooth.None), Text(extent=  {{100, 0}, {-100, 40}}, lineColor=  {0, 0, 0},
+                fillPattern=                                                                                                    FillPattern.Forward), Line(points=  {{-100, 0}, {-74, 0}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{-70, 0}, {-68, 0}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{-64, 0}, {-38, 0}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{-34, 0}, {-32, 0}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{-28, 0}, {-2, 0}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{2, 0}, {4, 0}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{8, 0}, {34, 0}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{38, 0}, {40, 0}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{44, 0}, {70, 0}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{74, 0}, {76, 0}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{80, 0}, {100, 0}}, color=  {0, 0, 0}, thickness=  0.5), Text(extent=  {{100, 0}, {-100, 40}}, lineColor=  {0, 0, 0},
                 lineThickness=                                                                                                    0.5, fillColor=  {0, 0, 0},
                 fillPattern=                                                                                                    FillPattern.Forward, textString=  "flow"), Polygon(points=  {{-10, -4}, {-10, 15}, {0, 35}, {10, 15}, {10, -4}, {-10, -4}}, lineColor=  {255, 0, 0}, origin=  {0, -96}, rotation=  360), Text(extent=  {{-150, 125}, {150, 85}}, textString=  "%name", lineColor=  {0, 0, 255})}));
     end CoolingChannels;
@@ -3700,15 +3592,13 @@ Assumptions:
       Modelica.Blocks.Math.Abs abs1 annotation(Placement(transformation(extent = {{-40, -10}, {-20, 10}})));
       Max max annotation (Placement(transformation(extent={{20,-10},{40,10}})));
     equation
-      connect(u, abs1.u) annotation(Line(points = {{-120, 0}, {-42, 0}}, color = {0, 0, 127}, smooth = Smooth.None));
+      connect(u, abs1.u) annotation(Line(points = {{-120, 0}, {-42, 0}}, color = {0, 0, 127}));
       connect(abs1.y, max.u) annotation (Line(
           points={{-19,0},{18,0}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(max.y, y) annotation (Line(
           points={{41,0},{110,0}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {1, 1}), graphics={                                                                                                    Rectangle(extent=  {{-80, -9}, {-5, -41}}, lineColor=  {255, 255, 255}, fillColor=  {255, 255, 255},
                 fillPattern=                                                                                                    FillPattern.Solid),                                                                                                    Rectangle(extent=  {{-80, -9}, {-54, -24}}, lineColor=  {255, 255, 255}, fillColor=  {255, 255, 255},
                 fillPattern=                                                                                                    FillPattern.Solid), Rectangle(extent=  {{-12, -9}, {82, -63}}, lineColor=  {255, 255, 255}, fillColor=  {255, 255, 255},
@@ -3717,9 +3607,7 @@ Assumptions:
               extent={{100,-20},{-100,20}},
               lineColor={0,0,0},
               textString="Abs
-[max(f(t))]")}),
-           Diagram(coordinateSystem(preserveAspectRatio=false,  extent={{-100,-100},
-                {100,100}}),                                                                          graphics));
+[max(f(t))]")}));
     end AbsMax;
 
     block DynOpt "Computes the objectives for control optimization"
@@ -3771,16 +3659,13 @@ Assumptions:
 
       connect(pos_feedback.u1, act) annotation (Line(
           points={{-56,-34},{-66,-34},{-66,80},{-120,80}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(ref, pos_feedback.u2) annotation (Line(
           points={{-120,-80},{-48,-80},{-48,-26}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(pos_feedback.y, abs1.u) annotation (Line(
           points={{-39,-34},{-26,-34},{-26,40},{0,40}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
 
     algorithm
       when {abs(ref-act) < settlingTolerance_percent/100*stepHeight and temp == 0} then
@@ -3791,16 +3676,13 @@ Assumptions:
     equation
       connect(max.u, act) annotation (Line(
           points={{0,80},{-120,80}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(abs1.y, meanValue.u) annotation (Line(
           points={{23,40},{40,40}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(max_actMinusRef.u, abs1.u) annotation (Line(
           points={{6,-34},{-26,-34},{-26,40},{0,40}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       annotation(Icon(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
                 -100},{100,100}},                                                                        grid = {1, 1}), graphics={
                                     Rectangle(
@@ -3819,20 +3701,13 @@ Assumptions:
                   64,-60},{42,-52},{42,-68},{64,-60}},                                                                                                    lineColor=  {192, 192, 192}, fillColor=  {192, 192, 192},
                 fillPattern=                                                                                                    FillPattern.Solid),
             Line(
-              points={{-55,-61},{-18,-61}},
-              color={0,0,0},
-              smooth=Smooth.None),
+              points={{-55,-61},{-18,-61}}),
             Line(
-              points={{-18,-61},{-18,5},{-18,39}},
-              color={0,0,0},
-              smooth=Smooth.None),
+              points={{-18,-61},{-18,5},{-18,39}}),
             Line(
-              points={{-18,39},{58,39}},
-              color={0,0,0},
-              smooth=Smooth.None),
+              points={{-18,39},{58,39}}),
             Line(
               points={{-18,-62},{-7,-27},{12,76},{36,29},{54,47}},
-              color={0,0,0},
               smooth=Smooth.Bezier),        Text(
             extent={{-150,160},{150,120}},
             textString="%name",
@@ -3842,10 +3717,7 @@ Assumptions:
               lineColor={0,0,255},
               textString="act")}),                                                                                                    Documentation(info = "<html>
 <p>The<b> mean value</b> y is an integral time-averaged value of the input variable u. </p>
-</html>"),
-        Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-                {100,100}}),
-                        graphics));
+</html>"));
     end DynOpt;
 
     block RootMeanSquareValue
@@ -4092,25 +3964,21 @@ If, e.g., time = 1.0, the output y =  0.0 (before event), 1.0 (after event)
       HelpBlocks.AbsMax absMaxTemperature
         annotation (Placement(transformation(extent={{18,-10},{38,10}})));
     equation
-      connect(temperatureSensor.port, port) annotation(Line(points = {{-70, 0}, {-100, 0}}, color = {191, 0, 0}, smooth = Smooth.None));
+      connect(temperatureSensor.port, port) annotation(Line(points = {{-70, 0}, {-100, 0}}, color = {191, 0, 0}));
       connect(temperatureSensor.T, absMaxTemperature.u) annotation (Line(
           points={{-50,0},{16,0}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(absMaxTemperature.y, max) annotation (Line(
           points={{39,0},{100,0}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       connect(actual, absMaxTemperature.u) annotation (Line(
           points={{102,-30},{2,-30},{2,0},{16,0}},
-          color={0,0,127},
-          smooth=Smooth.None));
+          color={0,0,127}));
       annotation(Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Ellipse(extent=  {{-14, -98}, {26, -60}}, lineColor=  {0, 0, 0},
                 lineThickness=                                                                                                    0.5, fillColor=  {191, 0, 0},
                 fillPattern=                                                                                                    FillPattern.Solid), Rectangle(extent=  {{-6, 40}, {18, -68}}, lineColor=  {191, 0, 0}, fillColor=  {191, 0, 0},
                 fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{18, 0}, {96, 0}}, color=  {0, 0, 255}), Line(points=  {{-84, 0}, {-6, 0}}, color=  {191, 0, 0}), Polygon(points=  {{-6, 40}, {-6, 80}, {-4, 86}, {0, 88}, {6, 90}, {12, 88}, {16, 86}, {18, 80}, {18, 40}, {-6, 40}}, lineColor=  {0, 0, 0},
-                lineThickness=                                                                                                    0.5), Line(points=  {{-6, 40}, {-6, -64}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{18, 40}, {18, -64}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{-34, -20}, {-6, -20}}, color=  {0, 0, 0}), Line(points=  {{-34, 20}, {-6, 20}}, color=  {0, 0, 0}), Line(points=  {{-34, 60}, {-6, 60}}, color=  {0, 0, 0}), Text(extent=  {{132, -20}, {32, -120}}, lineColor=  {0, 0, 0}, textString=  "?C"), Text(extent=  {{-144, 130}, {156, 90}}, textString=  "%name", lineColor=  {0, 0, 255})}), Diagram(coordinateSystem(preserveAspectRatio=false,   extent={{-100,
-                -100},{100,100}}),                                                                                                    graphics));
+                lineThickness=                                                                                                    0.5), Line(points=  {{-6, 40}, {-6, -64}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{18, 40}, {18, -64}}, color=  {0, 0, 0}, thickness=  0.5), Line(points=  {{-34, -20}, {-6, -20}}, color=  {0, 0, 0}), Line(points=  {{-34, 20}, {-6, 20}}, color=  {0, 0, 0}), Line(points=  {{-34, 60}, {-6, 60}}, color=  {0, 0, 0}), Text(extent=  {{132, -20}, {32, -120}}, lineColor=  {0, 0, 0}, textString=  "?C"), Text(extent=  {{-144, 130}, {156, 90}}, textString=  "%name", lineColor=  {0, 0, 255})}));
     end TemperatureSensor;
 
     block Feedback_mirror
@@ -4144,8 +4012,7 @@ Example:
 
 </HTML>
 "), Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics={  Ellipse(extent=  {{-20, 20}, {20, -20}}, lineColor=  {0, 0, 127}, fillColor=  {235, 235, 235},
-                fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-60, 0}, {-20, 0}}, color=  {0, 0, 127}), Line(points=  {{20, 0}, {80, 0}}, color=  {0, 0, 127}), Line(points=  {{0, -20}, {0, -60}}, color=  {0, 0, 127}), Text(extent=  {{-82, 2}, {14, -92}}, lineColor=  {0, 0, 0}, textString=  "-"), Text(extent=  {{-150, 94}, {150, 44}}, textString=  "%name", lineColor=  {0, 0, 255})}), Diagram(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics={  Ellipse(extent=  {{-20, 20}, {20, -20}}, pattern=  LinePattern.Solid,
-                lineThickness=                                                                                                    0.25, fillColor=  {235, 235, 235},
+                fillPattern=                                                                                                    FillPattern.Solid), Line(points=  {{-60, 0}, {-20, 0}}, color=  {0, 0, 127}), Line(points=  {{20, 0}, {80, 0}}, color=  {0, 0, 127}), Line(points=  {{0, -20}, {0, -60}}, color=  {0, 0, 127}), Text(extent=  {{-82, 2}, {14, -92}}, lineColor=  {0, 0, 0}, textString=  "-"), Text(extent=  {{-150, 94}, {150, 44}}, textString=  "%name", lineColor=  {0, 0, 255})}), Diagram(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics={  Ellipse(extent=  {{-20, 20}, {20, -20}}, lineThickness=                                                                                                    0.25, fillColor=  {235, 235, 235},
                 fillPattern=                                                                                                    FillPattern.Solid, lineColor=  {0, 0, 255}), Line(points=  {{-60, 0}, {-20, 0}}, color=  {0, 0, 255}), Line(points=  {{20, 0}, {80, 0}}, color=  {0, 0, 255}), Line(points=  {{0, -20}, {0, -60}}, color=  {0, 0, 255}), Text(extent=  {{-86, 10}, {10, -84}}, lineColor=  {0, 0, 0}, textString=  "-")}));
     end Feedback_mirror;
 
@@ -4162,12 +4029,12 @@ Example:
       parameter Real vel_ax[:, 2] = [0, 0] "Time table for axial velocity";
       parameter Real force_N[:, 2] = [0, 0] "Time table for normal force";
     equation
-      connect(flangeChangeLeft.flange_a, flange_b) annotation(Line(points = {{-63, 0}, {-84, 0}, {-84, 0}, {-100, 0}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(force.flange, flangeChangeLeft.flange_ax) annotation(Line(points = {{80, 80}, {80, 10}, {-53, 10}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(force1.flange, flangeChangeLeft.flange_N) annotation(Line(points = {{60, -40}, {80, -40}, {80, -10}, {-53, -10}}, color = {0, 127, 0}, smooth = Smooth.None));
-      connect(force.f, tableForce_ax.y) annotation(Line(points = {{58, 80}, {11, 80}}, color = {0, 0, 127}, smooth = Smooth.None));
-      connect(tableForce_N.y, force1.f) annotation(Line(points = {{11, -40}, {38, -40}}, color = {0, 0, 127}, smooth = Smooth.None));
-      annotation(Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics), Icon(graphics={  Rectangle(extent=  {{-100, 62}, {100, -60}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
+      connect(flangeChangeLeft.flange_a, flange_b) annotation(Line(points = {{-63, 0}, {-84, 0}, {-84, 0}, {-100, 0}}, color = {0, 127, 0}));
+      connect(force.flange, flangeChangeLeft.flange_ax) annotation(Line(points = {{80, 80}, {80, 10}, {-53, 10}}, color = {0, 127, 0}));
+      connect(force1.flange, flangeChangeLeft.flange_N) annotation(Line(points = {{60, -40}, {80, -40}, {80, -10}, {-53, -10}}, color = {0, 127, 0}));
+      connect(force.f, tableForce_ax.y) annotation(Line(points = {{58, 80}, {11, 80}}, color = {0, 0, 127}));
+      connect(tableForce_N.y, force1.f) annotation(Line(points = {{11, -40}, {38, -40}}, color = {0, 0, 127}));
+      annotation( Icon(graphics={  Rectangle(extent=  {{-100, 62}, {100, -60}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                 fillPattern=                                                                                                    FillPattern.Solid), Rectangle(extent=  {{-60, 0}, {60, -40}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                 fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{-2, 60}, {70, -12}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
                 fillPattern=                                                                                                    FillPattern.Solid), Ellipse(extent=  {{10, 48}, {58, 0}}, lineColor=  {0, 0, 0}, fillColor=  {255, 255, 255},
